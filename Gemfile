@@ -49,7 +49,7 @@ group :test do
   gem 'rspec-rails'
   # gem 'rspec-its'
   # gem 'rspec-sidekiq'
-  # gem 'shoulda', require: false
+  gem 'shoulda', require: false
   # gem 'shoulda-matchers', require: false
   gem 'factory_girl_rails'#, '~> 4.0'
   gem 'faker'
