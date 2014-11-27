@@ -2,9 +2,15 @@ require 'rails_helper'
 
 RSpec.describe Entity, :type => :model do
 
-  subject { create(:entity) }
+  subject { build(:entity) }
 
   it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:reference) }
+  it { should validate_presence_of(:street_address) }
+  it { should validate_presence_of(:city) }
+  it { should validate_presence_of(:region) }
   it { should validate_presence_of(:region_code) }
+  it { should validate_presence_of(:country) }
+  it { should validate_presence_of(:street_address) }
 
 end
