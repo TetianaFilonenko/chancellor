@@ -1,15 +1,14 @@
 class Entity < ActiveRecord::Base
 
-
-  validates_presence_of :name
-  validates_presence_of :cached_long_name
-  validates_presence_of :reference
-  validates_presence_of :street_address
-  validates_presence_of :city
-  validates_presence_of :region
-  validates_presence_of :region_code
-  validates_presence_of :country
-  validates_presence_of :uuid
-
+  validates_presence_of \
+    :name,
+    :cached_long_name,
+    :reference,
+    :street_address,
+    :city,
+    :region,
+    :region_code,
+    :country,
+    :uuid
   
 end
