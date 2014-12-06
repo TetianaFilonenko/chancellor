@@ -1,7 +1,7 @@
 class CreateEntity
   include Interactor
 
-  before :create_entity
+  before :create
   before :validate
 
   def call
@@ -12,8 +12,10 @@ class CreateEntity
     end
   end
 
-  def create_entity
+  def create
     context.entity = Entity.new(context.to_h)
+    context.entity.cached_long_name = context.entity.decorate.long_name
+    context.entity.display_name ||= context.entity.name
     context.entity.uuid = UUID.generate(:compact)
   end
 

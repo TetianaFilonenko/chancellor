@@ -13,6 +13,7 @@ class EntitiesController < ApplicationController
   end
 
   def index
+    @entities = Entity.all
   end
 
   def new

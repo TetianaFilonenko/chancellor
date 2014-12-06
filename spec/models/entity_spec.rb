@@ -5,6 +5,7 @@ RSpec.describe Entity, :type => :model do
   subject { build(:entity) }
 
   it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:cached_long_name) }
   it { should validate_presence_of(:reference) }
   it { should validate_presence_of(:street_address) }
   it { should validate_presence_of(:city) }

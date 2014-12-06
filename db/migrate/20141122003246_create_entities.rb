@@ -2,6 +2,8 @@ class CreateEntities < ActiveRecord::Migration
   def change
     create_table :entities do |t|
       
+      t.string :cached_long_name, :limit => 1024, :null => false
+      t.string :display_name, :null => false
       t.string :name, :null => false
       t.string :contact_name                # iRely Origin agcust_contact char(20)
       t.string :comments                    # iRely Origin agcust_comments char(30)
