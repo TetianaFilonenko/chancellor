@@ -1,4 +1,5 @@
 # A sample Bowerfile
 # Check out https://github.com/42dev/bower-rails#ruby-dsl-configuration for more options
 
-asset 'flakes', :git => 'git@github.com:kumailht/flakes.git'
+asset 'flakes', :git => 'https://github.com/kumailht/flakes.git'
+
