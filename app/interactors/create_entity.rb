@@ -14,8 +14,8 @@ class CreateEntity
 
   def create
     context.entity = Entity.new(context.to_h)
-    context.entity.cached_long_name = context.entity.decorate.long_name
     context.entity.display_name ||= context.entity.name
+    context.entity.cached_long_name = context.entity.decorate.long_name
     context.entity.uuid = UUID.generate(:compact)
   end
 

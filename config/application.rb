@@ -20,12 +20,14 @@ module Entities
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.generators.stylesheets = false
-    config.generators.javascripts = false
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
+
     config.generators do |g|
-        g.test_framework  :rspec, :fixture => false
-        g.view_specs      false
-        g.helper_specs    false
+        g.stylesheets       false
+        g.javascripts       false
+        g.test_framework    :rspec, :fixture => false
+        g.view_specs        false
+        g.helper_specs      false
     end
   end
 end

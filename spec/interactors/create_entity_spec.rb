@@ -40,9 +40,7 @@ RSpec.describe CreateEntity, :type => :interactor do
     describe Entity do
       subject(:entity) { context.entity }
 
-      it 'has been persisted' do
-        expect(entity).to be_persisted
-      end
+      its(:persisted?) { is_expected.to be_truthy }
     end
   end
 

@@ -13,14 +13,12 @@ class EntitiesController < ApplicationController
   end
 
   def index
-    @entities = Entity.all
+    @search = Entity.search(params[:q])
+    @entities = @search.result.decorate
   end
 
   def new
     @entity = Entity.new
-  end
-
-  def show
   end
 
   protected
@@ -32,6 +30,6 @@ class EntitiesController < ApplicationController
   end
 
   def set_entity
-    @entity = Entity.find(params[:id])
+    @entity = Entity.find(params[:id]).decorate
   end
 end
