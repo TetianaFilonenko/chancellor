@@ -29,6 +29,10 @@
           <td nowrap><%= entity.name %></td>
           <td nowrap><%= entity.long_address %></td>
           <td nowrap>              
+            <%= link_to [:edit, entity, :return_url => return_url(request.original_url)],
+                        class: 'action button-gray smaller right' do %>
+                        Edit
+            <% end %>
             <%= link_to [entity, :return_url => return_url(request.original_url)],
                         class: 'action button-gray smaller right' do %>
                         View

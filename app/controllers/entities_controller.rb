@@ -1,5 +1,5 @@
 class EntitiesController < ApplicationController
-  before_filter :set_entity, :only => [:show]
+  before_filter :set_entity, :only => [:edit, :show, :update]
 
   def create
     interactor = CreateEntity.call(entity_params)
@@ -12,6 +12,9 @@ class EntitiesController < ApplicationController
     end
   end
 
+  def edit    
+  end
+
   def index
     @search = Entity.search(params[:q])
     @entities = @search.result.decorate
@@ -21,12 +24,21 @@ class EntitiesController < ApplicationController
     @entity = Entity.new
   end
 
+  def update
+    if @entity.update_attributes(entity_params)
+      redirect_with_notice(entity_path(@entity), 'Entity was successfully saved')
+    else
+      render :edit
+    end
+  end
+
   protected
 
   def entity_params
     params.
       require(:entity).
       permit(:name, :reference, :street_address, :city, :region, :region_code, :country)
+  rescue ActionController::ParameterMissing ; {}
   end
 
   def set_entity

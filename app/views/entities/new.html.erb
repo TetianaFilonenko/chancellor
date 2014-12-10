@@ -9,8 +9,8 @@
                                 label_html: { class: 'span-1' },
                                 :wrapper_html => { :class => 'grid-3' }
                         },
-                        :wrapper => :vertical_form,
-                        :method => :post ) do |f| %>
+                        :wrapper => :vertical_form
+                        ) do |f| %>
 
         <%= render partial: 'form', locals: { form: f, model: @entity } %>
 
