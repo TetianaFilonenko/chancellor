@@ -1,5 +1,5 @@
 class EntitiesController < ApplicationController
-  before_filter :set_entity, :only => [:edit, :show, :update]
+  before_filter :set_entity, :only => [:destroy, :edit, :show, :update]
 
   def create
     interactor = CreateEntity.call(entity_params)
@@ -9,6 +9,14 @@ class EntitiesController < ApplicationController
       redirect_with_notice(entity_path(@entity), 'Entity was successfully created')
     else
       render :new
+    end
+  end
+
+  def destroy
+    if @entity.destroy
+      redirect_with_alert(entities_path, 'Entity was successfully deleted')
+    else
+      redirect_with_alert(entity_path(@entity), 'Entity was not deleted')
     end
   end
 
