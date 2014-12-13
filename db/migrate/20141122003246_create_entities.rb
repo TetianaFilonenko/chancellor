@@ -15,6 +15,7 @@ class CreateEntities < ActiveRecord::Migration
       t.string :country, :null => false
       t.string :uuid, :limit => 32, :null => false
 
+      t.datetime :deleted_at
       t.timestamps
     end
   end

@@ -9,8 +9,12 @@
 </p>
 <br />
 
-<!-- <div class="flakes-actions-bar">
-</div> -->
+<div class="flakes-actions-bar">
+  <%= link_to 'Delete', entity_path(entity), 
+    :class => 'action button-red', 
+    :data => { :confirm => 'Are you sure?' }, 
+    :method => :delete %>
+</div>
 
 <fieldset class="flakes-information-box">
   <legend>Entity Details</legend>
