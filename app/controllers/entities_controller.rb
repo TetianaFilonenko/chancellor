@@ -14,7 +14,7 @@ class EntitiesController < ApplicationController
 
   def destroy
     if @entity.destroy
-      redirect_with_alert(entities_path, 'Entity was successfully deleted')
+      redirect_with_notice(entities_path, 'Entity was successfully deleted')
     else
       redirect_with_alert(entity_path(@entity), 'Entity was not deleted')
     end
