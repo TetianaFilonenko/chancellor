@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :entity do    
+  factory :entity do
     cached_long_name { name }
     city { Faker::Address.city }
     country { 'United States' }

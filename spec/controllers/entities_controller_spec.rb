@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe EntitiesController, :type => :controller do
+  before { sign_in(create(:user)) }
 
   describe 'GET index' do
     it 'assigns @entities' do
@@ -10,13 +11,13 @@ RSpec.describe EntitiesController, :type => :controller do
     end
 
     it 'assigns @search' do
-      entity = create(:entity)
+      create(:entity)
       get :index
       expect(assigns(:search)).to be_a_kind_of(Ransack::Search)
     end
 
     it '@entities contains decorated entity instances' do
-      entity = create(:entity)
+      create(:entity)
       get :index
       expect(assigns(:entities).first).to be_a_kind_of(EntityDecorator)
     end
@@ -25,7 +26,5 @@ RSpec.describe EntitiesController, :type => :controller do
       get :index
       expect(response).to render_template('index')
     end
-
   end
-
 end

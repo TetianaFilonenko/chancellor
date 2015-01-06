@@ -50,10 +50,7 @@
           <li><%= link_to 'New', new_entity_path %></li>
           <li><%= link_to 'All', entities_path %></li>
         </ul>
-        <!-- <p class="foot">
-          Hello <b>John Doe</b><br>
-          <a href="">My Account</a> &bullet; <a href="">Logout</a>
-        </p> -->
+        <%= current_user_block %>
       </div>
       <div class="flakes-content">
             <div class="flakes-mobile-top-bar">
