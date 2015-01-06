@@ -21,16 +21,14 @@ end
 
 # Feature helpers
 module FeatureHelpers
-  # Devise helpers
-  module Devise
-    def sign_in(user = double('user'))
-      login_as(user, :scope => :user)
-    end
+  def sign_in(user = double('user'))
+    login_as(user, :scope => :user)
   end
 end
 
 RSpec.configure do |config|
   config.include Devise::TestHelpers, :type => :controller
+  # config.include Devise::TestHelpers, :type => :feature
   config.include ControllerHelpers, :type => :controller
-  config.include FeatureHelpers::Devise, :type => :feature
+  config.include FeatureHelpers, :type => :feature
 end

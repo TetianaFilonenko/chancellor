@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'User views entities' do
-  background { sign_in(create(:user)) }
+  background { sign_in(create(:user, :confirmed)) }
 
   scenario 'no entities exist' do
     visit entities_path

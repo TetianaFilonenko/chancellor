@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'user creates a new entity' do
-  background { sign_in(create(:user)) }
+  background { sign_in(create(:user, :confirmed)) }
 
   scenario 'with valid details' do
     visit new_entity_path

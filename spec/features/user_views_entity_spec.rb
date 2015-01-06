@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'User views entity' do
-  background { sign_in(create(:user)) }
+  background { sign_in(create(:user, :confirmed)) }
   given(:entity) { create(:entity) }
 
   scenario 'that exists' do
