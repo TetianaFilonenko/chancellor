@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe CreateEntity, :type => :interactor do
-
   let(:name) { Faker::Company.name }
   let(:reference) { Faker::Number.number(8) }
   let(:street_address) { Faker::Address.street_address }
@@ -10,17 +9,17 @@ RSpec.describe CreateEntity, :type => :interactor do
   let(:region_code) { Faker::Address.zip_code }
   let(:country) { 'United States' }
   let(:uuid) { UUID.generate(:compact) }
-  subject(:context) { 
+  subject(:context) do
     CreateEntity.call(
-      :name => name, 
-      :reference => reference, 
+      :name => name,
+      :reference => reference,
       :street_address => street_address,
       :city => city,
       :region => region,
       :region_code => region_code,
       :country => country,
-      :uuid => uuid) 
-  }
+      :uuid => uuid)
+  end
 
   context 'valid parameters' do
     describe 'context' do
@@ -69,5 +68,4 @@ RSpec.describe CreateEntity, :type => :interactor do
       end
     end
   end
-
 end

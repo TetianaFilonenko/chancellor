@@ -1,10 +1,12 @@
 require 'rails_helper'
 
 feature 'user creates a new entity' do
-  scenario 'with valid details' do
-  	visit new_entity_path()
+  background { sign_in(create(:user, :confirmed)) }
 
-  	fill_in 'entity_name', :with => Faker::Company.name
+  scenario 'with valid details' do
+    visit new_entity_path
+
+    fill_in 'entity_name', :with => Faker::Company.name
     fill_in 'entity_reference', :with => Faker::Number.number(8)
     fill_in 'entity_street_address', :with => Faker::Address.street_address
     fill_in 'entity_city', :with => Faker::Address.street_address
@@ -12,17 +14,16 @@ feature 'user creates a new entity' do
     fill_in 'entity_region_code', :with => Faker::Address.zip_code
     fill_in 'entity_country', :with => 'United States'
 
-  	click_button 'Save'
+    click_button 'Save'
 
-  	expect(page).to have_content(/created/i)
+    expect(page).to have_content(/created/i)
   end
 
   scenario 'with invalid details' do
-    visit new_entity_path()
+    visit new_entity_path
 
     click_button 'Save'
 
     expect(page).not_to have_content(/created/i)
   end
-  
 end

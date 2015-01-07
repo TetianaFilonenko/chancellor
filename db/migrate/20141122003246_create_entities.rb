@@ -1,7 +1,6 @@
 class CreateEntities < ActiveRecord::Migration
   def change
     create_table :entities do |t|
-      
       t.string :cached_long_name, :limit => 1024, :null => false
       t.string :display_name, :null => false
       t.string :name, :null => false

@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-feature 'user views entity' do
+feature 'User views entity' do
+  background { sign_in(create(:user, :confirmed)) }
   given(:entity) { create(:entity) }
 
   scenario 'that exists' do
@@ -9,5 +10,4 @@ feature 'user views entity' do
     expect(current_path).to eq("/entities/#{entity.id}")
     expect(page).not_to have_content(/entity.name/i)
   end
-  
 end

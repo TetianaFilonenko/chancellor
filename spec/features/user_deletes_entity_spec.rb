@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-feature 'user deletes entity' do
+feature 'User deletes entity' do
+  background { sign_in(create(:user, :confirmed)) }
   given(:entity) { create(:entity) }
 
   scenario 'that exists' do
@@ -14,5 +15,4 @@ feature 'user deletes entity' do
     expect(entity.deleted_at).to be_present
     expect(page).to have_content(/was successfully deleted/i)
   end
-
-end 
+end
