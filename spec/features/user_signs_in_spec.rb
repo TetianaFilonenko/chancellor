@@ -31,5 +31,10 @@ feature 'User signs in' do
         :authentication_keys => User.authentication_keys
           .join(I18n.translate(:'support.array.words_connector')),
         :scope => :devise))
+      # I18n.t(
+      #   'failure.invalid',
+      #   :authentication_keys => User.authentication_keys.
+      #     join(I18n.translate(:'support.array.words_connector')),
+      #   :scope => :devise))
   end
 end
