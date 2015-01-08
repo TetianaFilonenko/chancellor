@@ -1,0 +1,10 @@
+en:
+  pundit:
+    default: 'You cannot perform this action.'
+    entity_policy:
+      create?: 'You cannot create entities!'
+      edit?: 'You cannot edit entities!'
+      new?: 'You cannot create entities!'
+      show?: 'You cannot view entities!'
+      index?: 'You cannot view entities!'
+      update?: 'You cannot edit entities!'

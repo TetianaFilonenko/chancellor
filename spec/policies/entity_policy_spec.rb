@@ -17,7 +17,7 @@ describe EntityPolicy, :type => :policy do
   end
 
   context 'when user has no roles' do
-    let(:user) { User.new(:roles => '') }
+    let(:user) { User.new(:roles => []) }
 
     it { is_expected.not_to permit_action(:show) }
     it { is_expected.not_to permit_action(:create) }
@@ -28,7 +28,7 @@ describe EntityPolicy, :type => :policy do
   end
 
   context 'when user has the entity user role' do
-    let(:user) { User.new(:roles => 'entity_user') }
+    let(:user) { build(:user, :roles => [build(:user_role_entity_user)]) }
 
     it { is_expected.to permit_action(:show) }
     it { is_expected.not_to permit_action(:create) }
@@ -38,8 +38,8 @@ describe EntityPolicy, :type => :policy do
     it { is_expected.not_to permit_action(:destroy) }
   end
 
-  context 'when user has the admin role' do
-    let(:user) { User.new(:roles => 'admin') }
+  context 'when user has the entity admin role' do
+    let(:user) { build(:user, :roles => [build(:user_role_entity_admin)]) }
 
     it { is_expected.to permit_action(:show) }
     it { is_expected.to permit_action(:create) }
@@ -47,5 +47,18 @@ describe EntityPolicy, :type => :policy do
     it { is_expected.to permit_action(:update) }
     it { is_expected.to permit_action(:edit) }
     it { is_expected.to permit_action(:destroy) }
+  end
+
+  context 'when user does not have the entity user role' do
+    let(:user) do
+      build(:user, :roles => [build(:user_role_admin)])
+    end
+
+    it { is_expected.not_to permit_action(:show) }
+    it { is_expected.not_to permit_action(:create) }
+    it { is_expected.not_to permit_action(:new) }
+    it { is_expected.not_to permit_action(:update) }
+    it { is_expected.not_to permit_action(:edit) }
+    it { is_expected.not_to permit_action(:destroy) }
   end
 end

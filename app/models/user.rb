@@ -1,3 +1,4 @@
+# Represents a user of the system.
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
@@ -10,8 +11,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :is_active
 
-  def has_role?(role)
-    roles.any? { |x| x.name == role.to_s }
+  def has_role?(*role_list)
+    self.roles.where { name.in my { role_list.map(&:to_s) } }.any?
   end
 
   def is_active?

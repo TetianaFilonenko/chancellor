@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/activerecord-hackery/squeel.git
+  revision: 96b6b0ef45d371b7493b89787ddc87d3197d45d5
+  specs:
+    squeel (1.2.2)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
+      polyamorous (~> 1.1.0)
+
+GIT
   remote: git://github.com/collectiveidea/interactor.git
   revision: 750ccad3003dfd4e6dbb1a5d1be472effc4dc1a1
   specs:
@@ -230,10 +239,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
-    squeel (1.2.2)
-      activerecord (>= 3.0)
-      activesupport (>= 3.0)
-      polyamorous (~> 1.1.0)
     sshkit (1.5.1)
       colorize
       net-scp (>= 1.1.2)
@@ -293,7 +298,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   shoulda
   simple_form
-  squeel
+  squeel!
   uglifier (>= 1.3.0)
   unicorn
   uuid

@@ -1,7 +1,8 @@
 require 'rails_helper'
 
-feature 'user creates a new entity' do
+feature 'User edits existing entity' do
   background { sign_in(user) }
+  given(:entity) { create(:entity) }
 
   context 'when authorized' do
     given(:user) do
@@ -11,28 +12,32 @@ feature 'user creates a new entity' do
       authorized_user
     end
 
-    scenario 'valid details show succeed' do
-      visit new_entity_path
+    scenario 'valid details succeed' do
+      visit edit_entity_path(entity)
 
+      # Change everything...
       fill_in 'entity_name', :with => Faker::Company.name
       fill_in 'entity_reference', :with => Faker::Number.number(8)
       fill_in 'entity_street_address', :with => Faker::Address.street_address
       fill_in 'entity_city', :with => Faker::Address.street_address
       fill_in 'entity_region', :with => Faker::Address.state
       fill_in 'entity_region_code', :with => Faker::Address.zip_code
-      fill_in 'entity_country', :with => 'United States'
 
       click_button 'Save'
 
-      expect(page).to have_content(/success/i)
+      expect(page).to have_content(/saved/i)
     end
 
     scenario 'invalid details fail' do
-      visit new_entity_path
+      visit edit_entity_path(entity)
+
+      # Clear a mandatory field
+      fill_in 'entity_name', :with => nil
 
       click_button 'Save'
 
-      expect(page).not_to have_content(/created/i)
+      expect(page).to have_content(/error/i)
+      expect(page).not_to have_content(/saved/i)
     end
   end
 
@@ -40,10 +45,10 @@ feature 'user creates a new entity' do
     given(:user) { create(:user, :confirmed) }
 
     scenario 'show no access message' do
-      visit new_entity_path
+      visit edit_entity_path(entity)
 
       expect(page).to have_content(
-        I18n.t('entity_policy.new?', :scope => :pundit))
+        I18n.t('entity_policy.edit?', :scope => :pundit))
     end
   end
 end
