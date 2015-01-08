@@ -1,4 +1,6 @@
+# Policy to control access to Entities
 class EntityPolicy < ApplicationPolicy
+  # Scope
   class Scope < Scope
     def resolve
       scope
@@ -6,22 +8,22 @@ class EntityPolicy < ApplicationPolicy
   end
 
   def index?
-    user && user.has_role?(:entity_admin, :entity_user)
+    user && user.role?(:entity_admin, :entity_user)
   end
 
   def show?
-    super && user && user.has_role?(:entity_admin, :entity_user)
+    super && user && user.role?(:entity_admin, :entity_user)
   end
 
   def create?
-    user && user.has_role?(:entity_admin)
+    user && user.role?(:entity_admin)
   end
 
   def update?
-    user && user.has_role?(:entity_admin)
+    user && user.role?(:entity_admin)
   end
 
   def destroy?
-    user && user.has_role?(:entity_admin)
+    user && user.role?(:entity_admin)
   end
 end

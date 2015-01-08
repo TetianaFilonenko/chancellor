@@ -6,7 +6,7 @@ class Entity < ActiveRecord::Base
 
   # NOTE: Use tags to represent an entities role
 
-  validates_presence_of \
+  validates \
     :name,
     :cached_long_name,
     :reference,
@@ -15,5 +15,6 @@ class Entity < ActiveRecord::Base
     :region,
     :region_code,
     :country,
-    :uuid
+    :uuid,
+    :presence => true
 end

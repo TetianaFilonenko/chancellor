@@ -1,17 +1,17 @@
 class ApplicationController < ActionController::Base
   include Pundit
 
-  after_filter :verify_authorized
-  before_filter :authenticate_user!
-  skip_after_filter :verify_authorized, :if => :devise_controller?
+  after_action :verify_authorized
+  before_action :authenticate_user!
+  skip_after_action :verify_authorized, :if => :devise_controller?
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  protect_from_forgery :with => :exception
 
   rescue_from Pundit::NotAuthorizedError, :with => :user_not_authorized
 
-  # We could write some magic using method missing 
+  # We could write some magic using method missing
   # but I'm not a big fan of magic.
   def redirect_with_notice(url, message)
     redirect_to(url, :notice => message)

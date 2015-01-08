@@ -1,3 +1,4 @@
+# EntityDecorator
 class EntityDecorator < Draper::Decorator
   delegate_all
 

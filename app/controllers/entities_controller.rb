@@ -1,7 +1,8 @@
+# Controller for managing Entity base details.
 class EntitiesController < ApplicationController
-  before_filter :set_entity, :only => [:destroy, :edit, :show, :update]
-  before_filter -> { authorize :entity }, :except => :show
-  before_filter -> { authorize @entity }, :only => :show
+  before_action :set_entity, :only => [:destroy, :edit, :show, :update]
+  before_action -> { authorize :entity }, :except => :show
+  before_action -> { authorize @entity }, :only => :show
 
   def create
     interactor = CreateEntity.call(entity_params)
@@ -49,17 +50,12 @@ class EntitiesController < ApplicationController
   protected
 
   def entity_params
-    params.
-      require(:entity).
-      permit(
-        :name,
-        :reference,
-        :street_address,
-        :city,
-        :region,
-        :region_code,
-        :country)
-  rescue ActionController::ParameterMissing ; {}
+    params
+      .require(:entity)
+      .permit(
+        :name, :reference,
+        :street_address, :city, :region, :region_code, :country)
+  rescue ActionController::ParameterMissing; {}
   end
 
   def set_entity

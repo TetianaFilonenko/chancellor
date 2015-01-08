@@ -17,8 +17,8 @@ RSpec.describe User, :type => :model do
     it { is_expected.to validate_presence_of(:is_active) }
   end
 
-  describe '.has_role?' do
-    subject { user.has_role?(:test) }
+  describe '.role?' do
+    subject { user.role?(:test) }
 
     context 'when user has role' do
       let(:roles) { [] }
@@ -33,8 +33,8 @@ RSpec.describe User, :type => :model do
     end
   end
 
-  describe '.is_active?' do
-    subject { user.is_active? }
+  describe '.active?' do
+    subject { user.active? }
 
     context 'when is_active is 0' do
       let(:is_active) { 0 }

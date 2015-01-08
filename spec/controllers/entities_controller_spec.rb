@@ -43,7 +43,7 @@ RSpec.describe EntitiesController, :type => :controller do
     describe 'DELETE destroy' do
       it 'redirects to the root path' do
         entity = create(:entity)
-        delete :destroy, { :id => entity.id }
+        delete :destroy, :id => entity.id
         expect(response).to redirect_to('/')
       end
     end

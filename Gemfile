@@ -24,7 +24,7 @@ gem 'unicorn'
 gem 'uuid'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-#gem 'jbuilder', '~> 2.0'
+# gem 'jbuilder', '~> 2.0'
 
 # Use Capistrano for deployment
 group :development do
@@ -37,7 +37,7 @@ group :test do
   gem 'rspec-rails'
   gem 'rspec-its'
   gem 'shoulda', :require => false
-  gem 'factory_girl_rails'#, '~> 4.0'
+  gem 'factory_girl_rails'
   gem 'faker'
   gem 'capybara'
   gem 'coveralls', :require => false
