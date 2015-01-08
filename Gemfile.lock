@@ -139,6 +139,8 @@ GEM
     polyamorous (1.1.0)
       activerecord (>= 3.0)
     powerpack (0.0.9)
+    pundit (0.3.0)
+      activesupport (>= 3.0.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -282,6 +284,7 @@ DEPENDENCIES
   jquery-rails
   mysql2
   paranoia
+  pundit
   rails (= 4.1.8)
   ransack
   rspec-its
