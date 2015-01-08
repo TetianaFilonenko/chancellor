@@ -33,12 +33,13 @@ group :development do
 end
 
 group :test do
+  gem 'capybara'
+  gem 'codeclimate-test-reporter', :require => nil
+  gem 'coveralls', :require => false
   gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'faker'  
   gem 'rspec-rails'
   gem 'rspec-its'
   gem 'shoulda', :require => false
-  gem 'factory_girl_rails'
-  gem 'faker'
-  gem 'capybara'
-  gem 'coveralls', :require => false
 end
