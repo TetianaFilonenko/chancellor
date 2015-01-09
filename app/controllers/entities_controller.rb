@@ -1,12 +1,17 @@
+# Controller for managing Entity base details.
 class EntitiesController < ApplicationController
-  before_filter :set_entity, :only => [:destroy, :edit, :show, :update]
+  before_action :set_entity, :only => [:destroy, :edit, :show, :update]
+  before_action -> { authorize :entity }, :except => :show
+  before_action -> { authorize @entity }, :only => :show
 
   def create
     interactor = CreateEntity.call(entity_params)
     @entity = interactor.entity
 
     if interactor.success?
-      redirect_with_notice(entity_path(@entity), 'Entity was successfully created')
+      redirect_with_notice(
+        entity_path(@entity),
+        'Entity was successfully created')
     else
       render :new
     end
@@ -20,7 +25,7 @@ class EntitiesController < ApplicationController
     end
   end
 
-  def edit    
+  def edit
   end
 
   def index
@@ -34,7 +39,9 @@ class EntitiesController < ApplicationController
 
   def update
     if @entity.update_attributes(entity_params)
-      redirect_with_notice(entity_path(@entity), 'Entity was successfully saved')
+      redirect_with_notice(
+        entity_path(@entity),
+        'Entity was successfully saved')
     else
       render :edit
     end
@@ -43,10 +50,12 @@ class EntitiesController < ApplicationController
   protected
 
   def entity_params
-    params.
-      require(:entity).
-      permit(:name, :reference, :street_address, :city, :region, :region_code, :country)
-  rescue ActionController::ParameterMissing ; {}
+    params
+      .require(:entity)
+      .permit(
+        :name, :reference,
+        :street_address, :city, :region, :region_code, :country)
+  rescue ActionController::ParameterMissing; {}
   end
 
   def set_entity

@@ -6,9 +6,7 @@ SimpleForm.setup do |config|
 
   config.wrappers :vertical_form, :tag => 'li' do |b|
     b.use :html5
-
     b.use :label
     b.use :input
   end
-
 end

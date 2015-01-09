@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141221184242) do
+ActiveRecord::Schema.define(version: 20150107230109) do
 
   create_table "entities", force: true do |t|
     t.string   "name",                          null: false
@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(version: 20141221184242) do
     t.string   "country",                       null: false
     t.string   "uuid",             limit: 32,   null: false
     t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_roles", force: true do |t|
+    t.integer  "user_id",               null: false
+    t.string   "name",       limit: 32, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -49,6 +56,7 @@ ActiveRecord::Schema.define(version: 20141221184242) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "is_active",              default: 1
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

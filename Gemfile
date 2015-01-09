@@ -12,18 +12,19 @@ gem 'interactor-rails'
 gem 'jquery-rails'
 gem 'mysql2'
 gem 'paranoia'
+gem 'pundit'
 gem 'rails', '4.1.8'
 gem 'ransack'
 gem 'rubocop'
 gem 'sass-rails', '~> 4.0.3'
 gem 'simple_form'
-gem 'squeel'
+gem 'squeel', :github => 'activerecord-hackery/squeel'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
 gem 'uuid'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-#gem 'jbuilder', '~> 2.0'
+# gem 'jbuilder', '~> 2.0'
 
 # Use Capistrano for deployment
 group :development do
@@ -32,12 +33,13 @@ group :development do
 end
 
 group :test do
+  gem 'capybara'
+  gem 'codeclimate-test-reporter', :require => nil
+  gem 'coveralls', :require => false
   gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'faker'  
   gem 'rspec-rails'
   gem 'rspec-its'
   gem 'shoulda', :require => false
-  gem 'factory_girl_rails'#, '~> 4.0'
-  gem 'faker'
-  gem 'capybara'
-  gem 'coveralls', :require => false
 end

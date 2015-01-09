@@ -1,5 +1,6 @@
 AllCops:
-  Excludes:
+  Exclude:
+    - bin/*
     - config/unicorn.rb
     - db/schema.rb
     - db/migrate/*

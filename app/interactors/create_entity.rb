@@ -1,3 +1,4 @@
+# Create a new +Entity
 class CreateEntity
   include Interactor
 
@@ -8,7 +9,7 @@ class CreateEntity
     if context.entity.save
       context.message = 'Entity successfully created'
     else
-      fail!(:message => 'Entity not created')
+      context.fail!(:message => 'Entity not created')
     end
   end
 
@@ -20,8 +21,8 @@ class CreateEntity
   end
 
   def validate
-    unless context.entity.valid?
-      context.fail!(:message => 'Invalid Entity details')
-    end
+    return if context.entity.valid?
+    
+    context.fail!(:message => 'Invalid Entity details')
   end
 end
