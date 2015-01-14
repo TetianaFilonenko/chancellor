@@ -1,17 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Entity, :type => :model do
-
   subject { build(:entity) }
 
-  it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:cached_long_name) }
-  it { should validate_presence_of(:reference) }
-  it { should validate_presence_of(:street_address) }
-  it { should validate_presence_of(:city) }
-  it { should validate_presence_of(:region) }
-  it { should validate_presence_of(:region_code) }
-  it { should validate_presence_of(:country) }
-  it { should validate_presence_of(:street_address) }
-
+  it { is_expected.to validate_presence_of(:name) }
+  it { is_expected.to validate_presence_of(:cached_long_name) }
+  it { is_expected.to validate_presence_of(:reference) }
+  it { is_expected.to validate_presence_of(:street_address) }
+  it { is_expected.to validate_presence_of(:city) }
+  it { is_expected.to validate_presence_of(:region) }
+  it { is_expected.to validate_presence_of(:region_code) }
+  it { is_expected.to validate_presence_of(:country) }
+  it { is_expected.to validate_presence_of(:street_address) }
 end

@@ -28,7 +28,6 @@ end
 
 RSpec.configure do |config|
   config.include Devise::TestHelpers, :type => :controller
-  # config.include Devise::TestHelpers, :type => :feature
   config.include ControllerHelpers, :type => :controller
   config.include FeatureHelpers, :type => :feature
 end

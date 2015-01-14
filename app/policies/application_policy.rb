@@ -1,3 +1,4 @@
+# ApplicationPolicy
 class ApplicationPolicy
   attr_reader :user, :record
 
@@ -6,12 +7,16 @@ class ApplicationPolicy
     @record = record
   end
 
+  def authenticated?
+    user && user.has_role?(:authenticated)
+  end
+
   def index?
     false
   end
 
   def show?
-    scope.where(:id => record.id).exists?
+    authenticated? && scope.where(:id => record.id).exists?
   end
 
   def create?
@@ -38,6 +43,7 @@ class ApplicationPolicy
     Pundit.policy_scope!(user, record.class)
   end
 
+  # Scope
   class Scope
     attr_reader :user, :scope
 
@@ -51,4 +57,3 @@ class ApplicationPolicy
     end
   end
 end
-

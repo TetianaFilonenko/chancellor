@@ -11,8 +11,6 @@ namespace :chancellor do
       u.skip_confirmation!
     end
 
-    # TODO: Set roles
-
     user.save!
   end
 end

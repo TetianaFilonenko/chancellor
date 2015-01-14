@@ -1,0 +1,21 @@
+en:
+  activerecord:
+    models:
+      entity: 'Entity'
+      grant_role: 'Grant'
+      user: 'User'
+      user_role: 'User Role'
+    successful:
+      messages:
+        created: "%{model} was successfully created."
+        deleted: "%{model} was successfully deleted."
+        updated: "%{model} was successfully updated."
+  app:
+    admin:
+      grant_role:
+        success: "%{role_name} was granted to %{user_name}"
+        failure: "Failed to grant %{role_name} to %{user_name}"
+      revoke_role:
+        success: "%{role_name} was revoked from %{user_name}"
+        failure: "Failed to revoke %{role_name} from %{user_name}"
+

@@ -1,60 +1,59 @@
 <% entity = @entity %>
 
 <div class="grid-1 xgutter-20">
-<h1><%= entity.name %></h1>
+  <h1><%= entity.name %></h1>
 
-<p class="flakes-breadcrumbs">
-  <%= link_to 'Entities', entities_path %>
-  /
-</p>
-<br />
+  <p class="flakes-breadcrumbs">
+    <%= link_to 'Entities', entities_path %>
+    /
+  </p>
+  <br />
 
-<div class="flakes-actions-bar">
-  <%= link_to 'Delete', entity_path(entity), 
-    :class => 'action button-red', 
-    :data => { :confirm => 'Are you sure?' }, 
-    :method => :delete %>
-</div>
+  <div class="flakes-actions-bar">
+    <%= link_to 'Delete', entity_path(entity), 
+      :class => 'action button-red', 
+      :data => { :confirm => 'Are you sure?' }, 
+      :method => :delete %>
+  </div>
 
-<fieldset class="flakes-information-box">
-  <legend>Entity Details</legend>
-  <dl>
-    <dt>Reference</dt>
-    <dd><%= entity.reference %></dd>
-  </dl>
-  <dl>
-    <dt>Display Name</dt>
-    <dd><%= entity.display_name %></dd>
-  </dl>
-  <dl>
-    <dt>Street Address</dt>
-    <dd><%= entity.street_address %></dd>
-  </dl>
-  <dl>
-    <dt>City</dt>
-    <dd><%= entity.city %></dd>
-  </dl>
-  <dl>
-    <dt>Region</dt>
-    <dd><%= entity.region %></dd>
-  </dl>
-  <dl>
-    <dt>Region Code</dt>
-    <dd><%= entity.region_code %></dd>
-  </dl>
-  <dl>
-    <dt>Country</dt>
-    <dd><%= entity.country %></dd>
-  </dl>
-</fieldset>
-<br />
+  <fieldset class="flakes-information-box">
+    <legend>Entity Details</legend>
+    <dl>
+      <dt>Reference</dt>
+      <dd><%= entity.reference %></dd>
+    </dl>
+    <dl>
+      <dt>Display Name</dt>
+      <dd><%= entity.display_name %></dd>
+    </dl>
+    <dl>
+      <dt>Street Address</dt>
+      <dd><%= entity.street_address %></dd>
+    </dl>
+    <dl>
+      <dt>City</dt>
+      <dd><%= entity.city %></dd>
+    </dl>
+    <dl>
+      <dt>Region</dt>
+      <dd><%= entity.region %></dd>
+    </dl>
+    <dl>
+      <dt>Region Code</dt>
+      <dd><%= entity.region_code %></dd>
+    </dl>
+    <dl>
+      <dt>Country</dt>
+      <dd><%= entity.country %></dd>
+    </dl>
+  </fieldset>
+  <br />
 
-<fieldset class="flakes-information-box">
-  <legend>System Information</legend>
-  <dl>
-    <dt>UUID</dt>
-    <dd><%= entity.uuid %></dd>
-  </dl>
-</fieldset>
-
+  <fieldset class="flakes-information-box">
+    <legend>System Information</legend>
+    <dl>
+      <dt>UUID</dt>
+      <dd><%= entity.uuid %></dd>
+    </dl>
+  </fieldset>
 </div>

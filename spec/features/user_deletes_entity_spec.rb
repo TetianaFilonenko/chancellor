@@ -4,16 +4,13 @@ feature 'User deletes entity' do
   background { sign_in(user) }
   given(:entity) { create(:entity) }
 
-  context 'when authorized' do
-    given(:user) do
-      authorized_user = build(:user, :confirmed)
-      authorized_user.roles << build(:user_role_entity_admin)
-      authorized_user.save!
-      authorized_user
-    end
+  given(:user) { create(:user, :authenticated, :entity_admin) }
 
-    scenario 'delete succeeds' do
+  context 'when delete succeeds' do
+    scenario 'they see a success message' do
       visit entity_path(entity)
+
+      expect(page).to have_content('Delete')
 
       click_link 'Delete'
 

@@ -4,14 +4,14 @@ RSpec.describe EntitiesController, :type => :controller do
   before { sign_in(user) }
 
   context 'when authorized' do
-    let(:user) do
-      authorized_user = build(:user, :confirmed)
-      authorized_user.roles << build(:user_role_entity_admin)
-      authorized_user.save!
-      authorized_user
-    end
+    let(:user) { create(:user, :confirmed, :authenticated, :entity_admin) }
 
     describe 'GET index' do
+      it 'responds with status equal to 200' do
+        get :index
+        expect(response.status).to eq(200)
+      end
+
       it 'assigns @entities' do
         entity = create(:entity)
         get :index
@@ -41,6 +41,12 @@ RSpec.describe EntitiesController, :type => :controller do
     let(:user) { create(:user, :confirmed) }
 
     describe 'DELETE destroy' do
+      it 'responds with status equal to 302' do
+        entity = create(:entity)
+        delete :destroy, :id => entity.id
+        expect(response.status).to eq(302)
+      end
+
       it 'redirects to the root path' do
         entity = create(:entity)
         delete :destroy, :id => entity.id

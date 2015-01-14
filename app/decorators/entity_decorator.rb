@@ -23,5 +23,4 @@ class EntityDecorator < Draper::Decorator
 #{region_code}, \
 #{country}"
   end
-
 end

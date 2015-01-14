@@ -40,6 +40,7 @@ RSpec.describe CreateEntity, :type => :interactor do
       subject(:entity) { context.entity }
 
       its(:persisted?) { is_expected.to be_truthy }
+      its(:errors) { is_expected.to be_empty }
     end
   end
 

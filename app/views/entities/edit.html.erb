@@ -3,9 +3,9 @@
 <fieldset>
 <%= simple_form_for(@entity,
                     :defaults => {
-                            input_html: { class: 'span-2' },
-                            label_html: { class: 'span-1' },
-                            :wrapper_html => { :class => 'grid-3' }
+                      :input_html => { :class => 'span-2' },
+                      :label_html => { :class => 'span-1' },
+                      :wrapper_html => { :class => 'grid-3' }
                     },
                     :wrapper => :vertical_form 
                     ) do |f| %>
