@@ -2,7 +2,7 @@
 class ApplicationController < ActionController::Base
   include Pundit
 
-  after_action :verify_authorized
+  after_action :verify_authorized, :if => :user_signed_in?
   before_action :authenticate_user!
   skip_after_action :verify_authorized, :if => :devise_controller?
 
@@ -22,11 +22,16 @@ class ApplicationController < ActionController::Base
     redirect_to(url, :alert => message)
   end
 
+  def redirect_with_flash(url, flash_type, message)
+    redirect_to(url, flash_type => message)
+  end
+
   def user_not_authorized(exception)
     policy_name = exception.policy.class.to_s.underscore
 
-    redirect_to(
+    redirect_with_flash(
       request.referrer || root_path,
-      :alert => t("#{policy_name}.#{exception.query}", :scope => :pundit))
+      :alert,
+      t("#{policy_name}.#{exception.query}", :scope => :pundit))
   end
 end

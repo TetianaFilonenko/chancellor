@@ -1,27 +1,21 @@
-<h1>Add Role</h1>
+<div class="header segment">
+  <div class="container">
+    <h1 class="ui header">Add Role</h1>
+  </div>
+</div>
+<div class="main container">
+  <%= simple_form_for(@grant,
+    :html => { :class => 'ui form' },
+    :url => admin_user_roles_path(@user),
+    :wrapper => :semantic_form) do |form| %>
+      <%= render :partial => '/model_errors', :locals => { :model => @grant } if @grant.errors.any? %>
 
-<fieldset>
-<%= simple_form_for(@grant,
-                    :defaults => {
-                      :input_html => { :class => 'span-2' },
-                      :label_html => { :class => 'span-1' },
-                      :wrapper_html => { :class => 'grid-3' }
-                    },
-                    :url => admin_user_roles_path(@user),
-                    :wrapper => :vertical_form 
-                    ) do |form| %>
+      <%= form.input :name,
+        :collection => roles_collection(@grant.user.available_roles),
+        :input_html => { :class => 'dropdown' },
+        :label => 'Role' %>
 
-    <%= render :partial => '/model_errors', :locals => { :model => @grant } if @grant.errors.any? %>
-
-    <ul>
-    <%= form.input :name,
-      :collection => roles_collection(@grant.user.available_roles),
-      :input_html => { }, :label => 'Role' %>
-    </ul>
-
-    <div class="flakes-actions-bar">
-      <input type="submit" class="action button-blue right" value="Save" />
-      <%= link_to 'Cancel', admin_user_path(@user), :class => 'action button-gray right' %>
-    </div>
-<% end %>
-</fieldset>
+      <input type="submit" class="ui submit button" value="Save" />
+      <%= link_to 'Cancel', admin_user_path(@user), :class => 'ui basic button' %>
+  <% end %>
+</div>

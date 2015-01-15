@@ -1,37 +1,44 @@
-<div class="grid-1">
-  <div class="span-1">
-    <h1>Users</h1>
-
-    <table class="flakes-table table-with-link-column">
-      <thead>
+<div class="clearing header segment">
+  <div class="container">
+    <h1 class="ui header">
+      Users
+    </h1>
+    <p>Make changes to the users of the system.</p>
+  </div>
+</div>
+<div class="main container">
+  <%= semantic_flash %>
+  <table class="ui table segment with-buttons">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Roles</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @users.each do |user| %>
       <tr>
-        <th>Email</th>
-        <th>Roles</th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody>
-      <% if @users.each do |user| %>
-        <tr>
           <td nowrap><%= user.email %></td>
-          <td nowrap><%= user.roles.map(&:name).join(', ') %></td>
-          <td nowrap>              
+          <td><%= user.roles.map(&:name).join(', ') %></td>
+          <td nowrap><%= user_active_string(user) %></td>
+          <td nowrap>
             <%= link_to [:edit, :admin, user, :return_url => return_url(request.original_url)],
-                        class: 'action button-gray smaller right' do %>
+                        :class => 'tiny ui basic button' do %>
                         Edit
             <% end %>
             <%= link_to [:admin, user, :return_url => return_url(request.original_url)],
-                        class: 'action button-gray smaller right' do %>
+                        :class => 'tiny ui basic button' do %>
                         View
             <% end %>
           </td>
-        </tr>
-      <% end.empty? %>
-        <tr>
-          <td colspan="2">No users found</td><td></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </div>
+      </tr>
+    <% end.empty? %>
+      <tr>
+        <td colspan="3">No users found</td><td></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 </div>

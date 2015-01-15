@@ -1,62 +1,50 @@
 <% user = @user %>
-
-<div class="grid-1 xgutter-20">
-  <h1><%= user.display_name %></h1>
-
-  <p class="flakes-breadcrumbs">
-    <%= link_to 'Users', admin_users_path %>
-    /
-  </p>
-  <br />
-
-  <div class="flakes-actions-bar">
-    <%#= link_to 'Delete', admin_users_path(user), 
-      :class => 'action button-red', 
-      :data => { :confirm => 'Are you sure?' }, 
-      :method => :delete %>
-    <%= link_to 'Add Role', new_admin_user_role_path(user),
-      :class => 'action button-gray' %>
+<div class="clearing header segment">
+  <div class="container">
+    <h1 class="ui header">
+      <%= user.display_name %>
+    </h1>
+    <div class="ui divider"></div>
+    <div>
+      <%= link_to 'Add Role', new_admin_user_role_path(user),
+                :class => 'ui basic button' %>
+    </div>
   </div>
-
-  <fieldset class="flakes-information-box">
-    <legend>User Details</legend>
-    <dl>
-      <dt>First Name</dt>
-      <dd><%= user.first_name %></dd>
-    </dl>
-    <dl>
-      <dt>Last Name</dt>
-      <dd><%= user.last_name %></dd>
-    </dl>
-    <dl>
-      <dt>Display Name</dt>
-      <dd><%= user.display_name %></dd>
-    </dl>
-    <dl>
-      <dt>Email</dt>
-      <dd><%= user.email %></dd>
-    </dl>
-    <dl>
-      <dt>Active</dt>
-      <dd><%= user_active_string(user) %></dd>
-    </dl>
-  </fieldset>
-  <p />
-
-  <table id="roles" class="flakes-table table-with-link-column">
-    <thead>
-      <tr>
-        <th>Role</th>
-        <th></th>
-      </tr>
-    </thead>
+</div>
+<div class="main container">
+  <div class="ui form">
+    <div class="inline field static">
+      <label>First Name</label>
+      <div><%= user.first_name %></div>
+    </div>
+    <div class="inline field static">
+      <label>Last Name</label>
+      <div><%= user.last_name %></div>
+    </div>
+    <div class="inline field static">
+      <label>Display Name</label>
+      <div><%= user.display_name %></div>
+    </div>
+    <div class="inline field static">
+      <label>Email</label>
+      <div><%= user.email %></div>
+    </div>
+    <div class="inline field static">
+      <label>Active</label>
+      <div><%= user_active_string(user) %></div>
+    </div>
+  </div>
+  <h3 class="ui dividing header">
+  Roles
+  </h3>
+  <table id="roles" class="ui table with-buttons">
     <tbody>
     <%= if user.roles.each do |role| %>
       <tr>
         <td><%= role.name %></td>
         <td><%= link_to 'Delete',
                         admin_user_revoke_role_path(user, role.name),
-                        :class => 'action button-red',
+                        :class => 'ui button',
                         :data => { :confirm => 'Are you sure?' },
                         :method => :delete %>
         </td>
