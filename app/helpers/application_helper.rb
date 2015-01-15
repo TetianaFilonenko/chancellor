@@ -4,7 +4,7 @@ module ApplicationHelper
     return default_url unless params[:return_url]
 
     if params[:return_url]
-      if URI.parse(params[:return_url]).class.name.include?('HTTP')
+      if http_url?(params[:return_url])
         URI.parse(params[:return_url]).to_s
       else
         # REVIEW: Consider logging this
@@ -13,5 +13,11 @@ module ApplicationHelper
     end
   rescue
     default_url
+  end
+
+  protected
+
+  def http_url?(url)
+    URI.parse(url).class.name.include?('HTTP')
   end
 end

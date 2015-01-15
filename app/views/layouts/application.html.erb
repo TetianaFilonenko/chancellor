@@ -50,6 +50,10 @@
           <li><%= link_to 'New', new_entity_path %></li>
           <li><%= link_to 'All', entities_path %></li>
         </ul>
+        <ul>
+          <li class="title">Admin</li>
+          <li><%= link_to 'Users', admin_users_path %></li>
+        </ul>
         <%= current_user_block %>
       </div>
       <div class="flakes-content">

@@ -1,3 +1,4 @@
+# Global application controller
 class ApplicationController < ActionController::Base
   include Pundit
 

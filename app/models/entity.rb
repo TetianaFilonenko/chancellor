@@ -4,6 +4,7 @@
 class Entity < ActiveRecord::Base
   acts_as_paranoid
 
+  resourcify
   # NOTE: Use tags to represent an entities role
 
   validates \

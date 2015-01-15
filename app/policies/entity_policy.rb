@@ -8,22 +8,22 @@ class EntityPolicy < ApplicationPolicy
   end
 
   def index?
-    user && user.role?(:entity_admin, :entity_user)
+    authenticated? && user.has_any_role?(:entity_admin, :entity_user)
   end
 
   def show?
-    super && user && user.role?(:entity_admin, :entity_user)
+    super && user.has_any_role?(:entity_admin, :entity_user)
   end
 
   def create?
-    user && user.role?(:entity_admin)
+    authenticated? && user.has_role?(:entity_admin)
   end
 
   def update?
-    user && user.role?(:entity_admin)
+    authenticated? && user.has_role?(:entity_admin)
   end
 
   def destroy?
-    user && user.role?(:entity_admin)
+    authenticated? && user.has_role?(:entity_admin)
   end
 end

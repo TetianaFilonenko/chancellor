@@ -1,9 +1,9 @@
+require 'interactor_creator'
+
 # Create a new +Entity
 class CreateEntity
   include Interactor
-
-  before :create
-  before :validate
+  include Interactor::Creator
 
   def call
     if context.entity.save
@@ -13,16 +13,12 @@ class CreateEntity
     end
   end
 
-  def create
-    context.entity = Entity.new(context.to_h)
+  def after_build
     context.entity.display_name ||= context.entity.name
     context.entity.cached_long_name = context.entity.decorate.long_name
-    context.entity.uuid = UUID.generate(:compact)
   end
 
-  def validate
-    return if context.entity.valid?
-    
-    context.fail!(:message => 'Invalid Entity details')
+  def build_params
+    base_params.merge(:uuid => UUID.generate(:compact))
   end
 end

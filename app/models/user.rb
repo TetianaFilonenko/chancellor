@@ -7,15 +7,15 @@ class User < ActiveRecord::Base
          # :registerable,
          :recoverable,
          :rememberable, :trackable, :validatable
-  has_many :roles, :autosave => true, :class => Role
+  rolify
 
   validates :is_active, :presence => true
 
-  def role?(*role_list)
-    roles.where { name.in my { role_list.map(&:to_s) } }.any?
-  end
-
   def active?
     is_active == 1
+  end
+
+  def available_roles
+    Role::ROLE_NAMES - roles.map(&:name)
   end
 end

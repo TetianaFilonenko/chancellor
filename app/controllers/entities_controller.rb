@@ -25,8 +25,7 @@ class EntitiesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def index
     @search = Entity.search(params[:q])
@@ -36,6 +35,8 @@ class EntitiesController < ApplicationController
   def new
     @entity = Entity.new
   end
+
+  def show; end
 
   def update
     if @entity.update_attributes(entity_params)

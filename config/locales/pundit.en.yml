@@ -8,3 +8,8 @@ en:
       show?: 'You cannot view entities!'
       index?: 'You cannot view entities!'
       update?: 'You cannot edit entities!'
+    user_policy:
+      edit?: 'You cannot edit users!'
+      show?: 'You cannot view users!'
+      index?: 'You cannot view users!'
+      update?: 'You cannot edit users!'

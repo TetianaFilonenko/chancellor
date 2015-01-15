@@ -2,35 +2,14 @@ require 'rails_helper'
 
 RSpec.describe User, :type => :model do
   let(:is_active) { 1 }
-  let(:roles) { [] }
   let(:user) do
-    build(:user, :is_active => is_active, :roles => roles)
+    create(:user, :is_active => is_active)
   end
   subject { user }
-
-  describe 'associations' do
-    it { is_expected.to have_many(:roles) }
-  end
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:email) }
     it { is_expected.to validate_presence_of(:is_active) }
-  end
-
-  describe '.role?' do
-    subject { user.role?(:test) }
-
-    context 'when user has role' do
-      let(:roles) { [] }
-
-      it { is_expected.to eq(false) }
-    end
-
-    context 'when user does not have role' do
-      let(:roles) { [build(:user_role, :name => 'test')] }
-
-      it { is_expected.to eq(true) }
-    end
   end
 
   describe '.active?' do
