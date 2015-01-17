@@ -1,50 +1,53 @@
-<div class="grid-1">
-  <div class="span-1">
-    <h1>Entities</h1>
-
-    <%= search_form_for @search do |search| %>
-    <div class="flakes-search">
-      <%= search.text_field :cached_long_name_cont, :class => 'search-box search', :placeholder => 'Search entities' %>
+<div class="clearing header segment">
+  <div class="container">
+    <h1 class="ui header">
+      Entities
+    </h1>
+    <p>Manage the various entities in the system.</p>
+    <div class="ui divider"></div>
+    <div>
+      <%= link_to 'Add Entity', new_entity_path,
+                :class => 'ui basic button' %>
     </div>
-    <div class="flakes-actions-bar">
-      <%= link_to 'Add Entity', 
-        new_entity_path, 
-        :class => 'action button-gray smaller right' %>
-    </div>
-    <% end %>
-
-    <table class="flakes-table table-with-link-column">
-      <thead>
+  </div>
+</div>
+<div class="main container">
+  <%= search_form_for @search, :class => 'ui fluid search' do |search| %>
+    <%= search.text_field :cached_long_name_cont,
+      :class => 'prompt', :placeholder => 'Search entities' %>
+  <% end %>
+  <%= semantic_flash %>
+  <table class="ui table segment with-buttons">
+    <thead>
+    <tr>
+      <th>Reference</th>
+      <th>Name</th>
+      <th>Location (Default)</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @entities.each do |entity| %>
       <tr>
-        <th>Reference</th>
-        <th>Name</th>
-        <th>Location (Default)</th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody>
-      <% if @entities.each do |entity| %>
-        <tr>
           <td nowrap><%= entity.reference %></td>
           <td nowrap><%= entity.name %></td>
-          <td nowrap><%= entity.long_address %></td>
-          <td nowrap>              
+          <td><%= entity.long_address %></td>
+          <td nowrap>
             <%= link_to [:edit, entity, :return_url => return_url(request.original_url)],
-                        class: 'action button-gray smaller right' do %>
+                        :class => 'tiny ui basic button' do %>
                         Edit
             <% end %>
             <%= link_to [entity, :return_url => return_url(request.original_url)],
-                        class: 'action button-gray smaller right' do %>
+                        :class => 'tiny ui basic button' do %>
                         View
             <% end %>
           </td>
-        </tr>
-      <% end.empty? %>
-        <tr>
-          <td colspan="2">No entities found</td><td></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </div>
+      </tr>
+    <% end.empty? %>
+      <tr>
+        <td colspan="3">No entities found</td><td></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 </div>

@@ -12,5 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require snapjs
-//= require flakes/js/base
+//= require semantic-ui
+//= require default
