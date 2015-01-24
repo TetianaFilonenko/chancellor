@@ -17,6 +17,8 @@ test:
 
 production:
   <<: *default
+  adapter: postgresql
   host: <%= ENV['DB_HOST'] %>
+  port: 5432
   username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['DB_PASSWORD'] %>
