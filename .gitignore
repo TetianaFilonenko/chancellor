@@ -33,3 +33,6 @@ config/smtp.yml
 /vendor/assets/bower_components
 *.bowerrc
 bower.json
+
+# Ignore application configuration
+/config/application.yml
