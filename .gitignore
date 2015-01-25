@@ -18,6 +18,7 @@ config/database.yml
 
 ## Environment normalisation:
 /.bundle
+/public/assets/*
 /vendor/bundle
 
 # these should all be checked in to normalise the environment:
@@ -28,5 +29,3 @@ config/database.yml
 
 # if using bower-rails ignore default bower_components path bower.json files
 /vendor/assets/bower_components
-*.bowerrc
-bower.json
