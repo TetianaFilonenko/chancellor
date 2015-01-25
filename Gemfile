@@ -8,7 +8,6 @@ group :development, :test do
 end
 
 gem 'autoprefixer-rails'
-gem 'bower-rails', '~> 0.9.1'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
 gem 'draper'
@@ -20,7 +19,6 @@ gem 'pundit'
 gem 'rails', '4.1.8'
 gem 'ransack'
 gem 'rolify'
-gem 'rubocop'
 gem 'sass-rails', '~> 4.0.3'
 gem 'simple_form'
 gem 'squeel', :github => 'activerecord-hackery/squeel'
@@ -41,6 +39,7 @@ group :development do
   gem 'better_errors'
   gem 'capistrano-rails'
   gem 'mysql2'
+  gem 'rubocop'
   gem 'unicorn'
 end
 

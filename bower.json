@@ -1,0 +1,6 @@
+{
+  "name": "chancellor",
+  "dependencies": {
+    "semantic-ui": "latest"
+  }
+}
