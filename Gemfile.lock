@@ -8,6 +8,14 @@ GIT
       polyamorous (~> 1.1.0)
 
 GIT
+  remote: git://github.com/bkeepers/dotenv.git
+  revision: 3e48f579e228c19a077de53a1542d532cf6bf650
+  specs:
+    dotenv (1.0.2)
+    dotenv-rails (1.0.2)
+      dotenv (= 1.0.2)
+
+GIT
   remote: git://github.com/collectiveidea/interactor.git
   revision: 750ccad3003dfd4e6dbb1a5d1be472effc4dc1a1
   specs:
@@ -121,8 +129,6 @@ GEM
       railties (>= 3.0.0)
     faker (1.4.3)
       i18n (~> 0.5)
-    figaro (1.0.0)
-      thor (~> 0.14)
     hike (1.2.3)
     i18n (0.6.11)
     ice_nine (0.11.0)
@@ -304,10 +310,10 @@ DEPENDENCIES
   coveralls
   database_cleaner
   devise
+  dotenv-rails!
   draper
   factory_girl_rails
   faker
-  figaro
   interactor!
   interactor-rails
   jquery-rails

@@ -9,5 +9,4 @@ script:
 before_script:
   - cp config/database.travis.yml config/database.yml
   - cp config/secrets.example.yml config/secrets.yml
-  - cp config/application.example.yml config/application.yml
   - mysql -e 'create database chancellor_test;'
