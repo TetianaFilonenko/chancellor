@@ -1,12 +1,17 @@
 source 'https://rubygems.org'
 ruby '2.2.0'
 
+group :development, :test do
+  gem 'dotenv-rails',
+      :github => 'bkeepers/dotenv',
+      :require => 'dotenv/rails-now'
+end
+
 gem 'autoprefixer-rails'
 gem 'bower-rails', '~> 0.9.1'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
 gem 'draper'
-gem 'figaro'
 gem 'interactor', :github => 'collectiveidea/interactor'
 gem 'interactor-rails'
 gem 'jquery-rails'
