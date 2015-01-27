@@ -22,6 +22,30 @@ table.with-buttons tbody tr td:last-child {
 .static > div { display: inline-block; }
 .ui.fluid.search input.prompt { width: 100%; }
 
+
+.ui.header > a[class*="right floated"] {
+  float: right;
+  font-size: 1rem;
+  font-weight: normal;
+  margin-right: 0em;
+  margin-left: 0.25em;
+  cursor: pointer;
+}
+
+/*----
+  Space between the top of the viewport and the header menu.
+-----*/
+.full.height div.segment:first-child {
+  margin-top: 36px;
+}
+
+.full.height div.segment.flash:first-child div.message {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  text-align: center;
+}
+
 #user-name-menu { white-space: nowrap; }
 #user-name-menu div.user-name { margin-right: 20px; }
 
@@ -312,7 +336,8 @@ table.with-buttons tbody tr td:last-child {
   /*min-height: 185px;*/
   /*min-height: 140px;*/
   /*padding-top: 70px;*/
-  padding-top: 60px;
+  /*padding-top: 60px;*/
+  padding-top: 30px;
   padding-bottom: 30px;
   background-color: #FFFFFF;
   border-bottom: 1px solid #DDDDDD;

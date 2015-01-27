@@ -1,4 +1,5 @@
 <% entity = @entity %>
+<% location = entity.primary_location %>
 <div class="clearing header segment">
   <div class="container">
     <h1 class="ui header">
@@ -14,40 +15,63 @@
   </div>
 </div>
 <div class="main container">
-  <%= semantic_flash %>
-  <div class="ui form">
-    <div class="inline field static">
-      <label>Reference</label>
-      <div><%= entity.reference %></div>
+  <h4 class="ui dividing header">
+    Entity Information
+    <%= edit_entity_link(entity,
+                         request.original_url,
+                         :class => 'right floated floating') %>
+  </h4>
+  <div class="ui grid">
+    <div class="two column row">
+      <label class="column">Reference</label>
+      <div class="column"><%= entity.reference %></div>
     </div>
-    <div class="inline field static">
-      <label>Display Name</label>
-      <div><%= entity.display_name %></div>
+    <div class="two column row">
+      <label class="column">Name</label>
+      <div class="column"><%= entity.name %></div>
     </div>
-    <div class="inline field static">
-      <label>Street Address</label>
-      <div><%= entity.street_address %></div>
+    <div class="two column row">
+      <label class="column">Display Name</label>
+      <div class="column"><%= entity.display_name %></div>
     </div>
-    <div class="inline field static">
-      <label>City</label>
-      <div><%= entity.city %></div>
+  </div>
+  <h4 class="ui dividing header">
+    Primary Location
+    <%= edit_location_link(entity.primary_location,
+                           request.original_url,
+                           :class => 'right floated floating') %>
+  </h4>
+  <div class="ui grid">
+    <div class="two column row">
+      <label class="column">Location Name</label>
+      <div class="column"><%= location.location_name %></div>
     </div>
-    <div class="inline field static">
-      <label>Region</label>
-      <div><%= entity.region %></div>
+    <div class="two column row">
+      <label class="column">Street Address</label>
+      <div class="column"><%= location.street_address %></div>
     </div>
-    <div class="inline field static">
-      <label>Region Code</label>
-      <div><%= entity.region_code %></div>
+    <div class="two column row">
+      <label class="column">City</label>
+      <div class="column"><%= location.city %></div>
     </div>
-    <div class="inline field static">
-      <label>Country</label>
-      <div><%= entity.country %></div>
+    <div class="two column row">
+      <label class="column">Region</label>
+      <div class="column"><%= location.region %></div>
     </div>
-
-    <div class="inline field static">
-      <label>UUID</label>
-      <div><%= entity.uuid %></div>
+    <div class="two column row">
+      <label class="column">Region Code</label>
+      <div class="column"><%= location.region_code %></div>
+    </div>
+    <div class="two column row">
+      <label class="column">Country</label>
+      <div class="column"><%= location.country %></div>
+    </div>
+  </div>
+  <h4 class="ui dividing header">System Information</h4>
+  <div class="ui grid">
+    <div class="two column row">
+      <label class="column">UUID</label>
+      <div class="column"><%= entity.uuid %></div>
     </div>
   </div>
 </div>

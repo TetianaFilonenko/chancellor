@@ -1,11 +1,12 @@
 en:
-  activerecord:
+  ar:
     models:
       entity: 'Entity'
       grant_role: 'Grant'
+      location: 'Location'
       user: 'User'
       user_role: 'User Role'
-    successful:
+    success:
       messages:
         created: "%{model} was successfully created."
         deleted: "%{model} was successfully deleted."

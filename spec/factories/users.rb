@@ -36,6 +36,12 @@ FactoryGirl.define do
       end
     end
 
+    trait :location_admin do
+      after :build do |user, _evaluator|
+        user.add_role :location_admin
+      end
+    end
+
     trait :user_admin do
       after :build do |user, _evaluator|
         user.add_role :user_admin

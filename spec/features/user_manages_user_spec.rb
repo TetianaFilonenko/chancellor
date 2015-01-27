@@ -48,7 +48,11 @@ feature 'User manages user' do
 
     user.reload
 
-    expect(page).to have_content(/success/i)
+    expect(page).to have_content(
+      I18n.t(
+        'app.admin.grant_role.success',
+        :role_name => 'authenticated',
+        :user_name => user.display_name))
     expect(user.has_role?(:authenticated)).to eq(true)
   end
 

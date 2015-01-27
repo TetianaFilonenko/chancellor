@@ -13,3 +13,8 @@ en:
       show?: 'You cannot view users!'
       index?: 'You cannot view users!'
       update?: 'You cannot edit users!'
+    location_policy:
+      edit?: 'You cannot edit locations!'
+      show?: 'You cannot view locations!'
+      index?: 'You cannot view locations!'
+      update?: 'You cannot edit locations!'
