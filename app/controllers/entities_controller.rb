@@ -36,7 +36,12 @@ class EntitiesController < ApplicationController
 
   def new; end
 
-  def show; end
+  def show
+    Analytics.track(
+      :user_id => current_user.email,
+      :event => 'View Entity',
+      :properties => { :reference => @entity.reference, :name => @entity.name })
+  end
 
   def update
     if @entity.update_attributes(edit_entity_params)

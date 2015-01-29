@@ -8,6 +8,7 @@ group :development, :test do
 end
 
 gem 'airbrake'
+gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
 gem 'autoprefixer-rails'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
