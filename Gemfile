@@ -7,6 +7,7 @@ group :development, :test do
       :require => 'dotenv/rails-now'
 end
 
+gem 'airbrake'
 gem 'autoprefixer-rails'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
