@@ -2,7 +2,8 @@
 *.rbc
 capybara-*.html
 .rspec
-.env.*
+.env
+.env.test
 /log
 /tmp
 /db/*.sqlite3
