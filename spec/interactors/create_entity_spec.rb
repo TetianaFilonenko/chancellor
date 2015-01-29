@@ -8,7 +8,6 @@ RSpec.describe CreateEntity, :type => :interactor do
   let(:region) { Faker::Address.state }
   let(:region_code) { Faker::Address.zip_code }
   let(:country) { 'United States' }
-  let(:uuid) { UUID.generate(:compact) }
   subject(:context) do
     CreateEntity.call(
       :name => name,
@@ -17,8 +16,7 @@ RSpec.describe CreateEntity, :type => :interactor do
       :city => city,
       :region => region,
       :region_code => region_code,
-      :country => country,
-      :uuid => uuid)
+      :country => country)
   end
 
   context 'valid parameters' do
@@ -39,8 +37,19 @@ RSpec.describe CreateEntity, :type => :interactor do
     describe Entity do
       subject(:entity) { context.entity }
 
+      its(:present?) { is_expected.to be_truthy }
       its(:persisted?) { is_expected.to be_truthy }
       its(:errors) { is_expected.to be_empty }
+      its(:primary_location) { is_expected.to be_present }
+    end
+
+    describe Location do
+      subject(:location) { context.location }
+
+      its(:present?) { is_expected.to be_truthy }
+      its(:persisted?) { is_expected.to be_truthy }
+      its(:errors) { is_expected.to be_empty }
+      its(:entity) { is_expected.to be_present }
     end
   end
 
@@ -64,9 +73,17 @@ RSpec.describe CreateEntity, :type => :interactor do
     describe Entity do
       subject(:entity) { context.entity }
 
-      it 'has not been persisted' do
-        expect(entity).not_to be_persisted
-      end
+      its(:present?) { is_expected.to be_truthy }
+      its(:persisted?) { is_expected.to be_falsey }
+      its(:primary_location) { is_expected.to be_present }
+    end
+
+    describe Location do
+      subject(:location) { context.location }
+
+      its(:present?) { is_expected.to be_truthy }
+      its(:persisted?) { is_expected.to be_falsey }
+      its(:entity) { is_expected.to be_present }
     end
   end
 end

@@ -1,16 +1,18 @@
 # Controller for managing Entity base details.
 class EntitiesController < ApplicationController
   before_action :set_entity, :only => [:destroy, :edit, :show, :update]
+  before_action :new_entity, :only => [:create, :new]
   before_action -> { authorize :entity }, :except => :show
   before_action -> { authorize @entity }, :only => :show
 
   def create
-    interactor = CreateEntity.call(entity_params)
-    @entity = interactor.entity
+    return render :new unless @new_entity.valid?
+
+    interactor = CreateEntity.call(@new_entity.to_h)
 
     if interactor.success?
       redirect_with_notice(
-        entity_path(@entity),
+        entity_path(interactor.entity),
         'Entity was successfully created')
     else
       render :new
@@ -32,14 +34,12 @@ class EntitiesController < ApplicationController
     @entities = @search.result.decorate
   end
 
-  def new
-    @entity = Entity.new
-  end
+  def new; end
 
   def show; end
 
   def update
-    if @entity.update_attributes(entity_params)
+    if @entity.update_attributes(edit_entity_params)
       redirect_with_notice(
         entity_path(@entity),
         'Entity was successfully saved')
@@ -50,12 +50,23 @@ class EntitiesController < ApplicationController
 
   protected
 
-  def entity_params
+  def new_entity
+    @new_entity = NewEntity.new(new_entity_params)
+  end
+
+  def new_entity_params
     params
-      .require(:entity)
+      .require(:new_entity)
       .permit(
         :name, :reference,
         :street_address, :city, :region, :region_code, :country)
+    rescue ActionController::ParameterMissing; {}
+  end
+
+  def edit_entity_params
+    params
+      .require(:entity)
+      .permit(:name, :display_name, :reference)
   rescue ActionController::ParameterMissing; {}
   end
 

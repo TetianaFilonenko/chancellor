@@ -12,8 +12,8 @@ module Admin
       if @grant.save
         redirect_with_notice(
           admin_users_path(@grant.user),
-          t('activerecord.successful.messages.updated',
-            :model => @grant.class.model_name.human))
+          t('app.admin.grant_role.success',
+            :role_name => @grant.name, :user_name => @grant.user.display_name))
       else
         render :new
       end
@@ -32,8 +32,7 @@ module Admin
           :role_name => params[:role_name], :user_name => @user.display_name))
     end
 
-    def new
-    end
+    def new; end
 
     protected
 

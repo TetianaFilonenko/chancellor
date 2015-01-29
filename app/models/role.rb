@@ -1,6 +1,12 @@
 # User role
 class Role < ActiveRecord::Base
-  ROLE_NAMES = %w(admin authenticated entity_admin entity_user user_admin)
+  ROLE_NAMES = %w(
+    admin
+    authenticated
+    entity_admin
+    entity_user
+    location_admin
+    user_admin)
 
   # rubocop:disable HasAndBelongsToMany
   has_and_belongs_to_many :users, :join_table => :users_roles

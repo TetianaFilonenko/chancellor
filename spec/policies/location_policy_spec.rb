@@ -1,14 +1,16 @@
 require 'rails_helper'
 
-describe EntityPolicy, :type => :policy do
-  let(:entity) { create(:entity) }
+describe LocationPolicy, :type => :policy do
+  let(:location) do
+    create(:entity).primary_location
+  end
   let(:user) do
-    u = create(:user)
-    roles.each { |r| u.add_role r }
-    u
+    create(:user) do |u|
+      roles.each { |r| u.add_role r }
+    end
   end
 
-  subject { EntityPolicy.new(user, entity) }
+  subject { LocationPolicy.new(user, location) }
 
   context 'when no user' do
     let(:user) { nil }
@@ -43,8 +45,8 @@ describe EntityPolicy, :type => :policy do
     it { is_expected.not_to permit_action(:destroy) }
   end
 
-  context 'when user has the entity admin role' do
-    let(:roles) { [:authenticated, :entity_admin] }
+  context 'when user has the location admin role' do
+    let(:roles) { [:authenticated, :location_admin] }
 
     it { is_expected.to permit_action(:show) }
     it { is_expected.to permit_action(:create) }

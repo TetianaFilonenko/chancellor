@@ -8,10 +8,15 @@
 <div class="main container">
   <%= simple_form_for(@entity,
     :html => { :class => 'ui form' },
-    :wrapper => :semantic_form) do |f| %>
-      <%= render partial: 'form', locals: { form: f, model: @entity } %>
+    :wrapper => :semantic_form) do |form| %>
+      <%= render :partial => '/model_errors',
+                 :locals => { :model => @entity } if @entity.errors.any? %>
+
+      <%= form.input :name %>
+      <%= form.input :display_name %>
+      <%= form.input :reference %>
 
       <input type="submit" class="ui submit button" value="Save" />
-      <%= link_to 'Cancel', entities_path, :class => 'ui basic button' %>
+      <%= link_to 'Cancel', return_url(entities_path), :class => 'ui basic button' %>
   <% end %>
 </div>

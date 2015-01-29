@@ -12,5 +12,7 @@ Rails.application.routes.draw do
              :as => 'revoke_role'
     end
   end
-  resources :entities
+  resources :entities do
+    resources :locations, :shallow => true, :only => [:edit, :update]
+  end
 end

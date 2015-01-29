@@ -4,18 +4,16 @@
 class Entity < ActiveRecord::Base
   acts_as_paranoid
 
+  has_many :locations, :inverse_of => :entity
+  belongs_to :primary_location,
+             :class_name => Location
+
   resourcify
-  # NOTE: Use tags to represent an entities role
 
   validates \
     :name,
     :cached_long_name,
     :reference,
-    :street_address,
-    :city,
-    :region,
-    :region_code,
-    :country,
     :uuid,
     :presence => true
 end

@@ -6,10 +6,21 @@
   </div>
 </div>
 <div class="main container">
-  <%= simple_form_for(@entity,
+  <%= simple_form_for(@new_entity,
     :html => { :class => 'ui form' },
-    :wrapper => :semantic_form) do |f| %>
-      <%= render partial: 'form', locals: { form: f, model: @entity } %>
+    :url => entities_path,
+    :wrapper => :semantic_form) do |form| %>
+      <%= render :partial => '/model_errors',
+                 :locals => { :model => @new_entity } if @new_entity.errors.any?
+      %>
+
+      <%= form.input :name %>
+      <%= form.input :reference %>
+      <%= form.input :street_address %>
+      <%= form.input :city %>
+      <%= form.input :region %>
+      <%= form.input :region_code %>
+      <%= form.input :country, :as => :string %>
 
       <input type="submit" class="ui submit button" value="Save" />
       <%= link_to 'Cancel', entities_path, :class => 'ui basic button' %>

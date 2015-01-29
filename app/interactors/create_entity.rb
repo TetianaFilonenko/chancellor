@@ -1,24 +1,55 @@
 require 'interactor_creator'
 
-# Create a new +Entity
+# Create a new +Entity+
 class CreateEntity
   include Interactor
   include Interactor::Creator
 
+  delegate :entity, :to => :context
+
   def call
-    if context.entity.save
-      context.message = 'Entity successfully created'
-    else
-      context.fail!(:message => 'Entity not created')
-    end
+    persist!
+
+    context.message = 'Entity successfully created'
   end
 
   def after_build
-    context.entity.display_name ||= context.entity.name
-    context.entity.cached_long_name = context.entity.decorate.long_name
+    entity.primary_location = context.location
+    entity.display_name ||= entity.name
+    entity.cached_long_name = entity.decorate.long_name
+  end
+
+  def build
+    context.entity = Entity.new(entity_params)
+    context.location = Location.new(
+      location_params.merge(:entity => entity, :location_name => entity.name))
   end
 
   def build_params
-    base_params.merge(:uuid => UUID.generate(:compact))
+    {}
+  end
+
+  def entity_params
+    base_params
+      .slice(:name, :reference)
+      .merge(:uuid => UUID.generate(:compact))
+  end
+
+  def location_params
+    base_params
+      .slice(:street_address, :city, :region, :region_code, :country)
+      .merge(:uuid => UUID.generate(:compact))
+  end
+
+  def persist!
+    # papertrail me?
+    context.entity.save!
+    context.location.save!
+  end
+
+  def validate
+    return if context.entity.valid? && context.location.valid?
+
+    context.fail!(:message => 'Invalid details')
   end
 end
