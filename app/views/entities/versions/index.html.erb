@@ -1,0 +1,47 @@
+<div class="clearing header segment">
+  <div class="container">
+    <h1 class="ui header">
+      Entity Versions
+    </h1>
+    <p>View the history for <%= @entity.display_name %>.</p>
+    <div class="ui divider"></div>
+    <div>
+      <%= link_to 'Back', entity_path(@entity),
+                :class => 'ui basic button' %>
+    </div>
+  </div>
+</div>
+<div class="main container">
+  <table class="ui table segment with-buttons">
+    <thead>
+    <tr>
+      <th>Reference</th>
+      <th>Name</th>
+      <th>User</th>
+      <th>Date</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @entity_versions.each do |version, entity| %>
+      <tr>
+          <td nowrap><%= entity.reference %></td>
+          <td nowrap><%= entity.name %></td>
+          <td nowrap><%= version.whodunnit %></td>
+          <td nowrap><%= entity.updated_at %></td>
+          <td nowrap>
+            <%= link_to show_model_version_path(
+              entity, version, return_url(request.original_url)),
+                        :class => 'tiny ui basic button' do %>
+                        View
+            <% end %>
+          </td>
+      </tr>
+    <% end.empty? %>
+      <tr>
+        <td colspan="3">No previous versions found</td><td></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

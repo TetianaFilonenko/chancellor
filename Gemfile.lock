@@ -8,6 +8,14 @@ GIT
       polyamorous (~> 1.1.0)
 
 GIT
+  remote: git://github.com/airblade/paper_trail.git
+  revision: 23f9c30a00893cf9fcee7f71e06a5be144857406
+  specs:
+    paper_trail (4.0.0.beta3)
+      activerecord (>= 3.0, < 6.0)
+      activesupport (>= 3.0, < 6.0)
+
+GIT
   remote: git://github.com/bkeepers/dotenv.git
   revision: 3e48f579e228c19a077de53a1542d532cf6bf650
   specs:
@@ -324,6 +332,7 @@ DEPENDENCIES
   interactor-rails
   jquery-rails
   mysql2
+  paper_trail!
   paranoia
   pg
   puma

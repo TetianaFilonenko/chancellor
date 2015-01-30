@@ -1,4 +1,5 @@
 require 'interactor_creator'
+require 'paper_trail'
 
 # Create a new +Entity+
 class CreateEntity
@@ -6,9 +7,10 @@ class CreateEntity
   include Interactor::Creator
 
   delegate :entity, :to => :context
+  delegate :user, :to => :context
 
   def call
-    persist!
+    entity.whodunnit(user) { persist! }
 
     context.message = 'Entity successfully created'
   end
@@ -42,7 +44,6 @@ class CreateEntity
   end
 
   def persist!
-    # papertrail me?
     context.entity.save!
     context.location.save!
   end

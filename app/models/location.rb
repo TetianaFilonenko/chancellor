@@ -4,6 +4,8 @@ class Location < ActiveRecord::Base
 
   belongs_to :entity, :inverse_of => :locations
 
+  has_paper_trail
+
   validates \
     :entity,
     :location_name,

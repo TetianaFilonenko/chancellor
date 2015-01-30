@@ -8,6 +8,7 @@ RSpec.describe CreateEntity, :type => :interactor do
   let(:region) { Faker::Address.state }
   let(:region_code) { Faker::Address.zip_code }
   let(:country) { 'United States' }
+  let(:user) { create(:user) }
   subject(:context) do
     CreateEntity.call(
       :name => name,
@@ -16,7 +17,8 @@ RSpec.describe CreateEntity, :type => :interactor do
       :city => city,
       :region => region,
       :region_code => region_code,
-      :country => country)
+      :country => country,
+      :user => user)
   end
 
   context 'valid parameters' do
@@ -41,6 +43,20 @@ RSpec.describe CreateEntity, :type => :interactor do
       its(:persisted?) { is_expected.to be_truthy }
       its(:errors) { is_expected.to be_empty }
       its(:primary_location) { is_expected.to be_present }
+
+      describe 'papertrail' do
+        # Two versions expected due to the primary location update
+        it 'has 2 versions' do
+          expect(entity.versions.size).to eq(2)
+        end
+        # it 'has 1 version' do
+        #   expect(entity.versions.size).to eq(1)
+        # end
+
+        it 'was created by user' do
+          expect(entity.originator).to eq(user.id.to_s)
+        end
+      end
     end
 
     describe Location do
@@ -50,6 +66,16 @@ RSpec.describe CreateEntity, :type => :interactor do
       its(:persisted?) { is_expected.to be_truthy }
       its(:errors) { is_expected.to be_empty }
       its(:entity) { is_expected.to be_present }
+
+      describe 'papertrail' do
+        it 'has 1 version' do
+          expect(location.versions.size).to eq(1)
+        end
+
+        it 'was created by user' do
+          expect(location.originator).to eq(user.id.to_s)
+        end
+      end
     end
   end
 

@@ -4,9 +4,10 @@
 class Entity < ActiveRecord::Base
   acts_as_paranoid
 
+  belongs_to :primary_location, :class_name => Location
   has_many :locations, :inverse_of => :entity
-  belongs_to :primary_location,
-             :class_name => Location
+
+  has_paper_trail
 
   resourcify
 
@@ -16,4 +17,10 @@ class Entity < ActiveRecord::Base
     :reference,
     :uuid,
     :presence => true
+
+  class << self
+    def find_version(version_id)
+      PaperTrail::Version.find(version_id).reify
+    end
+  end
 end

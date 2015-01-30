@@ -12,6 +12,8 @@ Rails.application.routes.draw do
              :as => 'revoke_role'
     end
   end
+
+  get 'entities/:id/versions', :to => 'entities/versions#index'
   resources :entities do
     resources :locations, :shallow => true, :only => [:edit, :update]
   end
