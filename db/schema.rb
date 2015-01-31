@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130165217) do
+ActiveRecord::Schema.define(version: 20150131171824) do
+
+  create_table "default_locations", force: true do |t|
+    t.integer  "entity_id",   null: false
+    t.string   "entity_type", null: false
+    t.integer  "location_id", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "default_locations", ["entity_id", "entity_type", "location_id"], name: "ix_default_locations_entity_type_location", unique: true, using: :btree
+  add_index "default_locations", ["entity_id", "entity_type"], name: "index_default_locations_on_entity_id_and_entity_type", using: :btree
 
   create_table "entities", force: true do |t|
     t.string   "cached_long_name",    limit: 1024, null: false
@@ -53,6 +65,18 @@ ActiveRecord::Schema.define(version: 20150130165217) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
+
+  create_table "salespeople", force: true do |t|
+    t.integer  "entity_id",              null: false
+    t.string   "gender",      limit: 7
+    t.integer  "location_id"
+    t.string   "phone"
+    t.string   "reference",              null: false
+    t.string   "uuid",        limit: 32, null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

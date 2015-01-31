@@ -4,8 +4,14 @@ en:
       entity: 'Entity'
       grant_role: 'Grant'
       location: 'Location'
+      salesperson: 'Salesperson'
       user: 'User'
       user_role: 'User Role'
+    failure:
+      messages:
+        created: "%{model} was not created."
+        deleted: "%{model} was not deleted."
+        updated: "%{model} was not updated."
     success:
       messages:
         created: "%{model} was successfully created."
@@ -19,4 +25,7 @@ en:
       revoke_role:
         success: "%{role_name} was revoked from %{user_name}"
         failure: "Failed to revoke %{role_name} from %{user_name}"
+    create_salesperson:
+      success: ''
+      failure: ''
 

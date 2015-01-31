@@ -5,11 +5,14 @@ module Interactor
     extend ActiveSupport::Concern
 
     included do
+      before :before_build
       before :build
       before :after_build
       before :validate
 
       def after_build; end
+
+      def before_build; end
 
       def base_params
         context.to_h.except(context_key)

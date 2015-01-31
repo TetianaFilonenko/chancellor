@@ -7,6 +7,8 @@ RSpec.describe LocationsController, :type => :controller do
   context 'when authorized' do
     let(:user) { create(:user, :confirmed, :authenticated, :location_admin) }
 
+    # TODO: Implement POST create tests
+
     describe 'GET edit' do
       before { get :edit, :id => location.id }
 

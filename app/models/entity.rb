@@ -6,6 +6,7 @@ class Entity < ActiveRecord::Base
 
   belongs_to :primary_location, :class_name => Location
   has_many :locations, :inverse_of => :entity
+  has_one :salesperson
 
   has_paper_trail
 
@@ -22,5 +23,13 @@ class Entity < ActiveRecord::Base
     def find_version(version_id)
       PaperTrail::Version.find(version_id).reify
     end
+  end
+
+  def salesperson
+    Salesperson.unscoped { super }
+  end
+
+  def to_s
+    name
   end
 end

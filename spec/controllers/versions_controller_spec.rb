@@ -1,24 +1,28 @@
 require 'rails_helper'
 
-RSpec.describe Entities::VersionsController, :type => :controller do
+RSpec.describe VersionsController, :type => :controller do
   before { sign_in(user) }
   let(:entity) { create(:entity) }
 
   context 'when authorized' do
-    let(:user) { create(:user, :confirmed, :authenticated, :entity_admin) }
+    let(:user) { create(:user, :all_roles) }
 
     describe 'GET index with versions' do
       before do
-        get :index, :id => entity.id
+        get :index, :item_type => 'entity', :item_id => entity.id
       end
 
       it 'responds with status equal to 200' do
         expect(response.status).to eq(200)
       end
 
-      it 'assigns @entity_versions' do
-        entity_versions = { entity.versions.last => entity }
-        expect(assigns(:entity_versions)).to eq(entity_versions)
+      it 'assigns @versions' do
+        versions =
+          entity
+          .versions
+          .drop(1)
+          .each_with_object({}) { |v, memo| memo[v] = v.reify.decorate }
+        expect(assigns(:versions)).to eq(versions)
       end
 
       it 'renders the index template' do
@@ -28,7 +32,7 @@ RSpec.describe Entities::VersionsController, :type => :controller do
   end
 
   context 'when not authorized' do
-    before { get :index, :id => entity.id }
+    before { get :index, :item_type => 'entity', :item_id => entity.id }
     let(:user) { create(:user, :confirmed) }
 
     describe 'GET index' do

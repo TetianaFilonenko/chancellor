@@ -13,8 +13,10 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'entities/:id/versions', :to => 'entities/versions#index'
+  get 'versions/:item_type/:item_id', :as => :versions, :to => 'versions#index'
+  get 'version/:id', :as => :version, :to => 'versions#show'
   resources :entities do
     resources :locations, :shallow => true, :only => [:edit, :update]
+    resources :salespeople, :shallow => true
   end
 end

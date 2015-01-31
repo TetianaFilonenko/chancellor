@@ -8,12 +8,12 @@ class EntitiesController < ApplicationController
   def create
     return render :new unless @new_entity.valid?
 
-    interactor = CreateEntity.call(@new_entity.to_h)
+    context = CreateEntity.call(@new_entity.to_h.merge(:user => current_user))
 
-    if interactor.success?
+    if context.success?
       redirect_with_notice(
-        entity_path(interactor.entity),
-        'Entity was successfully created')
+        entity_path(context.entity),
+        t('ar.success.messages.created', :model => t('ar.models.entity')))
     else
       render :new
     end
@@ -21,9 +21,13 @@ class EntitiesController < ApplicationController
 
   def destroy
     if @entity.destroy
-      redirect_with_notice(entities_path, 'Entity was successfully deleted')
+      redirect_with_notice(
+        entities_path,
+        t('ar.success.messages.deleted', :model => t('ar.models.entity')))
     else
-      redirect_with_alert(entity_path(@entity), 'Entity was not deleted')
+      redirect_with_alert(
+        entity_path(@entity),
+        t('ar.failure.messages.deleted', :model => t('ar.models.entity')))
     end
   end
 
@@ -47,7 +51,7 @@ class EntitiesController < ApplicationController
     if @entity.update_attributes(edit_entity_params)
       redirect_with_notice(
         entity_path(@entity),
-        'Entity was successfully saved')
+        t('ar.success.messages.updated', :model => t('ar.models.entity')))
     else
       render :edit
     end
@@ -76,11 +80,6 @@ class EntitiesController < ApplicationController
   end
 
   def find_entity
-    if params[:version]
-      @entity = Entity.find_version(params[:version])
-    else
-      @entity = Entity.find(params[:id])
-    end
-    @entity = @entity.decorate
+    @entity = Entity.find(params[:id]).decorate
   end
 end

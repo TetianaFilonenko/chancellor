@@ -346,6 +346,7 @@ DEPENDENCIES
   rubocop
   sass-rails (~> 4.0.3)
   shoulda
+  shoulda-matchers
   simple_form
   skylight
   squeel!

@@ -13,6 +13,14 @@ en:
       show?: 'You cannot view users!'
       index?: 'You cannot view users!'
       update?: 'You cannot edit users!'
+    salesperson_policy:
+      create?: 'You cannot create salesperson!'
+      edit?: 'You cannot edit salesperson!'
+      new?: 'You cannot create salesperson!'
+      edit?: 'You cannot edit salesperson!'
+      show?: 'You cannot view salesperson!'
+      index?: 'You cannot view salesperson!'
+      update?: 'You cannot edit salesperson!'
     location_policy:
       edit?: 'You cannot edit locations!'
       show?: 'You cannot view locations!'

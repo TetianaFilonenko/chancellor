@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Location, :type => :model do
-  subject { build(:location) }
+  let(:entity) { build(:entity) }
+  subject { build(:location, :entity => entity) }
 
   describe 'associations' do
     it { is_expected.to belong_to(:entity) }

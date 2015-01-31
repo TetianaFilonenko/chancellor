@@ -9,6 +9,29 @@ RSpec.describe Admin::RolesController, :type => :controller do
       create(:user, :authenticated, :admin, :user_admin)
     end
 
+    describe 'POST create' do
+      before do
+        grant_role = double(:grant_role, :name => 'role', :user => user)
+        allow(grant_role).to receive(:save) { true }
+        allow(GrantRole)
+          .to receive(:new) { grant_role }
+
+        post :create, :user_id => user.id, :grant_role => {}
+      end
+
+      it 'responds with status equal to 302' do
+        expect(response.status).to eq(302)
+      end
+
+      it 'redirects to the user page' do
+        expect(response).to redirect_to(admin_user_path(user))
+      end
+
+      it 'flashes a success message' do
+        expect(request.flash[:notice]).to_not be_nil
+      end
+    end
+
     describe 'GET new' do
       it 'responds with status equal to 200' do
         get :new, :user_id => user_to_manage.id
