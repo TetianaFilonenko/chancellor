@@ -11,6 +11,8 @@
         :class => 'ui basic button',
         :data => { :confirm => 'Are you sure?' },
         :method => :delete %>
+      <%= link_to 'Versions', "/entities/#{entity.id}/versions",
+        :class => 'ui basic button' %>
     </div>
   </div>
 </div>

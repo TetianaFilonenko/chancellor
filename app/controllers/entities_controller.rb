@@ -1,6 +1,6 @@
 # Controller for managing Entity base details.
 class EntitiesController < ApplicationController
-  before_action :set_entity, :only => [:destroy, :edit, :show, :update]
+  before_action :find_entity, :only => [:destroy, :edit, :show, :update]
   before_action :new_entity, :only => [:create, :new]
   before_action -> { authorize :entity }, :except => :show
   before_action -> { authorize @entity }, :only => :show
@@ -65,7 +65,7 @@ class EntitiesController < ApplicationController
       .permit(
         :name, :reference,
         :street_address, :city, :region, :region_code, :country)
-    rescue ActionController::ParameterMissing; {}
+  rescue ActionController::ParameterMissing; {}
   end
 
   def edit_entity_params
@@ -75,7 +75,12 @@ class EntitiesController < ApplicationController
   rescue ActionController::ParameterMissing; {}
   end
 
-  def set_entity
-    @entity = Entity.find(params[:id]).decorate
+  def find_entity
+    if params[:version]
+      @entity = Entity.find_version(params[:version])
+    else
+      @entity = Entity.find(params[:id])
+    end
+    @entity = @entity.decorate
   end
 end
