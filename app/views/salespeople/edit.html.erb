@@ -1,0 +1,23 @@
+<div class="header segment">
+  <div class="container">
+    <h1 class="ui header">
+      Edit Salesperson
+    </h1>
+  </div>
+</div>
+<div class="main container">
+  <%= simple_form_for(@salesperson_entry,
+    :as => :salesperson_entry,
+    :html => { :class => 'ui form', :method => :patch },
+    :url => salesperson_path(@entity.salesperson),
+    :wrapper => :semantic_form) do |form| %>
+      <%= render :partial => 'form',
+                 :locals => {
+                   :form => form,
+                   :locations => @locations,
+                   :model => @salesperson_entry } %>
+
+      <input type="submit" class="ui submit button" value="Save" />
+      <%= link_to 'Cancel', entities_path, :class => 'ui basic button' %>
+  <% end %>
+</div>

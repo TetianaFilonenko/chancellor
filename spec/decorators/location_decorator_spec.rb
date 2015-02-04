@@ -4,7 +4,7 @@ RSpec.describe LocationDecorator, :type => :decorator do
   subject(:decorator) { location.decorate }
 
   context 'when all address lines are present' do
-    let(:location) { build(:location) }
+    let(:location) { build(:location, :entity => create(:entity)) }
 
     its(:address_lines) do
       is_expected.to eq([

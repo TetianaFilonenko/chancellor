@@ -14,7 +14,7 @@ feature 'User deletes entity' do
 
       click_link 'Delete'
 
-      # Make sure that the Entity instance if up-to date
+      # Make sure that the Entity instance are up-to date
       entity.reload
 
       expect(entity.deleted_at).to be_present

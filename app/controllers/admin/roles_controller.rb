@@ -11,7 +11,7 @@ module Admin
     def create
       if @grant.save
         redirect_with_notice(
-          admin_users_path(@grant.user),
+          admin_user_path(@grant.user),
           t('app.admin.grant_role.success',
             :role_name => @grant.name, :user_name => @grant.user.display_name))
       else

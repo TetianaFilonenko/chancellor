@@ -4,7 +4,8 @@ RSpec.describe EntitiesController, :type => :controller do
   before { sign_in(user) }
 
   context 'when authorized' do
-    let(:user) { create(:user, :confirmed, :authenticated, :entity_admin) }
+    let(:entity) { create :entity }
+    let(:user) { create(:user, :all_roles) }
 
     describe 'GET index' do
       it 'responds with status equal to 200' do
@@ -33,6 +34,18 @@ RSpec.describe EntitiesController, :type => :controller do
       it 'renders the index template' do
         get :index
         expect(response).to render_template('index')
+      end
+    end
+
+    describe 'DELETE destroy' do
+      before { delete :destroy, :id => entity.id }
+
+      it 'responds with status equal to 302' do
+        expect(response.status).to eq(302)
+      end
+
+      it 'redirects to the entities path' do
+        expect(response).to redirect_to(entities_path)
       end
     end
   end

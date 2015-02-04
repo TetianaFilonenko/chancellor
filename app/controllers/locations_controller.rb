@@ -7,9 +7,8 @@ class LocationsController < ApplicationController
 
   def update
     if @location.update_attributes(location_params)
-      redirect_with_flash(
+      redirect_with_notice(
         entity_path(@location.entity),
-        :notice,
         t('ar.success.messages.updated', :model => t('ar.models.location')))
     else
       render :edit

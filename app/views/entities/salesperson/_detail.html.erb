@@ -1,0 +1,27 @@
+<% if salesperson.deleted? %>
+<div class="ui warning message">
+  The salesperson details have been removed, you can restore them from the edit screen.
+</div>
+<% end %>
+<%= entity_block(:disabled => salesperson.deleted?, :wrapper_html => { :class => 'ui grid basic segment' }) do %>
+  <div class="two column row">
+    <label class="column">Reference</label>
+    <div class="column"><%= salesperson.reference %></div>
+  </div>
+  <div class="two column row">
+    <label class="column">Gender</label>
+    <div class="column"><%= salesperson.gender %></div>
+  </div>
+  <div class="two column row">
+    <label class="column">Phone</label>
+    <div class="column"><%= salesperson.phone %></div>
+  </div>
+  <div class="two column row">
+    <label class="column">Location</label>
+    <div class="column"><%= location_string(salesperson) %></div>
+  </div>
+  <div class="two column row">
+    <label class="column">UUID</label>
+    <div class="column"><%= salesperson.uuid %></div>
+  </div>
+<% end %>

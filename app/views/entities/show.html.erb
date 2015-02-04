@@ -7,11 +7,11 @@
     </h1>
     <div class="ui divider"></div>
     <div>
-      <%= link_to 'Delete', entity_path(entity),
+      <%#= link_to 'Delete', entity_path(entity),
         :class => 'ui basic button',
         :data => { :confirm => 'Are you sure?' },
         :method => :delete %>
-      <%= link_to 'Versions', "/entities/#{entity.id}/versions",
+      <%#= link_to 'Versions', "/entities/#{entity.id}/versions",
         :class => 'ui basic button' %>
     </div>
   </div>
@@ -19,9 +19,6 @@
 <div class="main container">
   <h4 class="ui dividing header">
     Entity Information
-    <%= edit_entity_link(entity,
-                         request.original_url,
-                         :class => 'right floated floating') %>
   </h4>
   <div class="ui grid">
     <div class="two column row">
@@ -37,11 +34,19 @@
       <div class="column"><%= entity.display_name %></div>
     </div>
   </div>
+  <div class="ui basic segment">
+    <%= edit_entity_link(entity,
+                         request.original_url,
+                         :class => 'ui basic button right floated floating') %>
+    <%= link_to 'Delete', entity_path(entity),
+      :class => 'ui basic button right floated',
+      :data => { :confirm => 'Are you sure?' },
+      :method => :delete %>
+    <%= link_to 'Versions', versions_path('entity', entity.id, :return_url => request.original_url),
+          :class => 'ui basic button right floated' %>
+  </div>
   <h4 class="ui dividing header">
     Primary Location
-    <%= edit_location_link(entity.primary_location,
-                           request.original_url,
-                           :class => 'right floated floating') %>
   </h4>
   <div class="ui grid">
     <div class="two column row">
@@ -69,6 +74,33 @@
       <div class="column"><%= location.country %></div>
     </div>
   </div>
+  <div class="ui basic segment">
+    <%= edit_location_link(entity.primary_location,
+                           request.original_url,
+                           :class => 'ui basic button right floated floating') %>
+  </div>
+  <h4 class="ui dividing header">Salesperson</h4>
+  <% if entity.salesperson %>
+  <%= render :partial => '/entities/salesperson/detail',
+             :locals => { :salesperson => entity.salesperson } %>
+  <% else %>
+  <%= render :partial => '/entities/salesperson/empty' %>
+  <% end %>
+  <div class="ui basic segment" id="salesperson-actions">
+    <%= salesperson_link(
+          entity,
+          request.original_url,
+          :class => 'ui basic button right floated floating') %>
+    <%= delete_salesperson_link(
+          entity,
+          request.original_url,
+          :class => 'ui basic button right floated floating') %>
+    <%= versions_link('salesperson',
+                      entity.salesperson,
+                      request.original_url,
+                      :class => 'ui basic button right floated') %>
+  </div>
+
   <h4 class="ui dividing header">System Information</h4>
   <div class="ui grid">
     <div class="two column row">

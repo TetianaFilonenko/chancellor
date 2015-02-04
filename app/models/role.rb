@@ -6,6 +6,8 @@ class Role < ActiveRecord::Base
     entity_admin
     entity_user
     location_admin
+    salesperson_admin
+    salesperson_user
     user_admin)
 
   # rubocop:disable HasAndBelongsToMany

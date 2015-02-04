@@ -1,0 +1,45 @@
+<div class="clearing header segment">
+  <div class="container">
+    <h1 class="ui header">
+      Versions
+    </h1>
+    <p>View the history for <strong><%= @model.class.name %></strong> <%= @model %>.</p>
+    <div class="ui divider"></div>
+    <div>
+      <%= link_to 'Back', return_url(root_path),
+                :class => 'ui basic button' %>
+    </div>
+  </div>
+</div>
+<div class="main container">
+  <table class="ui table segment">
+    <thead>
+    <tr>
+      <th>Model</th>
+      <th>Event</th>
+      <th>Item</th>
+      <th>User</th>
+      <th>Date</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% if @versions.each do |version, item| %>
+      <tr>
+        <td nowrap><%= version.item_type %></td>
+        <td nowrap><%= version.event %></td>
+        <td nowrap><%= item %></td>
+        <td nowrap><%= version.whodunnit %></td>
+        <td nowrap><%= version.created_at %></td>
+        <td nowrap>
+          <%= link_to 'View', version_path(version) %>
+        </td>
+      </tr>
+    <% end.empty? %>
+      <tr>
+        <td colspan="3">No previous versions found</td><td></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

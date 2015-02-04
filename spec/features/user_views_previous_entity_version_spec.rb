@@ -12,11 +12,10 @@ feature 'User views previous entity version' do
 
   context 'when it exists' do
     scenario 'they see the previous entity version' do
-      visit entity_path(entity, :version => version.id)
+      visit version_path(version)
 
       expect(page).to have_content(original_entity.name)
-      expect(current_path).to eq("/entities/#{entity.id}")
-      expect(current_url).to match(/version=#{version.id}/)
+      expect(current_path).to eq("/version/#{version.id}")
     end
   end
 

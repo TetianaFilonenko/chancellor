@@ -1,0 +1,11 @@
+<% entity = @entity %>
+<div class="clearing header segment">
+  <div class="container">
+    <h1 class="ui header">
+      <%= @model.class.name %>
+    </h1>
+    <div class="ui divider"></div>
+  </div>
+</div>
+<%= render :partial => "/versions/item_types/#{@item_type}",
+           :locals => { @item_type.to_sym => @model, :version => @version} %>

@@ -10,6 +10,14 @@ FactoryGirl.define do
       confirmed_at Time.now
     end
 
+    trait :all_roles do
+      confirmed
+
+      after :build do |user, _evaluator|
+        Role::ROLE_NAMES.each { |r| user.add_role r }
+      end
+    end
+
     trait :admin do
       after :build do |user, _evaluator|
         user.add_role :admin
@@ -17,7 +25,7 @@ FactoryGirl.define do
     end
 
     trait :authenticated do
-      confirmed_at Time.now
+      confirmed
 
       after :build do |user, _evaluator|
         user.add_role :authenticated

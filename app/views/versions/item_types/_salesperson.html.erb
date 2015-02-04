@@ -1,0 +1,24 @@
+<div class="main container">
+  <%= entity_block(:wrapper_html => { :class => 'ui grid' }) do %>
+    <div class="two column row">
+      <label class="column">Reference</label>
+      <div class="column"><%= salesperson.reference %></div>
+    </div>
+    <div class="two column row">
+      <label class="column">Gender</label>
+      <div class="column"><%= salesperson.gender %></div>
+    </div>
+    <div class="two column row">
+      <label class="column">Phone</label>
+      <div class="column"><%= salesperson.phone %></div>
+    </div>
+    <div class="two column row">
+      <label class="column">Location</label>
+      <div class="column"><%= location_string(salesperson) %></div>
+    </div>
+    <div class="two column row">
+      <label class="column">UUID</label>
+      <div class="column"><%= salesperson.uuid %></div>
+    </div>
+  <% end %>
+</div>
