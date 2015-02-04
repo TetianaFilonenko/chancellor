@@ -6,13 +6,7 @@ class EntityDecorator < Draper::Decorator
     long_name
   end
 
-  def long_address
-    primary_location.decorate.long_address
-  end
-
   def long_name
-    "#{reference} - \
-#{display_name}, \
-#{primary_location.decorate.long_address}"
+    "#{reference} - #{display_name}"
   end
 end

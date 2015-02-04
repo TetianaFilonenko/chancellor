@@ -1,9 +1,42 @@
 # Controller for managing locations.
 class LocationsController < ApplicationController
-  before_action :load_location, :only => [:edit, :update]
-  before_action -> { authorize :location }, :only => [:edit, :update]
+  before_action :load_entity, :only => [:create, :new]
+  before_action :load_location, :only => [:destroy, :edit, :update]
+  before_action :new_location_entry, :only => [:create, :new]
+  before_action -> { authorize :location },
+                :only => [:create, :edit, :new, :update]
+  before_action -> { authorize @location }, :only => [:destroy]
+
+  def create
+    return render :new unless @location_entry.valid?
+
+    context = CreateLocation.call(
+      @location_entry.to_h.merge(:entity => @entity, :user => current_user))
+
+    if context.success?
+      redirect_with_notice(
+        entity_path(@entity),
+        t('ar.success.messages.created', :model => t('ar.models.location')))
+    else
+      render :new
+    end
+  end
+
+  def destroy
+    if @location.destroy
+      redirect_with_notice(
+        entity_path(@location.entity),
+        t('ar.success.messages.deleted', :model => t('ar.models.location')))
+    else
+      redirect_with_alert(
+        entity_path(@location.entity),
+        t('ar.failure.messages.deleted', :model => t('ar.models.location')))
+    end
+  end
 
   def edit; end
+
+  def new; end
 
   def update
     if @location.update_attributes(location_params)
@@ -16,6 +49,10 @@ class LocationsController < ApplicationController
   end
 
   protected
+
+  def load_entity
+    @entity = Entity.find(params[:entity_id])
+  end
 
   def load_location
     @location = Location.find(params[:id])
@@ -31,5 +68,10 @@ class LocationsController < ApplicationController
         :region,
         :region_code,
         :country)
+  rescue ActionController::ParameterMissing; {}
+  end
+
+  def new_location_entry
+    @location_entry = LocationEntry.new(location_params)
   end
 end

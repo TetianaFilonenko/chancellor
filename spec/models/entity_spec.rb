@@ -5,7 +5,6 @@ RSpec.describe Entity, :type => :model do
 
   describe 'associations' do
     it { is_expected.to have_many(:locations) }
-    it { is_expected.to belong_to(:primary_location) }
     it { is_expected.to have_one(:salesperson) }
   end
 

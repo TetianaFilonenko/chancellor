@@ -5,9 +5,8 @@ RSpec.describe SalespeopleController, :type => :controller do
 
   context 'when authorized' do
     let(:entity) { create(:entity) }
-    let(:user) do
-      create(:user, :all_roles)
-    end
+    let(:salesperson) { create(:salesperson, :entity => entity) }
+    let(:user) { create(:user, :all_roles) }
 
     describe 'POST create' do
       before do
@@ -40,7 +39,6 @@ RSpec.describe SalespeopleController, :type => :controller do
 
     describe 'DELETE destroy' do
       before do
-        salesperson = create(:salesperson, :entity => entity)
         delete :destroy, :id => salesperson.id
       end
       it 'responds with status equal to 302' do
@@ -49,6 +47,22 @@ RSpec.describe SalespeopleController, :type => :controller do
 
       it 'redirects to the entity path' do
         expect(response).to redirect_to(entity_path(entity))
+      end
+    end
+
+    describe 'GET edit' do
+      before { get :edit, :id => salesperson.id }
+
+      it 'responds with status equal to 200' do
+        expect(response.status).to eq(200)
+      end
+
+      it 'assigns @salesperson' do
+        expect(assigns(:salesperson)).to eq(salesperson)
+      end
+
+      it 'renders the edit template' do
+        expect(response).to render_template('edit')
       end
     end
   end

@@ -1,19 +1,14 @@
 <% entity = @entity %>
-<% location = entity.primary_location %>
 <div class="clearing header segment">
   <div class="container">
     <h1 class="ui header">
       <%= entity.name %>
     </h1>
     <div class="ui divider"></div>
-    <div>
-      <%#= link_to 'Delete', entity_path(entity),
-        :class => 'ui basic button',
-        :data => { :confirm => 'Are you sure?' },
-        :method => :delete %>
-      <%#= link_to 'Versions', "/entities/#{entity.id}/versions",
-        :class => 'ui basic button' %>
-    </div>
+    <%= link_to 'Add Location',
+                new_entity_location_path(entity,
+                :return_url => request.original_url),
+                :class => 'ui basic button' %>
   </div>
 </div>
 <div class="main container">
@@ -46,38 +41,51 @@
           :class => 'ui basic button right floated' %>
   </div>
   <h4 class="ui dividing header">
-    Primary Location
+    Locations
   </h4>
-  <div class="ui grid">
-    <div class="two column row">
-      <label class="column">Location Name</label>
-      <div class="column"><%= location.location_name %></div>
+  <div class="" id="locations">
+    <div class="">
+      <table class="ui table with-buttons">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Street Address</th>
+            <th>City</th>
+            <th>Region</th>
+            <th>Region Code</th>
+            <th>Country</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if entity.locations.each do |location| %>
+            <tr>
+              <td><%= location.location_name %></td>
+              <td><%= location.street_address %></td>
+              <td><%= location.city %></td>
+              <td><%= location.region %></td>
+              <td><%= location.region_code %></td>
+              <td><%= location.country %></td>
+              <td nowrap>
+                <%= link_to 'Edit',
+                            edit_location_path(location),
+                            :class => 'ui basic button' %>
+                <%= link_to 'Delete',
+                            location_path(location),
+                            :class => 'ui basic button',
+                            :data => { :confirm => 'Are you sure?' },
+                            :method => :delete %>
+              </td>
+            </tr>
+          <% end.empty? %>
+            <tr>
+              <td colspan="6">No locations found</td>
+              <td></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
-    <div class="two column row">
-      <label class="column">Street Address</label>
-      <div class="column"><%= location.street_address %></div>
-    </div>
-    <div class="two column row">
-      <label class="column">City</label>
-      <div class="column"><%= location.city %></div>
-    </div>
-    <div class="two column row">
-      <label class="column">Region</label>
-      <div class="column"><%= location.region %></div>
-    </div>
-    <div class="two column row">
-      <label class="column">Region Code</label>
-      <div class="column"><%= location.region_code %></div>
-    </div>
-    <div class="two column row">
-      <label class="column">Country</label>
-      <div class="column"><%= location.country %></div>
-    </div>
-  </div>
-  <div class="ui basic segment">
-    <%= edit_location_link(entity.primary_location,
-                           request.original_url,
-                           :class => 'ui basic button right floated floating') %>
   </div>
   <h4 class="ui dividing header">Salesperson</h4>
   <% if entity.salesperson %>
@@ -100,7 +108,6 @@
                       request.original_url,
                       :class => 'ui basic button right floated') %>
   </div>
-
   <h4 class="ui dividing header">System Information</h4>
   <div class="ui grid">
     <div class="two column row">

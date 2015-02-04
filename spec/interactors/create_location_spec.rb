@@ -1,13 +1,23 @@
 require 'rails_helper'
 
-RSpec.describe CreateEntity, :type => :interactor do
-  let(:name) { Faker::Company.name }
-  let(:reference) { Faker::Number.number(8) }
+RSpec.describe CreateLocation, :type => :interactor do
+  let(:location_name) { Faker::Company.name }
+  let(:street_address) { Faker::Address.street_address }
+  let(:city) { Faker::Address.city }
+  let(:region) { Faker::Address.state }
+  let(:region_code) { Faker::Address.zip_code }
+  let(:country) { 'United States' }
+  let(:entity) { create(:entity) }
   let(:user) { create(:user) }
   subject(:context) do
-    CreateEntity.call(
-      :name => name,
-      :reference => reference,
+    CreateLocation.call(
+      :entity => entity,
+      :location_name => location_name,
+      :street_address => street_address,
+      :city => city,
+      :region => region,
+      :region_code => region_code,
+      :country => country,
       :user => user)
   end
 
@@ -26,27 +36,28 @@ RSpec.describe CreateEntity, :type => :interactor do
       end
     end
 
-    describe Entity do
-      subject(:entity) { context.entity }
+    describe Location do
+      subject { context.location }
 
       its(:present?) { is_expected.to be_truthy }
       its(:persisted?) { is_expected.to be_truthy }
       its(:errors) { is_expected.to be_empty }
+      its(:entity) { is_expected.to be_present }
 
       describe 'papertrail' do
         it 'has 1 version' do
-          expect(entity.versions.size).to eq(1)
+          expect(subject.versions.size).to eq(1)
         end
 
         it 'was created by user' do
-          expect(entity.originator).to eq(user.id.to_s)
+          expect(subject.originator).to eq(user.id.to_s)
         end
       end
     end
   end
 
   context 'invalid parameters' do
-    let(:name) { nil }
+    let(:location_name) { nil }
 
     describe 'context' do
       it 'is failure' do
@@ -57,16 +68,17 @@ RSpec.describe CreateEntity, :type => :interactor do
         expect(context.message).to match(/invalid/i)
       end
 
-      it 'has set the entity' do
-        expect(context.entity).to be_present
+      it 'has set the location' do
+        expect(context.location).to be_present
       end
     end
 
-    describe Entity do
-      subject(:entity) { context.entity }
+    describe Location do
+      subject(:location) { context.location }
 
       its(:present?) { is_expected.to be_truthy }
       its(:persisted?) { is_expected.to be_falsey }
+      its(:entity) { is_expected.to be_present }
     end
   end
 end

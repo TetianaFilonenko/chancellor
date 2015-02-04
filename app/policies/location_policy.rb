@@ -8,22 +8,23 @@ class LocationPolicy < ApplicationPolicy
   end
 
   def index?
-    authenticated? && user.has_any_role?(:location_admin, :entity_user)
+    authenticated? &&
+      user.has_any_role?(:location_admin, :location_write, :entity_user)
   end
 
   def show?
-    super && user.has_any_role?(:location_admin, :entity_user)
+    super && user.has_any_role?(:location_admin, :location_write, :entity_user)
   end
 
   def create?
-    authenticated? && user.has_role?(:location_admin)
+    authenticated? && user.has_any_role?(:location_admin, :location_write)
   end
 
   def update?
-    authenticated? && user.has_role?(:location_admin)
+    authenticated? && user.has_any_role?(:location_admin, :location_write)
   end
 
   def destroy?
-    authenticated? && user.has_role?(:location_admin)
+    authenticated? && user.has_any_role?(:location_admin, :location_write)
   end
 end

@@ -21,7 +21,6 @@
     <tr>
       <th>Reference</th>
       <th>Name</th>
-      <th>Location (Default)</th>
       <th></th>
     </tr>
     </thead>
@@ -30,7 +29,6 @@
       <tr>
           <td nowrap><%= entity.reference %></td>
           <td nowrap><%= entity.name %></td>
-          <td><%= entity.long_address %></td>
           <td nowrap>
             <%= link_to [:edit, entity, :return_url => return_url(request.original_url)],
                         :class => 'tiny ui basic button' do %>
@@ -44,7 +42,7 @@
       </tr>
     <% end.empty? %>
       <tr>
-        <td colspan="3">No entities found</td><td></td>
+        <td colspan="2">No entities found</td><td></td>
       </tr>
     <% end %>
     </tbody>
