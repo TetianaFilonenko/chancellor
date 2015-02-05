@@ -40,9 +40,9 @@ class CreateSalesperson
     salesperson.save!
   end
 
-  def validate
-    return if salesperson.valid?
+  # def validate
+  #   return if salesperson.valid?
 
-    context.fail!(:message => 'Invalid details')
-  end
+  #   context.fail!(:message => 'Invalid details')
+  # end
 end

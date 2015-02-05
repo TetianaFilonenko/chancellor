@@ -6,6 +6,7 @@ class Entity < ActiveRecord::Base
 
   has_many :contacts
   has_many :locations, :inverse_of => :entity
+  has_one :customer
   has_one :salesperson
 
   has_paper_trail

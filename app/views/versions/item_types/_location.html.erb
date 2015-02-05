@@ -1,0 +1,32 @@
+<div class="main container">
+  <%= entity_block(:wrapper_html => { :class => 'ui grid' }) do %>
+  <div class="two column row">
+    <label class="column">Name</label>
+    <div class="column"><%= location.location_name %></div>
+  </div>
+  <div class="two column row">
+    <label class="column">Street Address</label>
+    <div class="column"><%= location.street_address %></div>
+  </div>
+  <div class="two column row">
+    <label class="column">City</label>
+    <div class="column"><%= location.city %></div>
+  </div>
+  <div class="two column row">
+    <label class="column">Region</label>
+    <div class="column"><%= location.region %></div>
+  </div>
+  <div class="two column row">
+    <label class="column">Region Code</label>
+    <div class="column"><%= location.region_code %></div>
+  </div>
+  <div class="two column row">
+    <label class="column">Country</label>
+    <div class="column"><%= location.country %></div>
+  </div>
+  <div class="two column row">
+    <label class="column">UUID</label>
+    <div class="column"><%= location.uuid %></div>
+  </div>
+  <% end %>
+</div>

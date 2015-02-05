@@ -1,0 +1,44 @@
+<table class="ui table with-buttons">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Street Address</th>
+      <th>City</th>
+      <th>Region</th>
+      <th>Region Code</th>
+      <th>Country</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if locations.each do |location| %>
+      <tr>
+        <td><%= location.location_name %></td>
+        <td><%= location.street_address %></td>
+        <td><%= location.city %></td>
+        <td><%= location.region %></td>
+        <td><%= location.region_code %></td>
+        <td><%= location.country %></td>
+        <td nowrap>
+          <%= versions_link('location',
+                            location,
+                            request.original_url,
+                            :class => 'ui basic button') %>
+          <%= link_to 'Edit',
+                      edit_location_path(location),
+                      :class => 'ui basic button' %>
+          <%= link_to 'Delete',
+                      location_path(location),
+                      :class => 'ui basic button',
+                      :data => { :confirm => 'Are you sure?' },
+                      :method => :delete %>
+        </td>
+      </tr>
+    <% end.empty? %>
+      <tr>
+        <td colspan="6">No locations found</td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

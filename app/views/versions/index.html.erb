@@ -32,7 +32,7 @@
         <td nowrap><%= version.whodunnit %></td>
         <td nowrap><%= version.created_at %></td>
         <td nowrap>
-          <%= link_to 'View', version_path(version) %>
+          <%= link_to 'View', version_path(version), :class => 'ui basic button' %>
         </td>
       </tr>
     <% end.empty? %>

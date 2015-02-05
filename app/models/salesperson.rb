@@ -1,4 +1,4 @@
-# Represents the salesperson details for an +Entity+.
+# Represents the +Salesperson+ trait details for an +Entity+.
 class Salesperson < ActiveRecord::Base
   acts_as_paranoid
 
@@ -11,6 +11,8 @@ class Salesperson < ActiveRecord::Base
           :foreign_key => :entity_id
 
   has_paper_trail
+
+  scope :active, -> { unscoped.where(:deleted_at => nil) }
 
   validates \
     :entity,

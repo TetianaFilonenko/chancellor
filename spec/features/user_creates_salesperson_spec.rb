@@ -34,7 +34,7 @@ feature 'User creates salesperson' do
 
   context 'when details are invalid' do
     scenario 'they see an error message' do
-      visit new_entity_path
+      visit new_entity_salesperson_path(entity)
 
       click_button 'Save'
 

@@ -24,6 +24,10 @@
         <td><%= contact.mobile_number %></td>
         <td><%= contact.phone_number %></td>
         <td nowrap>
+          <%= versions_link('contact',
+                            contact,
+                            request.original_url,
+                            :class => 'ui basic button') %>
           <%= link_to 'Edit',
                       edit_contact_path(contact),
                       :class => 'ui basic button' %>
