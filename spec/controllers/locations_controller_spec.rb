@@ -2,12 +2,53 @@ require 'rails_helper'
 
 RSpec.describe LocationsController, :type => :controller do
   before { sign_in(user) }
-  let(:location) { create(:entity).primary_location }
+  let(:entity) { create(:entity) }
+  let(:location) { create(:location, :entity => entity) }
 
   context 'when authorized' do
-    let(:user) { create(:user, :confirmed, :authenticated, :location_admin) }
+    let(:user) { create(:user, :all_roles) }
 
-    # TODO: Implement POST create tests
+    describe 'POST create' do
+      before do
+        context = double(:entity => entity,
+                         :message => 'success',
+                         :success? => true)
+        location_entry = double(:location_entry,
+                                :to_h => {},
+                                :valid? => true)
+        allow(CreateLocation)
+          .to receive(:call) { context }
+        allow(LocationEntry)
+          .to receive(:new) { location_entry }
+
+        post :create, :entity_id => entity.id, :location_entry => {}
+      end
+
+      it 'responds with status equal to 302' do
+        expect(response.status).to eq(302)
+      end
+
+      it 'redirects to the user page' do
+        expect(response).to redirect_to(entity_path(entity))
+      end
+
+      it 'flashes a success message' do
+        expect(request.flash[:notice]).to_not be_nil
+      end
+    end
+
+    describe 'DELETE destroy' do
+      before do
+        delete :destroy, :id => location.id
+      end
+      it 'responds with status equal to 302' do
+        expect(response.status).to eq(302)
+      end
+
+      it 'redirects to the entity path' do
+        expect(response).to redirect_to(entity_path(entity))
+      end
+    end
 
     describe 'GET edit' do
       before { get :edit, :id => location.id }

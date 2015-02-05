@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 describe LocationPolicy, :type => :policy do
-  let(:location) do
-    create(:entity).primary_location
-  end
+  let(:location) { create(:location, :entity => create(:entity)) }
   let(:user) do
     create(:user) do |u|
       roles.each { |r| u.add_role r }

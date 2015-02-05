@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150131171824) do
+ActiveRecord::Schema.define(version: 20150204231641) do
 
   create_table "default_locations", force: true do |t|
     t.integer  "entity_id",   null: false
@@ -26,14 +26,13 @@ ActiveRecord::Schema.define(version: 20150131171824) do
   add_index "default_locations", ["entity_id", "entity_type"], name: "index_default_locations_on_entity_id_and_entity_type", using: :btree
 
   create_table "entities", force: true do |t|
-    t.string   "cached_long_name",    limit: 1024, null: false
-    t.string   "display_name",                     null: false
-    t.string   "name",                             null: false
+    t.string   "cached_long_name", limit: 1024, null: false
+    t.string   "display_name",                  null: false
+    t.string   "name",                          null: false
     t.string   "contact_name"
     t.string   "comments"
-    t.integer  "primary_location_id"
-    t.string   "reference",                        null: false
-    t.string   "uuid",                limit: 32,   null: false
+    t.string   "reference",                     null: false
+    t.string   "uuid",             limit: 32,   null: false
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"

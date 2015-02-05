@@ -9,6 +9,7 @@ RSpec.describe VersionsController, :type => :controller do
 
     describe 'GET index with versions' do
       before do
+        entity.touch_with_version
         get :index, :item_type => 'entity', :item_id => entity.id
       end
 
