@@ -56,6 +56,5 @@ group :test do
   gem 'faker'
   gem 'rspec-rails'
   gem 'rspec-its'
-  gem 'shoulda', :require => false
   gem 'shoulda-matchers', :require => false
 end

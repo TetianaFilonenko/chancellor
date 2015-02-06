@@ -5,6 +5,10 @@
       <%= entity.name %>
     </h1>
     <div class="ui divider"></div>
+    <%= link_to 'Add Contact',
+                new_entity_contact_path(entity,
+                :return_url => request.original_url),
+                :class => 'ui basic button' %>
     <%= link_to 'Add Location',
                 new_entity_location_path(entity,
                 :return_url => request.original_url),
@@ -41,10 +45,16 @@
           :class => 'ui basic button right floated' %>
   </div>
   <h4 class="ui dividing header">
+    Contacts
+  </h4>
+  <div id="contacts">
+  <%= render :partial => 'contacts', :locals => { :contacts => entity.contacts } %>
+  </div>
+  <h4 class="ui dividing header">
     Locations
   </h4>
-  <div class="" id="locations">
-    <div class="">
+  <div id="locations">
+    <div>
       <table class="ui table with-buttons">
         <thead>
           <tr>

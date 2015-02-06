@@ -3,9 +3,12 @@ class Role < ActiveRecord::Base
   ROLE_NAMES = %w(
     admin
     authenticated
+    contact_read
+    contact_write
     entity_admin
     entity_user
-    location_admin
+    entity_read
+    entity_write
     location_read
     location_write
     salesperson_admin

@@ -1,6 +1,7 @@
 en:
   ar:
     models:
+      contact: 'Contact'
       entity: 'Entity'
       grant_role: 'Grant'
       location: 'Location'

@@ -1,0 +1,10 @@
+<%= render :partial => '/model_errors',
+           :locals => { :model => model } if model.errors.any? %>
+
+<%= form.input :title %>
+<%= form.input :first_name %>
+<%= form.input :last_name %>
+<%= form.input :email_address %>
+<%= form.input :fax_number %>
+<%= form.input :mobile_number %>
+<%= form.input :phone_number %>

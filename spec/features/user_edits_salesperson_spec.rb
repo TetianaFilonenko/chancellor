@@ -20,9 +20,9 @@ feature 'User edits salesperson' do
       click_button 'Save'
 
       expect(page).to have_content(
-            I18n.t(
-              'ar.success.messages.updated',
-              :model => I18n.t('ar.models.salesperson')))
+        I18n.t(
+          'ar.success.messages.updated',
+          :model => I18n.t('ar.models.salesperson')))
     end
   end
 

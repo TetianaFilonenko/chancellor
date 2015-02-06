@@ -11,7 +11,6 @@ class EntityEntry
   attribute :reference, String
 
   validates \
-    :display_name,
     :name,
     :reference, :presence => true
 end

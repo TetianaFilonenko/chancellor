@@ -25,9 +25,9 @@ feature 'User creates salesperson' do
       click_button 'Save'
 
       expect(page).to have_content(
-            I18n.t(
-              'ar.success.messages.created',
-              :model => I18n.t('ar.models.salesperson')))
+        I18n.t(
+          'ar.success.messages.created',
+          :model => I18n.t('ar.models.salesperson')))
       expect(entity.salesperson).to be_present
     end
   end

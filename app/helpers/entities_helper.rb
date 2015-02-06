@@ -16,6 +16,12 @@ module EntitiesHelper
             options
   end
 
+  def location_string(entity)
+    return nil if entity.location.nil?
+
+    entity.location.decorate.long_address
+  end
+
   def salesperson_link(entity, return_url, options)
     if entity.salesperson
       edit_salesperson_link(entity.salesperson, return_url, options)

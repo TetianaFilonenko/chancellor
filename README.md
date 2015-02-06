@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/westernmilling/chancellor.svg)](https://travis-ci.org/westernmilling/chancellor)
 [![Code Climate](https://codeclimate.com/github/westernmilling/chancellor/badges/gpa.svg)](https://codeclimate.com/github/westernmilling/chancellor)
-[![Test Coverage](https://codeclimate.com/github/westernmilling/chancellor/badges/coverage.svg)](https://codeclimate.com/github/westernmilling/chancellor)
+[![Coverage Status](https://coveralls.io/repos/westernmilling/chancellor/badge.svg?branch=master)](https://coveralls.io/r/westernmilling/chancellor?branch=master)
 [![Dependency Status](https://img.shields.io/gemnasium/westernmilling/chancellor.svg)](https://gemnasium.com/westernmilling/chancellor)
 
 chancellor
