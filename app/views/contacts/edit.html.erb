@@ -1,20 +1,18 @@
 <div class="header segment">
   <div class="container">
     <h1 class="ui header">
-      New Entity
+      Edit Contact
     </h1>
   </div>
 </div>
 <div class="main container">
-  <%= simple_form_for(@entity_entry,
-    :as => :entity,
+  <%= simple_form_for(@contact,
     :html => { :class => 'ui form' },
-    :url => entities_path,
     :wrapper => :semantic_form) do |form| %>
       <%= render :partial => 'form',
-           :locals => { :form => form, :model => @entity_entry } %>
+                 :locals => { :form => form, :model => @contact } %>
 
       <input type="submit" class="ui submit button" value="Save" />
-      <%= link_to 'Cancel', entities_path, :class => 'ui basic button' %>
+      <%= link_to 'Cancel', entity_path(@contact.entity), :class => 'ui basic button' %>
   <% end %>
 </div>

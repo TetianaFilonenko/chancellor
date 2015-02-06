@@ -4,7 +4,7 @@
 class Entity < ActiveRecord::Base
   acts_as_paranoid
 
-  # belongs_to :primary_location, :class_name => Location
+  has_many :contacts
   has_many :locations, :inverse_of => :entity
   has_one :salesperson
 

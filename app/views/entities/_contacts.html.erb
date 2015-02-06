@@ -1,0 +1,44 @@
+<table class="ui table with-buttons">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Display Name</th>
+      <th>Email Address</th>
+      <th>Fax Number</th>
+      <th>Mobile Number</th>
+      <th>Phone Number</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if contacts.each do |contact| %>
+      <tr>
+        <td><%= contact.title %></td>
+        <td><%= contact.first_name %></td>
+        <td><%= contact.last_name %></td>
+        <td><%= contact.display_name %></td>
+        <td><%= contact.email_address %></td>
+        <td><%= contact.fax_number %></td>
+        <td><%= contact.mobile_number %></td>
+        <td><%= contact.phone_number %></td>
+        <td nowrap>
+          <%= link_to 'Edit',
+                      edit_contact_path(contact),
+                      :class => 'ui basic button' %>
+          <%= link_to 'Delete',
+                      contact_path(contact),
+                      :class => 'ui basic button',
+                      :data => { :confirm => 'Are you sure?' },
+                      :method => :delete %>
+        </td>
+      </tr>
+    <% end.empty? %>
+      <tr>
+        <td colspan="8">No contacts found</td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

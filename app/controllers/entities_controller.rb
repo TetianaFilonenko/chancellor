@@ -1,14 +1,15 @@
 # Controller for managing Entity base details.
 class EntitiesController < ApplicationController
   before_action :find_entity, :only => [:destroy, :edit, :show, :update]
-  before_action :new_entity, :only => [:create, :new]
+  # before_action :new_entity, :only => [:create, :new]
+  before_action :new_entity_entry, :only => [:create, :new]
   before_action -> { authorize :entity }, :except => :show
   before_action -> { authorize @entity }, :only => :show
 
   def create
-    return render :new unless @new_entity.valid?
+    return render :new unless @entity_entry.valid?
 
-    context = CreateEntity.call(@new_entity.to_h.merge(:user => current_user))
+    context = CreateEntity.call(@entity_entry.to_h.merge(:user => current_user))
 
     if context.success?
       redirect_with_notice(
@@ -48,7 +49,7 @@ class EntitiesController < ApplicationController
   end
 
   def update
-    if @entity.update_attributes(edit_entity_params)
+    if @entity.update_attributes(entity_params)
       redirect_with_notice(
         entity_path(@entity),
         t('ar.success.messages.updated', :model => t('ar.models.entity')))
@@ -59,8 +60,19 @@ class EntitiesController < ApplicationController
 
   protected
 
+  def entity_params
+    params
+      .require(:entity)
+      .permit(:name, :reference)
+  rescue ActionController::ParameterMissing; {}
+  end
+
   def new_entity
     @new_entity = NewEntity.new(new_entity_params)
+  end
+
+  def new_entity_entry
+    @entity_entry = EntityEntry.new(entity_params)
   end
 
   def new_entity_params

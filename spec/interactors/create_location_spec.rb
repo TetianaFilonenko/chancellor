@@ -31,8 +31,8 @@ RSpec.describe CreateLocation, :type => :interactor do
         expect(context.message).to match(/success/i)
       end
 
-      it 'has set the entity' do
-        expect(context.entity).to be_present
+      it 'has set the location' do
+        expect(context.location).to be_present
       end
     end
 

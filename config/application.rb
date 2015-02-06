@@ -18,7 +18,7 @@ module Entities
     config.i18n.default_locale = :en
 
     config.assets.paths << Rails.root.join(
-        'vendor', 'assets', 'bower_components')
+      'vendor', 'assets', 'bower_components')
 
     config.generators do |g|
       g.stylesheets false

@@ -1,6 +1,12 @@
 en:
   pundit:
     default: 'You cannot perform this action.'
+    contact_policy:
+      create?: 'You cannot create contacts!'
+      edit?: 'You cannot edit contacts!'
+      new?: 'You cannot create contacts!'
+      show?: 'You cannot view contacts!'
+      update?: 'You cannot edit contacts!'
     entity_policy:
       create?: 'You cannot create entities!'
       edit?: 'You cannot edit entities!'
