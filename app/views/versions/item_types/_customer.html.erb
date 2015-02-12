@@ -1,24 +1,22 @@
-<div class="main container">
-  <%= entity_block(:wrapper_html => { :class => 'ui grid' }) do %>
-  <div class="two column row">
-    <label class="column">Reference</label>
-    <div class="column"><%= customer.reference %></div>
+<section class="content-slice container view-form">
+  <div class="row">
+    <label>Reference</label>
+    <p><%= customer.reference %></p>
   </div>
-  <div class="two column row">
-    <label class="column">Contact</label>
-    <div class="column"><%= customer.default_contact %></div>
+  <div class="row">
+    <label>Contact</label>
+    <p><%= customer.default_contact %></p>
   </div>
-  <div class="two column row">
-    <label class="column">Salesperson</label>
-    <div class="column"><%= customer.salesperson %></div>
+  <div class="row">
+    <label>Salesperson</label>
+    <p><%= customer.salesperson %></p>
   </div>
-  <div class="two column row">
-    <label class="column">Location</label>
-    <div class="column"><%= customer.default_location %></div>
+  <div class="row">
+    <label>Location</label>
+    <p><%= customer.default_location %></p>
   </div>
-  <div class="two column row">
-    <label class="column">UUID</label>
-    <div class="column"><%= customer.uuid %></div>
+  <div class="row">
+    <label>UUID</label>
+    <p><%= customer.uuid %></p>
   </div>
-  <% end %>
-</div>
+</section>

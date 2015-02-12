@@ -9,11 +9,12 @@ GIT
 
 GIT
   remote: git://github.com/airblade/paper_trail.git
-  revision: 4ced77bdad5dc813a123a6bc40e3cd291181886a
+  revision: 9446f78196362b999d6b5262a04c9492be166708
   specs:
     paper_trail (4.0.0.beta3)
       activerecord (>= 3.0, < 6.0)
       activesupport (>= 3.0, < 6.0)
+      request_store (~> 1.1.0)
 
 GIT
   remote: git://github.com/bkeepers/dotenv.git
@@ -24,10 +25,26 @@ GIT
       dotenv (= 1.0.2)
 
 GIT
+  remote: git://github.com/causes/scss-lint.git
+  revision: 5343c7034467e88f73416c3be066e8cc6156fceb
+  specs:
+    scss-lint (0.33.0)
+      rainbow (~> 2.0)
+      sass (~> 3.4.1)
+
+GIT
   remote: git://github.com/collectiveidea/interactor.git
   revision: 750ccad3003dfd4e6dbb1a5d1be472effc4dc1a1
   specs:
     interactor (3.1.0)
+
+GIT
+  remote: git://github.com/thoughtbot/neat.git
+  revision: bff08df8fec78f1186428aaea49ab79f3a87b398
+  specs:
+    neat (1.7.1)
+      bourbon (>= 4.0)
+      sass (>= 3.3)
 
 GEM
   remote: https://rubygems.org/
@@ -66,7 +83,7 @@ GEM
     ast (2.0.0)
     astrolabe (1.3.0)
       parser (>= 2.2.0.pre.3, < 3.0)
-    autoprefixer-rails (5.1.3.1)
+    autoprefixer-rails (5.1.5)
       execjs
       json
     axiom-types (0.1.1)
@@ -78,6 +95,9 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
+    bourbon (4.2.0)
+      sass (~> 3.4)
+      thor
     builder (3.2.2)
     capistrano (3.3.5)
       capistrano-stats (~> 1.1.0)
@@ -172,13 +192,13 @@ GEM
     orm_adapter (0.5.0)
     paranoia (2.1.0)
       activerecord (~> 4.0)
-    parser (2.2.0.2)
+    parser (2.2.0.3)
       ast (>= 1.1, < 3.0)
     pg (0.18.1)
     polyamorous (1.1.0)
       activerecord (>= 3.0)
     powerpack (0.1.0)
-    puma (2.11.0)
+    puma (2.11.1)
       rack (>= 1.1, < 2.0)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
@@ -220,7 +240,7 @@ GEM
     rest-client (1.7.2)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
-    rolify (3.5.2)
+    rolify (4.0.0)
     rspec-core (3.2.0)
       rspec-support (~> 3.2.0)
     rspec-expectations (3.2.0)
@@ -241,19 +261,20 @@ GEM
       rspec-mocks (~> 3.2.0)
       rspec-support (~> 3.2.0)
     rspec-support (3.2.1)
-    rubocop (0.29.0)
+    rubocop (0.29.1)
       astrolabe (~> 1.3)
       parser (>= 2.2.0.1, < 3.0)
       powerpack (~> 0.1)
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.4)
     ruby-progressbar (1.7.1)
-    sass (3.2.19)
-    sass-rails (4.0.5)
+    sass (3.4.12)
+    sass-rails (5.0.1)
       railties (>= 4.0.0, < 5.0)
-      sass (~> 3.2.2)
-      sprockets (~> 2.8, < 3.0)
-      sprockets-rails (~> 2.0)
+      sass (~> 3.1)
+      sprockets (>= 2.8, < 4.0)
+      sprockets-rails (>= 2.0, < 4.0)
+      tilt (~> 1.1)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
     simple_form (3.1.0)
@@ -315,6 +336,7 @@ DEPENDENCIES
   analytics-ruby (~> 2.0.0)
   autoprefixer-rails
   better_errors
+  bourbon
   capistrano-rails
   capybara
   codeclimate-test-reporter
@@ -330,6 +352,7 @@ DEPENDENCIES
   interactor-rails
   jquery-rails
   mysql2
+  neat!
   paper_trail!
   paranoia
   pg
@@ -342,7 +365,8 @@ DEPENDENCIES
   rspec-its
   rspec-rails
   rubocop
-  sass-rails (~> 4.0.3)
+  sass-rails
+  scss-lint!
   shoulda-matchers
   simple_form
   skylight

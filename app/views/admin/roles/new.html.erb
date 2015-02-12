@@ -1,21 +1,20 @@
-<div class="header segment">
-  <div class="container">
-    <h1 class="ui header">Add Role</h1>
+<section class="container">
+  <div class="line-behind-text">
+    <h1>Add Role</h1>
   </div>
-</div>
-<div class="main container">
   <%= simple_form_for(@grant,
     :html => { :class => 'ui form' },
     :url => admin_user_roles_path(@user),
-    :wrapper => :semantic_form) do |form| %>
-      <%= render :partial => '/model_errors', :locals => { :model => @grant } if @grant.errors.any? %>
+    :wrapper => :basic_form) do |form| %>
+    <%= render :partial => '/model_errors', :locals => { :model => @grant } if @grant.errors.any? %>
 
-      <%= form.input :name,
-        :collection => roles_collection(@grant.user.available_roles),
-        :input_html => { :class => 'dropdown' },
-        :label => 'Role' %>
+    <%= form.input :name,
+      :collection => roles_collection(@grant.user.available_roles),
+      :label => 'Role' %>
 
+    <p>
       <input type="submit" class="ui submit button" value="Save" />
       <%= link_to 'Cancel', admin_user_path(@user), :class => 'ui basic button' %>
+    </p>
   <% end %>
-</div>
+</section>

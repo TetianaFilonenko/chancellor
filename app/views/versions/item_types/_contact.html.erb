@@ -1,32 +1,30 @@
-<div class="main container">
-  <%= entity_block(:wrapper_html => { :class => 'ui grid' }) do %>
-    <div class="two column row">
-      <label class="column">First Name</label>
-      <div class="column"><%= contact.first_name %></div>
-    </div>
-    <div class="two column row">
-      <label class="column">Last Name</label>
-      <div class="column"><%= contact.last_name %></div>
-    </div>
-    <div class="two column row">
-      <label class="column">Display Name</label>
-      <div class="column"><%= contact.display_name %></div>
-    </div>
-    <div class="two column row">
-      <label class="column">Fax Number</label>
-      <div class="column"><%= contact.fax_number %></div>
-    </div>
-    <div class="two column row">
-      <label class="column">Mobile Number</label>
-      <div class="column"><%= contact.mobile_number %></div>
-    </div>
-    <div class="two column row">
-      <label class="column">Phone Number</label>
-      <div class="column"><%= contact.phone_number %></div>
-    </div>
-    <div class="two column row">
-      <label class="column">UUID</label>
-      <div class="column"><%= contact.uuid %></div>
-    </div>
-  <% end %>
-</div>
+<section class="content-slice container view-form">
+  <div class="row">
+    <label>First Name</label>
+    <p><%= contact.first_name %></p>
+  </div>
+  <div class="row">
+    <label>Last Name</label>
+    <p><%= contact.last_name %></p>
+  </div>
+  <div class="row">
+    <label>Display Name</label>
+    <p><%= contact.display_name %></p>
+  </div>
+  <div class="row">
+    <label>Fax Number</label>
+    <p><%= contact.fax_number %></p>
+  </div>
+  <div class="row">
+    <label>Mobile Number</label>
+    <p><%= contact.mobile_number %></p>
+  </div>
+  <div class="row">
+    <label>Phone Number</label>
+    <p><%= contact.phone_number %></p>
+  </div>
+  <div class="row">
+    <label>UUID</label>
+    <p><%= contact.uuid %></p>
+  </div>
+</section>

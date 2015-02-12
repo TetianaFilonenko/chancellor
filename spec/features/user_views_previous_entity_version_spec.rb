@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'User views previous entity version' do
-  background { sign_in(create(:user, :authenticated, :entity_user)) }
+  background { sign_in(create(:user, :all_roles)) }
   given(:entity) do
     temp_entity = create(:entity)
     temp_entity = change_entity_name(temp_entity)

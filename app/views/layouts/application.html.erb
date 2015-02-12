@@ -34,60 +34,46 @@
     <!-- Size should be 32 x 32 pixels -->
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
   </head>
-  <body class="pushable">
-    <% if user_signed_in? %>
-    <div class="ui inverted vertical sidebar menu left" id="toc">
-      <%= link_to 'Chancellor', root_path, :class => 'active item' %>
-      <%= link_to 'Entities', entities_path, :class => 'item' %>
-      <div class="item">
-        <b>Admin</b>
-        <div class="menu">
-          <%= link_to 'Users', admin_users_path, :class => 'item' %>
-        </div>
-      </div>
-    </div>
-    <div class="ui black big launch right attached fixed button">
-      <i class="content icon"></i>
-      <span class="text">Menu</span>
-    </div>
+  <body>
+    <nav role="banner">
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
+      <ul id="js-navigation-menu" class="navigation-menu show">
+        <li class=""><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Entities', entities_path %></li>
+        <li class="more"><a href="javascript:void(0)">Admin</a>
+          <ul class="submenu">
+            <li><%= link_to 'Users', admin_users_path %></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <% if flash %>
+    <%= bourbon_flash %>
     <% end %>
-    <div class="ui fixed inverted main menu">
-      <div class="container">
-        <!-- <a class="launch item"><i class="content icon"></i>Menu</a> -->
-        <a class="launch item"><i class="content icon"></i></a>
-        <%= link_to 'Chancellor', root_path, :class => 'title item' %>
-        <% if user_signed_in? %>
-        <div id="user-name-menu" class="ui dropdown item right">
-          <i class="dropdown icon"></i>
-          <%= header_user_name(current_user, :class => 'user-name') %>
-          <div class="menu">
-            <%= link_to 'Sign out',
-                        destroy_user_session_path,
-                        :class => 'item',
-                        :method => :delete %>
-          </div>
-        </div>
-        <% end %>
+    <%= yield :header if content_for? :header %>
+    <section class="body">
+    <%= yield %>
+    </section>
+    <footer class="footer" role="contentinfo">
+<!--
+      <div class="footer-logo">
+        <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="Logo image">
       </div>
-    </div>
-    <div class="pusher">
-      <div class="full height">
-      <% if flash %>
-        <div class="segment flash"><%= semantic_flash %></div>
+      <div class="footer-links">
+      </div>
+      <hr>
+-->
+      <% if user_signed_in? %>
+        <p class="user">
+          Signed in as <%= current_user.display_name %>
+          -
+          <%= link_to 'Sign out',
+                      destroy_user_session_path,
+                      :method => :delete %>
+        </p>
       <% end %>
-      <%= yield :header if content_for? :header %>
-      <%= yield %>
-      </div>
-      <div class="ui fixed xinverted xblack footer vertical segment">
-        <div class="container">
-          <div class="ui stackable xinverted divided relaxed grid">
-            <div class="column">
-              <p>&copy; 2015 Western Milling</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <p>&copy; 2015 Western Milling</p>
+    </footer>
   </body>
   <%= javascript_include_tag "application" %>
 </html>

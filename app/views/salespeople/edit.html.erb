@@ -1,23 +1,22 @@
-<div class="header segment">
-  <div class="container">
-    <h1 class="ui header">
-      Edit Salesperson
-    </h1>
-  </div>
-</div>
-<div class="main container">
-  <%= simple_form_for(@salesperson_entry,
+<%= simple_form_for(@salesperson_entry,
     :as => :salesperson_entry,
-    :html => { :class => 'ui form', :method => :patch },
+    :html => { :method => :patch },
     :url => salesperson_path(@entity.salesperson),
-    :wrapper => :semantic_form) do |form| %>
-      <%= render :partial => 'form',
-                 :locals => {
-                   :form => form,
-                   :locations => @locations,
-                   :model => @salesperson_entry } %>
-
-      <input type="submit" class="ui submit button" value="Save" />
-      <%= link_to 'Cancel', entities_path, :class => 'ui basic button' %>
-  <% end %>
-</div>
+    :wrapper => :basic_form) do |form| %>
+<header>
+  <div class="container">
+    <h1>Edit Salesperson</h1>
+    <nav>
+      <input type="submit" value="Save" />
+      <%= link_to 'Cancel', entity_path(@entity) %>
+    </nav>
+  </div>
+</header>
+<section class="container">
+  <%= render :partial => 'form',
+             :locals => {
+               :form => form,
+               :locations => @locations,
+               :model => @salesperson_entry } %>
+</section>
+<% end %>

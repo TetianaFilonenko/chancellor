@@ -1,17 +1,11 @@
-<div class="clearing header segment">
-  <div class="container">
-    <h1 class="ui header">
-      Users
-    </h1>
-    <p>Make changes to the users of the system.</p>
-  </div>
-</div>
-<div class="main container">
-  <table class="ui table segment with-buttons">
+<header class="main">
+  <h1>Users</h1>
+</header>
+<section class="container">
+  <table class="tables">
     <thead>
     <tr>
       <th>Name</th>
-      <th>Roles</th>
       <th>Status</th>
       <th></th>
     </tr>
@@ -20,24 +14,23 @@
     <% if @users.each do |user| %>
       <tr>
           <td nowrap><%= user.email %></td>
-          <td><%= user.roles.map(&:name).join(', ') %></td>
-          <td nowrap><%= user_active_string(user) %></td>
+          <td nowrap><%= active_string(user) %></td>
           <td nowrap>
-            <%= link_to [:edit, :admin, user, :return_url => return_url(request.original_url)],
-                        :class => 'tiny ui basic button' do %>
+            <nav>
+            <%= link_to [:edit, :admin, user, :return_url => return_url(request.original_url)] do %>
                         Edit
             <% end %>
-            <%= link_to [:admin, user, :return_url => return_url(request.original_url)],
-                        :class => 'tiny ui basic button' do %>
+            <%= link_to [:admin, user, :return_url => return_url(request.original_url)] do %>
                         View
             <% end %>
+            </nav>
           </td>
       </tr>
     <% end.empty? %>
       <tr>
-        <td colspan="3">No users found</td><td></td>
+        <td colspan="3">No users found</td>
       </tr>
     <% end %>
     </tbody>
   </table>
-</div>
+</section>

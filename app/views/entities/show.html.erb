@@ -1,101 +1,98 @@
 <% entity = @entity %>
-<div class="clearing header segment">
+<header>
   <div class="container">
-    <h1 class="ui header">
-      <%= entity.name %>
-    </h1>
-    <div class="ui divider"></div>
-    <%= link_to 'Add Contact',
-                new_entity_contact_path(entity,
-                :return_url => request.original_url),
-                :class => 'ui basic button' %>
-    <%= link_to 'Add Location',
-                new_entity_location_path(entity,
-                :return_url => request.original_url),
-                :class => 'ui basic button' %>
+    <h1><%= entity.display_name %></h1>
+    <nav>
+      <%#= link_to 'Edit', edit_entity_path(entity), :class => 'button' %>
+    </nav>
   </div>
-</div>
-<div class="main container">
-  <h4 class="ui dividing header">
-    Entity Information
-  </h4>
-  <div class="ui grid">
-    <div class="two column row">
-      <label class="column">Reference</label>
-      <div class="column"><%= entity.reference %></div>
-    </div>
-    <div class="two column row">
-      <label class="column">Name</label>
-      <div class="column"><%= entity.name %></div>
-    </div>
-    <div class="two column row">
-      <label class="column">Display Name</label>
-      <div class="column"><%= entity.display_name %></div>
-    </div>
-    <div class="two column row">
-      <label class="column">UUID</label>
-      <div class="column"><%= entity.uuid %></div>
-    </div>
+</header>
+<section class="content-slice container view-form">
+  <div class="line-behind-text">
+    <h2>Entity Information</h2>
   </div>
-  <div class="ui basic segment">
+  <label>Reference</label>
+  <p><%= entity.reference %></p>
+  <label>Name</label>
+  <p><%= entity.name %></p>
+  <label>Display Name</label>
+  <p><%= entity.display_name %></p>
+  <label>UUID</label>
+  <p><%= entity.uuid %></p>
+  <nav>
     <%= edit_entity_link(entity,
                          request.original_url,
-                         :class => 'ui basic button right floated floating') %>
+                         :class => 'button') %>
     <%= link_to 'Delete', entity_path(entity),
-      :class => 'ui basic button right floated',
+      :class => 'button',
       :data => { :confirm => 'Are you sure?' },
       :method => :delete %>
     <%= link_to 'Versions', versions_path('entity', entity.id, :return_url => request.original_url),
-          :class => 'ui basic button right floated' %>
+          :class => 'button' %>
+  </nav>
+</section>
+<section class="content-slice container">
+    <div class="line-behind-text">
+      <h2>Contacts</h2>
+    </div>
+    <div id="contacts">
+    <%= render :partial => 'contacts', :locals => { :contacts => entity.contacts } %>
+    </div>
+    <nav>
+      <%= link_to 'Add',
+                  new_entity_contact_path(entity,
+                                          :return_url => request.original_url),
+                                          :class => 'button' %>
+    </nav>
+  <!-- </section> -->
+</section>
+<!-- </section> -->
+<section class="content-slice container">
+  <section>
+    <div class="line-behind-text">
+      <h2>Locations</h2>
+    </div>
+    <div id="locations">
+    <%= render :partial => 'locations', :locals => { :locations => entity.locations } %>
+    </div>
+    <nav>
+      <%= link_to 'Add',
+                  new_entity_location_path(entity,
+                  :return_url => request.original_url),
+                  :class => 'button' %>
+    </nav>
+  </section>
+</section>
+<section class="content-slice container view-form">
+  <div class="line-behind-text">
+    <h2>Salesperson</h2>
   </div>
-  <h4 class="ui dividing header">
-    Contacts
-  </h4>
-  <div id="contacts">
-  <%= render :partial => 'contacts', :locals => { :contacts => entity.contacts } %>
-  </div>
-  <h4 class="ui dividing header">
-    Locations
-  </h4>
-  <div id="locations">
-  <%= render :partial => 'locations', :locals => { :locations => entity.locations } %>
-  </div>
-  <h4 class="ui dividing header">Customer</h4>
-  <% if entity.customer %>
-  <%= render :partial => '/entities/customer/detail',
-             :locals => { :customer => entity.customer } %>
-  <% else %>
-  <%= render :partial => '/entities/customer/empty' %>
-  <% end %>
-  <div class="ui basic segment" id="customer-actions">
-    <%= customer_link(
-          entity,
-          request.original_url,
-          :class => 'ui basic button right floated floating') %>
-    <%= versions_link('customer',
-                      entity.customer,
-                      request.original_url,
-                      :class => 'ui basic button right floated') %>
-  </div>
-  <h4 class="ui dividing header">Salesperson</h4>
   <% if entity.salesperson %>
   <%= render :partial => '/entities/salesperson/detail',
              :locals => { :salesperson => entity.salesperson } %>
   <% else %>
   <%= render :partial => '/entities/salesperson/empty' %>
   <% end %>
-  <div class="ui basic segment" id="salesperson-actions">
+  <nav id="salesperson-actions">
     <%= salesperson_link(
           entity,
           request.original_url,
-          :class => 'ui basic button right floated floating') %>
+          :class => 'button') %>
     <%= delete_salesperson_link(
           entity,
           request.original_url,
-          :class => 'ui basic button right floated floating') %>
+          :class => 'button') %>
     <%= versions_link('salesperson',
                       entity.salesperson,
                       request.original_url,
-                      :class => 'ui basic button right floated') %>
+                      :class => 'button') %>
+  </nav>
+</section>
+<section class="content-slice container view-form">
+  <div class="line-behind-text">
+    <h2>Customer</h2>
   </div>
-</div>
+  <%= customer_block(entity) %>
+  <%= entity_customer_nav(entity, request.original_url) %>
+</section>
+

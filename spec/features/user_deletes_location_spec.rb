@@ -11,11 +11,9 @@ feature 'User deletes location' do
 
   context 'when delete succeeds' do
     scenario 'they see a success message' do
-      visit entity_path(entity)
+      visit location_path(location)
 
-      within('#locations') do
-        click_on 'Delete'
-      end
+      click_on 'Delete'
 
       # Make sure that the AR instances are up-to date
       entity.reload
@@ -36,11 +34,9 @@ feature 'User deletes location' do
       allow(Location).to receive(:find) { location }
     end
     scenario 'they see a failure message' do
-      visit entity_path(entity)
+      visit location_path(location)
 
-      within('#locations') do
-        click_on 'Delete'
-      end
+      click_on 'Delete'
 
       # Make sure that the AR instances are up-to date
       entity.reload

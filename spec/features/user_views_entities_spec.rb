@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'User views entities' do
   background do
-    authorized_user = create(:user, :authenticated, :entity_admin)
+    authorized_user = create(:user, :all_roles)
     sign_in(authorized_user)
   end
 

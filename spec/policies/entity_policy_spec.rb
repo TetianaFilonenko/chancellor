@@ -32,8 +32,8 @@ describe EntityPolicy, :type => :policy do
     it { is_expected.not_to permit_action(:destroy) }
   end
 
-  context 'when user has the entity user role' do
-    let(:roles) { [:authenticated, :entity_user] }
+  context 'when user has the entity_read role' do
+    let(:roles) { [:authenticated, :entity_read] }
 
     it { is_expected.to permit_action(:show) }
     it { is_expected.not_to permit_action(:create) }
@@ -43,8 +43,8 @@ describe EntityPolicy, :type => :policy do
     it { is_expected.not_to permit_action(:destroy) }
   end
 
-  context 'when user has the entity admin role' do
-    let(:roles) { [:authenticated, :entity_admin] }
+  context 'when user has the entity_write role' do
+    let(:roles) { [:authenticated, :entity_write] }
 
     it { is_expected.to permit_action(:show) }
     it { is_expected.to permit_action(:create) }
@@ -54,7 +54,7 @@ describe EntityPolicy, :type => :policy do
     it { is_expected.to permit_action(:destroy) }
   end
 
-  context 'when user does not have the entity user role' do
+  context 'when user does not have the entity_read role' do
     let(:roles) { [:authenticated] }
 
     it { is_expected.not_to permit_action(:show) }

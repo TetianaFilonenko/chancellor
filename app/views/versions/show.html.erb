@@ -1,11 +1,11 @@
-<% entity = @entity %>
-<div class="clearing header segment">
-  <div class="container">
-    <h1 class="ui header">
-      <%= @model.class.name %>
-    </h1>
-    <div class="ui divider"></div>
+<section class="content-slice container">
+  <div class="line-behind-text">
+    <h1><%= @model.class.name %></h1>
   </div>
-</div>
+  <nav class="actions">
+    <%= link_to 'Back', return_url(root_path),
+                :class => 'button' %>
+  </nav>
+</section>
 <%= render :partial => "/versions/item_types/#{@item_type}",
            :locals => { @item_type.to_sym => @model, :version => @version} %>

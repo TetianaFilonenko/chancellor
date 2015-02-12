@@ -11,11 +11,9 @@ feature 'User deletes contact' do
 
   context 'when delete succeeds' do
     scenario 'they see a success message' do
-      visit entity_path(entity)
+      visit contact_path(contact)
 
-      within('#contacts') do
-        click_on 'Delete'
-      end
+      click_on 'Delete'
 
       # Make sure that the AR instance is up-to date
       contact.reload
@@ -35,11 +33,9 @@ feature 'User deletes contact' do
       allow(Contact).to receive(:find) { contact }
     end
     scenario 'they see a failure message' do
-      visit entity_path(entity)
+      visit contact_path(entity)
 
-      within('#contacts') do
-        click_on 'Delete'
-      end
+      click_on 'Delete'
 
       # Make sure that the AR instance is up-to date
       contact.reload

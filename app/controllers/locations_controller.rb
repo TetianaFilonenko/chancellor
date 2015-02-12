@@ -1,11 +1,11 @@
 # Controller for managing locations.
 class LocationsController < ApplicationController
   before_action :load_entity, :only => [:create, :new]
-  before_action :load_location, :only => [:destroy, :edit, :update]
+  before_action :load_location, :only => [:destroy, :edit, :show, :update]
   before_action :new_location_entry, :only => [:create, :new]
   before_action -> { authorize :location },
                 :only => [:create, :edit, :new, :update]
-  before_action -> { authorize @location }, :only => [:destroy]
+  before_action -> { authorize @location }, :only => [:destroy, :show]
 
   def create
     return render :new unless @location_entry.valid?
@@ -37,6 +37,8 @@ class LocationsController < ApplicationController
   def edit; end
 
   def new; end
+
+  def show; end
 
   def update
     if @location.update_attributes(location_params)

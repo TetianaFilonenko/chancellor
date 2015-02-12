@@ -1,16 +1,14 @@
-<div class="main container">
-  <div class="ui grid">
-    <div class="two column row">
-      <label class="column">Reference</label>
-      <div class="column"><%= entity.reference %></div>
-    </div>
-    <div class="two column row">
-      <label class="column">Name</label>
-      <div class="column"><%= entity.name %></div>
-    </div>
-    <div class="two column row">
-      <label class="column">Display Name</label>
-      <div class="column"><%= entity.display_name %></div>
-    </div>
+<section class="content-slice container view-form">
+  <div class="row">
+    <label>Reference</label>
+    <p><%= entity.reference %></p>
   </div>
-</div>
+  <div class="row">
+    <label>Name</label>
+    <p><%= entity.name %></p>
+  </div>
+  <div class="row">
+    <label>Display Name</label>
+    <p><%= entity.display_name %></p>
+  </div>
+</section>

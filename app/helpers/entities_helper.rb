@@ -1,7 +1,33 @@
 # EntitiesHelper
 module EntitiesHelper
+  def active_string(object)
+    object.active? ? 'Active' : 'Inactive'
+  end
+
+  def customer_block(entity)
+    if entity.customer
+      render :partial => '/entities/customer/detail',
+             :locals => { :customer => entity.customer }
+    else
+      render :partial => '/entities/customer/empty'
+    end
+  end
+
+  def entity_customer_nav(entity, return_url)
+    link_options = { :class => 'button' }
+    content_tag :nav do
+      safe_join(
+        [
+          customer_link(entity, return_url, link_options),
+          ' ',
+          versions_link('customer', entity.customer, return_url, link_options)
+        ]
+      )
+    end
+  end
+
   def entity_block(options, &block)
-    wrapper_html = options[:wrapper_html]
+    wrapper_html = options[:wrapper_html] || {}
     wrapper_html = inject_classes(wrapper_html, %w(disabled)) \
       if options[:disabled]
 

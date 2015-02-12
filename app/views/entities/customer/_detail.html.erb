@@ -1,23 +1,14 @@
-<%= entity_block(:disabled => !customer.active?,
-                 :wrapper_html => { :class => 'ui grid basic segment' }) do %>
-  <div class="two column row">
-    <label class="column">Reference</label>
-    <div class="column"><%= customer.reference %></div>
-  </div>
-  <div class="two column row">
-    <label class="column">Contact</label>
-    <div class="column"><%= customer.default_contact %></div>
-  </div>
-  <div class="two column row">
-    <label class="column">Salesperson</label>
-    <div class="column"><%= customer.salesperson %></div>
-  </div>
-  <div class="two column row">
-    <label class="column">Location</label>
-    <div class="column"><%= customer.default_location %></div>
-  </div>
-  <div class="two column row">
-    <label class="column">UUID</label>
-    <div class="column"><%= customer.uuid %></div>
-  </div>
+<%= entity_block(:disabled => !customer.active?) do %>
+<label>Reference</label>
+<p><%= customer.reference %></p>
+<label>Contact</label>
+<p><%= customer.default_contact %>&nbsp;</p>
+<label>Salesperson</label>
+<p><%= customer.salesperson %>&nbsp;</p>
+<label>Location</label>
+<p><%= customer.default_location %>&nbsp;</p>
+<label>Active?</label>
+<p><%= active_string(customer) %>&nbsp;</p>
+<label>UUID</label>
+<p><%= customer.uuid %></p>
 <% end %>
