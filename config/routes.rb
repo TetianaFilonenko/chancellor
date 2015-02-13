@@ -16,9 +16,8 @@ Rails.application.routes.draw do
   get 'versions/:item_type/:item_id', :as => :versions, :to => 'versions#index'
   get 'version/:id', :as => :version, :to => 'versions#show'
   resources :entities do
-    resources :contacts,
-              :shallow => true,
-              :except => [:index]
+    resources :contacts, :shallow => true, :except => [:index]
+    resources :customers, :shallow => true, :except => [:index]
     resources :locations,
               :shallow => true,
               :only => [:create, :destroy, :edit, :new, :update]

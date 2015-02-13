@@ -19,6 +19,34 @@ RSpec.describe Salesperson, :type => :model do
     it { is_expected.to validate_presence_of(:uuid) }
   end
 
+  describe '.active' do
+    subject { Salesperson.active }
+    before do
+      create(:salesperson,
+             :entity => create(:entity),
+             :deleted_at => deleted_at)
+      create(:salesperson,
+             :entity => create(:entity),
+             :deleted_at => deleted_at)
+    end
+
+    context 'when there are no active salespeople' do
+      let(:deleted_at) { Date.current }
+
+      its(:any?) { is_expected.to be_falsey }
+      its(:empty?) { is_expected.to be_truthy }
+      its(:size) { is_expected.to eq(0) }
+    end
+
+    context 'when there are active salespeople' do
+      let(:deleted_at) { nil }
+
+      its(:any?) { is_expected.to be_truthy }
+      its(:empty?) { is_expected.to be_falsey }
+      its(:size) { is_expected.to eq(2) }
+    end
+  end
+
   describe '#location' do
     context 'when there is a default location' do
       let(:default_location) { DefaultLocation.new(:location => Location.new) }

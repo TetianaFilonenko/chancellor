@@ -5,6 +5,8 @@ class Role < ActiveRecord::Base
     authenticated
     contact_read
     contact_write
+    customer_read
+    customer_write
     entity_admin
     entity_user
     entity_read

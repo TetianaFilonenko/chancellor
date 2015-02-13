@@ -32,6 +32,10 @@
       <label class="column">Display Name</label>
       <div class="column"><%= entity.display_name %></div>
     </div>
+    <div class="two column row">
+      <label class="column">UUID</label>
+      <div class="column"><%= entity.uuid %></div>
+    </div>
   </div>
   <div class="ui basic segment">
     <%= edit_entity_link(entity,
@@ -54,48 +58,24 @@
     Locations
   </h4>
   <div id="locations">
-    <div>
-      <table class="ui table with-buttons">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Street Address</th>
-            <th>City</th>
-            <th>Region</th>
-            <th>Region Code</th>
-            <th>Country</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% if entity.locations.each do |location| %>
-            <tr>
-              <td><%= location.location_name %></td>
-              <td><%= location.street_address %></td>
-              <td><%= location.city %></td>
-              <td><%= location.region %></td>
-              <td><%= location.region_code %></td>
-              <td><%= location.country %></td>
-              <td nowrap>
-                <%= link_to 'Edit',
-                            edit_location_path(location),
-                            :class => 'ui basic button' %>
-                <%= link_to 'Delete',
-                            location_path(location),
-                            :class => 'ui basic button',
-                            :data => { :confirm => 'Are you sure?' },
-                            :method => :delete %>
-              </td>
-            </tr>
-          <% end.empty? %>
-            <tr>
-              <td colspan="6">No locations found</td>
-              <td></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+  <%= render :partial => 'locations', :locals => { :locations => entity.locations } %>
+  </div>
+  <h4 class="ui dividing header">Customer</h4>
+  <% if entity.customer %>
+  <%= render :partial => '/entities/customer/detail',
+             :locals => { :customer => entity.customer } %>
+  <% else %>
+  <%= render :partial => '/entities/customer/empty' %>
+  <% end %>
+  <div class="ui basic segment" id="customer-actions">
+    <%= customer_link(
+          entity,
+          request.original_url,
+          :class => 'ui basic button right floated floating') %>
+    <%= versions_link('customer',
+                      entity.customer,
+                      request.original_url,
+                      :class => 'ui basic button right floated') %>
   </div>
   <h4 class="ui dividing header">Salesperson</h4>
   <% if entity.salesperson %>
@@ -117,12 +97,5 @@
                       entity.salesperson,
                       request.original_url,
                       :class => 'ui basic button right floated') %>
-  </div>
-  <h4 class="ui dividing header">System Information</h4>
-  <div class="ui grid">
-    <div class="two column row">
-      <label class="column">UUID</label>
-      <div class="column"><%= entity.uuid %></div>
-    </div>
   </div>
 </div>

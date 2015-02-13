@@ -2,6 +2,7 @@ en:
   ar:
     models:
       contact: 'Contact'
+      customer: 'Customer'
       entity: 'Entity'
       grant_role: 'Grant'
       location: 'Location'
@@ -13,11 +14,13 @@ en:
         created: "%{model} was not created."
         deleted: "%{model} was not deleted."
         updated: "%{model} was not updated."
+        validate: "%{model} is not valid."
     success:
       messages:
         created: "%{model} was successfully created."
         deleted: "%{model} was successfully deleted."
         updated: "%{model} was successfully updated."
+        validate: "%{model} is valid."
   app:
     admin:
       grant_role:

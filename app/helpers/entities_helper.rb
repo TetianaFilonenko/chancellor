@@ -22,12 +22,34 @@ module EntitiesHelper
     entity.location.decorate.long_address
   end
 
+  def customer_link(entity, return_url, options)
+    if entity.customer
+      edit_customer_link(entity.customer, return_url, options)
+    else
+      new_customer_link(entity, return_url, options)
+    end
+  end
+
   def salesperson_link(entity, return_url, options)
     if entity.salesperson
       edit_salesperson_link(entity.salesperson, return_url, options)
     else
       new_salesperson_link(entity, return_url, options)
     end
+  end
+
+  def edit_customer_link(customer, return_url, options)
+    link_to 'Edit',
+            edit_customer_path(
+              customer,
+              :return_url => return_url),
+            options
+  end
+
+  def new_customer_link(entity, return_url, options)
+    link_to 'New',
+            new_entity_customer_path(entity, :return_url => return_url),
+            options
   end
 
   def edit_salesperson_link(salesperson, return_url, options)

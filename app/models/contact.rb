@@ -12,4 +12,8 @@ class Contact < ActiveRecord::Base
     :last_name,
     :uuid,
     :presence => true
+
+  def to_s
+    display_name
+  end
 end

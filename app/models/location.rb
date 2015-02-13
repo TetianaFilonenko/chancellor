@@ -16,4 +16,8 @@ class Location < ActiveRecord::Base
     :country,
     :uuid,
     :presence => true
+
+  def to_s
+    decorate.long_address
+  end
 end

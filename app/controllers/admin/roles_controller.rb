@@ -27,7 +27,7 @@ module Admin
       end
 
       redirect_with_notice(
-        admin_users_path(@user),
+        admin_user_path(@user),
         t(translation_key,
           :role_name => params[:role_name], :user_name => @user.display_name))
     end

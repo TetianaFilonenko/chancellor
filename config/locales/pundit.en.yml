@@ -7,6 +7,12 @@ en:
       new?: 'You cannot create contacts!'
       show?: 'You cannot view contacts!'
       update?: 'You cannot edit contacts!'
+    customer_policy:
+      create?: 'You cannot create customers!'
+      edit?: 'You cannot edit customers!'
+      new?: 'You cannot create customers!'
+      show?: 'You cannot view customers!'
+      update?: 'You cannot edit customers!'
     entity_policy:
       create?: 'You cannot create entities!'
       edit?: 'You cannot edit entities!'

@@ -29,6 +29,20 @@ ActiveRecord::Schema.define(version: 20150205183705) do
     t.datetime "updated_at"
   end
 
+  create_table "customers", force: true do |t|
+    t.integer  "default_contact_id"
+    t.integer  "default_location_id"
+    t.integer  "entity_id",                                  null: false
+    t.integer  "parent_customer_id"
+    t.string   "reference",                                  null: false
+    t.integer  "salesperson_id"
+    t.integer  "is_active",                      default: 1, null: false
+    t.string   "uuid",                limit: 32,             null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "default_locations", force: true do |t|
     t.integer  "entity_id",   null: false
     t.string   "entity_type", null: false
