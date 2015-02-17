@@ -20,6 +20,11 @@ class Salesperson < ActiveRecord::Base
     :uuid,
     :presence => true
 
+  def active?
+    # is_active == 1 ? true : false
+    deleted_at.nil?
+  end
+
   def remove_location
     default_location.destroy
   end

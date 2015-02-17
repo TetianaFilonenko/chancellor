@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'User edits entity' do
   background { sign_in(user) }
   given(:entity) { create(:entity) }
-  given(:user) { create(:user, :authenticated, :entity_admin) }
+  given(:user) { create(:user, :all_roles) }
 
   context 'when details are valid' do
     scenario 'they see a success message' do

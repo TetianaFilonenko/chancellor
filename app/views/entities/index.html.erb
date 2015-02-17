@@ -1,50 +1,41 @@
-<div class="clearing header segment">
+<header class="main">
   <div class="container">
-    <h1 class="ui header">
-      Entities
-    </h1>
-    <p>Manage the various entities in the system.</p>
-    <div class="ui divider"></div>
-    <div>
-      <%= link_to 'Add Entity', new_entity_path,
-                :class => 'ui basic button' %>
-    </div>
+    <h1>Entities</h1>
+    <nav class="actions">
+    <%= link_to 'Add Entity', new_entity_path, :class => 'button' %>
+    </nav>
   </div>
-</div>
-<div class="main container">
-  <%= search_form_for @search, :class => 'ui fluid search' do |search| %>
-    <%= search.text_field :cached_long_name_cont,
-      :class => 'prompt', :placeholder => 'Search entities' %>
-  <% end %>
-  <table class="ui table segment with-buttons">
-    <thead>
-    <tr>
-      <th>Reference</th>
-      <th>Name</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <% if @entities.each do |entity| %>
-      <tr>
-          <td nowrap><%= entity.reference %></td>
-          <td nowrap><%= entity.name %></td>
-          <td nowrap>
-            <%= link_to [:edit, entity, :return_url => return_url(request.original_url)],
-                        :class => 'tiny ui basic button' do %>
-                        Edit
-            <% end %>
-            <%= link_to [entity, :return_url => return_url(request.original_url)],
-                        :class => 'tiny ui basic button' do %>
-                        View
-            <% end %>
-          </td>
-      </tr>
-    <% end.empty? %>
-      <tr>
-        <td colspan="2">No entities found</td><td></td>
-      </tr>
+</header>
+<section class="container">
+  <section>
+    <%= search_form_for @search, :class => 'search-bar', :role => 'search' do |search| %>
+      <%= search.text_field :cached_long_name_cont, :as => :search,
+        :class => 'prompt', :placeholder => 'Search entities' %>
+        <button type="submit">
+          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png" alt="Search Icon">
+        </button>
     <% end %>
-    </tbody>
-  </table>
-</div>
+  </section>
+  <section>
+    <table class="table-minimal">
+      <thead>
+      <tr>
+        <th>Reference</th>
+        <th>Name</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% if @entities.each do |entity| %>
+        <tr>
+            <td nowrap><%= link_to entity.reference, entity_path(entity) %></td>
+            <td nowrap><%= entity.name %></td>
+        </tr>
+      <% end.empty? %>
+        <tr>
+          <td colspan="2">No entities found</td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </section>
+</section>

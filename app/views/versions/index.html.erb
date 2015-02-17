@@ -1,18 +1,14 @@
-<div class="clearing header segment">
-  <div class="container">
-    <h1 class="ui header">
-      Versions
-    </h1>
-    <p>View the history for <strong><%= @model.class.name %></strong> <%= @model %>.</p>
-    <div class="ui divider"></div>
-    <div>
-      <%= link_to 'Back', return_url(root_path),
-                :class => 'ui basic button' %>
-    </div>
+<section class="content-slice container">
+  <div class="line-behind-text">
+    <h1><%= @model.class.name %> History</h1>
   </div>
-</div>
-<div class="main container">
-  <table class="ui table segment">
+  <div class="synopsis">
+    <nav class="actions">
+      <%= link_to 'Back', return_url(root_path),
+                  :class => 'button' %>
+    </nav>
+  </div>
+  <table class="tables">
     <thead>
     <tr>
       <th>Model</th>
@@ -32,14 +28,16 @@
         <td nowrap><%= version.whodunnit %></td>
         <td nowrap><%= version.created_at %></td>
         <td nowrap>
-          <%= link_to 'View', version_path(version), :class => 'ui basic button' %>
+          <nav>
+          <%= link_to 'View', version_path(version, :return_url => (request.original_url)) %>
+          </nav>
         </td>
       </tr>
     <% end.empty? %>
       <tr>
-        <td colspan="3">No previous versions found</td><td></td>
+        <td colspan="6">No previous versions found</td>
       </tr>
     <% end %>
     </tbody>
   </table>
-</div>
+</section>

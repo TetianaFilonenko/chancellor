@@ -1,11 +1,11 @@
 # Controller for managing +Contact+ details.
 class ContactsController < ApplicationController
   before_action :load_entity, :only => [:create, :new]
-  before_action :load_contact, :only => [:destroy, :edit, :update]
+  before_action :load_contact, :only => [:destroy, :edit, :show, :update]
   before_action :new_contact_entry, :only => [:create, :new]
   before_action -> { authorize :contact },
                 :only => [:create, :edit, :new, :update]
-  before_action -> { authorize @contact }, :only => [:destroy]
+  before_action -> { authorize @contact }, :only => [:destroy, :show]
 
   def create
     return render :new unless @contact_entry.valid?
@@ -38,6 +38,8 @@ class ContactsController < ApplicationController
 
   def new; end
 
+  def show; end
+
   def update
     if @contact.update_attributes(contact_params)
       redirect_with_notice(
@@ -69,6 +71,7 @@ class ContactsController < ApplicationController
     [
       :first_name,
       :last_name,
+      :display_name,
       :email_address,
       :fax_number,
       :mobile_number,

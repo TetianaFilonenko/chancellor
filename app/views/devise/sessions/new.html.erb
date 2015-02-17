@@ -9,7 +9,7 @@
   <%= simple_form_for(resource, :as => resource_name,
     :html => { :class => 'ui form segment' },
     :url => session_path(resource_name),
-    :wrapper => :semantic_form) do |f| %>
+    :wrapper => :basic_form) do |f| %>
       <%= f.input :email, required: false, autofocus: true %>
       <%= f.input :password, required: false %>
       <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>

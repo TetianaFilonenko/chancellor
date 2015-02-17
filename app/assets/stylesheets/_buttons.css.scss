@@ -1,0 +1,7 @@
+.button,
+button {
+  @include bitter-button;
+
+  text-align: center;
+  width: 8em;
+}

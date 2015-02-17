@@ -18,9 +18,7 @@ Rails.application.routes.draw do
   resources :entities do
     resources :contacts, :shallow => true, :except => [:index]
     resources :customers, :shallow => true, :except => [:index]
-    resources :locations,
-              :shallow => true,
-              :only => [:create, :destroy, :edit, :new, :update]
-    resources :salespeople, :shallow => true
+    resources :locations, :shallow => true, :except => [:index]
+    resources :salespeople, :shallow => true, :except => [:index]
   end
 end

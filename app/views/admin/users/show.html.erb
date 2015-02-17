@@ -1,59 +1,51 @@
 <% user = @user %>
-<div class="clearing header segment">
-  <div class="container">
-    <h1 class="ui header">
-      <%= user.display_name %>
-    </h1>
-    <div class="ui divider"></div>
-    <div>
-      <%= link_to 'Add Role', new_admin_user_role_path(user),
-                :class => 'ui basic button' %>
-    </div>
+<section class="content-slice container">
+  <div class="line-behind-text">
+    <h1><%= user.display_name %></h1>
   </div>
-</div>
-<div class="main container">
-  <div class="ui form">
-    <div class="inline field static">
-      <label>First Name</label>
-      <div><%= user.first_name %></div>
-    </div>
-    <div class="inline field static">
-      <label>Last Name</label>
-      <div><%= user.last_name %></div>
-    </div>
-    <div class="inline field static">
-      <label>Display Name</label>
-      <div><%= user.display_name %></div>
-    </div>
-    <div class="inline field static">
-      <label>Email</label>
-      <div><%= user.email %></div>
-    </div>
-    <div class="inline field static">
-      <label>Active</label>
-      <div><%= user_active_string(user) %></div>
-    </div>
+  <nav class="actions">
+    <%= link_to 'Add Role',
+                new_admin_user_role_path(user,
+                                        :return_url => request.original_url),
+                                        :class => 'button' %>
+  </nav>
+</section>
+<section class="content-slice container view-form">
+  <label>First Name</label>
+  <p><%= user.first_name %></p>
+  <label>Last Name</label>
+  <p><%= user.last_name %></p>
+  <label>Display Name</label>
+  <p><%= user.display_name %></p>
+  <label>Email</label>
+  <p><%= user.email %></p>
+  <label>Active</label>
+  <p><%= active_string(user) %></p>
+</section>
+<section class="content-slice container">
+  <div class="line-behind-text">
+    <h2>Roles</h2>
   </div>
-  <h3 class="ui dividing header">
-  Roles
-  </h3>
-  <table id="roles" class="ui table with-buttons">
+  <table id="roles" class="tables">
     <tbody>
     <%= if user.roles.each do |role| %>
       <tr>
         <td><%= role.name %></td>
-        <td><%= link_to 'Delete',
+        <td>
+          <nav>
+            <%= link_to 'Delete',
                         admin_user_revoke_role_path(user, role.name),
                         :class => 'ui button',
                         :data => { :confirm => 'Are you sure?' },
                         :method => :delete %>
+          </nav>
         </td>
       </tr>
     <% end.empty? %>
       <tr>
-        <td>No roles found</td><td></td>
+        <td colspan="2">No roles found</td>
       </tr>
     <% end %>
     </tbody>
   </table>
-</div>
+</section>

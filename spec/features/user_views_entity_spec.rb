@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'User views entity' do
-  background { sign_in(create(:user, :authenticated, :entity_user)) }
+  background { sign_in(create(:user, :all_roles)) }
   given(:entity) { create(:entity) }
 
   context 'when it exists' do

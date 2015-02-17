@@ -63,7 +63,7 @@ class EntitiesController < ApplicationController
   def entity_params
     params
       .require(:entity)
-      .permit(:name, :reference)
+      .permit(:display_name, :name, :reference)
   rescue ActionController::ParameterMissing; {}
   end
 
