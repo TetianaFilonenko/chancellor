@@ -9,8 +9,8 @@ class SalespersonEntry
   attribute :gender, String
   attribute :reference, String
   attribute :phone, String
-  attribute :location_id, Integer
-  attribute :is_deleted, Integer
+  attribute :default_location_id, Integer
+  attribute :is_active, Integer
 
   validates \
     :reference, :presence => true

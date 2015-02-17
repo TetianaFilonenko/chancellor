@@ -18,6 +18,7 @@ describe SalespersonPolicy, :type => :policy do
 
     it { is_expected.not_to permit_action(:show) }
     it { is_expected.not_to permit_action(:create) }
+    it { is_expected.not_to permit_action(:create) }
     it { is_expected.not_to permit_action(:new) }
     it { is_expected.not_to permit_action(:update) }
     it { is_expected.not_to permit_action(:edit) }
@@ -29,39 +30,43 @@ describe SalespersonPolicy, :type => :policy do
 
     it { is_expected.not_to permit_action(:show) }
     it { is_expected.not_to permit_action(:create) }
+    it { is_expected.not_to permit_action(:index) }
     it { is_expected.not_to permit_action(:new) }
     it { is_expected.not_to permit_action(:update) }
     it { is_expected.not_to permit_action(:edit) }
     it { is_expected.not_to permit_action(:destroy) }
   end
 
-  context 'when user has the salesperson user role' do
-    let(:roles) { [:authenticated, :salesperson_user] }
+  context 'when user has the salesperson_read role' do
+    let(:roles) { [:authenticated, :salesperson_read] }
 
     it { is_expected.to permit_action(:show) }
     it { is_expected.not_to permit_action(:create) }
+    it { is_expected.to permit_action(:index) }
     it { is_expected.not_to permit_action(:new) }
     it { is_expected.not_to permit_action(:update) }
     it { is_expected.not_to permit_action(:edit) }
     it { is_expected.not_to permit_action(:destroy) }
   end
 
-  context 'when user has the salesperson admin role' do
-    let(:roles) { [:authenticated, :salesperson_admin] }
+  context 'when user has the salesperson_write role' do
+    let(:roles) { [:authenticated, :salesperson_write] }
 
     it { is_expected.to permit_action(:show) }
     it { is_expected.to permit_action(:create) }
+    it { is_expected.to permit_action(:index) }
     it { is_expected.to permit_action(:new) }
     it { is_expected.to permit_action(:update) }
     it { is_expected.to permit_action(:edit) }
     it { is_expected.to permit_action(:destroy) }
   end
 
-  context 'when user does not have the salesperson user role' do
+  context 'when user does not have the salesperson_read role' do
     let(:roles) { [:authenticated] }
 
     it { is_expected.not_to permit_action(:show) }
     it { is_expected.not_to permit_action(:create) }
+    it { is_expected.not_to permit_action(:index) }
     it { is_expected.not_to permit_action(:new) }
     it { is_expected.not_to permit_action(:update) }
     it { is_expected.not_to permit_action(:edit) }

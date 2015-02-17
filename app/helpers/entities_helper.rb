@@ -92,17 +92,6 @@ module EntitiesHelper
             options
   end
 
-  def delete_salesperson_link(entity, return_url, options)
-    return nil if entity.salesperson.nil? || entity.salesperson.deleted?
-
-    options = options.merge(
-      :data => { :confirm => 'Are you sure?' },
-      :method => :delete)
-    link_to 'Delete',
-            salesperson_path(entity.salesperson, :return_url => return_url),
-            options
-  end
-
   protected
 
   # Merge classes from an array into an existing html class string.

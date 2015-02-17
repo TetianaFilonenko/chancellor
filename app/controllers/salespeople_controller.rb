@@ -21,24 +21,12 @@ class SalespeopleController < ApplicationController
     end
   end
 
-  def destroy
-    if @salesperson.destroy
-      redirect_with_notice(
-        entity_path(@entity),
-        t('ar.success.messages.deleted', :model => t('ar.models.salesperson')))
-    else
-      redirect_with_alert(
-        entity_path(@entity),
-        t('ar.failure.messages.deleted', :model => t('ar.models.salesperson')))
-    end
-  end
-
   def edit; end
 
   def new; end
 
   def update
-    return render :new unless @salesperson_entry.valid?
+    return render :edit unless @salesperson_entry.valid?
 
     context = UpdateSalesperson.call(
       @salesperson_entry.to_h.merge(:entity => @entity, :user => current_user))
@@ -68,7 +56,7 @@ class SalespeopleController < ApplicationController
   end
 
   def load_salesperson
-    @salesperson = Salesperson.with_deleted.find(params[:id])
+    @salesperson = Salesperson.find(params[:id])
   end
 
   def assign_new_salesperson_entry
@@ -80,9 +68,7 @@ class SalespeopleController < ApplicationController
       @salesperson
       .attributes
       .symbolize_keys
-      .slice(:gender, :phone, :reference)
-      .merge(:location_id => @salesperson.location.try(:id))
-      .merge(:is_deleted => @salesperson.deleted? ? 1 : 0)
+      .slice(:default_location_id, :gender, :is_active, :phone, :reference)
       .merge(salesperson_params)
     @salesperson_entry = SalespersonEntry.new(hash)
   end
@@ -91,8 +77,8 @@ class SalespeopleController < ApplicationController
     params
       .require(:salesperson_entry)
       .permit(:gender,
-              :is_deleted,
-              :location_id,
+              :is_active,
+              :default_location_id,
               :phone,
               :reference)
   rescue ActionController::ParameterMissing; {}

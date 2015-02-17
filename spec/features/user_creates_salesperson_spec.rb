@@ -18,9 +18,10 @@ feature 'User creates salesperson' do
       expect(page).to have_content('New Salesperson')
 
       select('female', :from => 'Gender')
-      select_by_value('salesperson_entry_location_id', location.id)
+      select_by_value('salesperson_entry_default_location_id', location.id)
       fill_in 'salesperson_entry_reference', :with => Faker::Number.number(8)
       fill_in 'salesperson_entry_phone', :with => Faker::Number.number(10)
+      check 'Is Active'
 
       click_button 'Save'
 
