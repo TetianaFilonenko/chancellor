@@ -23,8 +23,7 @@ class UpdateCustomer
   protected
 
   def load_customer
-    context.customer = Customer
-      .find_by!(:entity_id => entity.id)
+    context.customer = Customer.find_by!(:entity_id => entity.id)
   end
 
   def update_customer

@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150217204110) do
-
+ActiveRecord::Schema.define(version: 20150217232755) do
   create_table "contacts", force: true do |t|
     t.integer  "entity_id",                null: false
     t.string   "first_name",               null: false
@@ -131,6 +130,18 @@ ActiveRecord::Schema.define(version: 20150217204110) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
+
+  create_table "vendors", force: true do |t|
+    t.integer  "default_contact_id"
+    t.integer  "default_location_id"
+    t.integer  "entity_id",                                  null: false
+    t.string   "reference",                                  null: false
+    t.integer  "is_active",                      default: 1, null: false
+    t.string   "uuid",                limit: 32,             null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "version_associations", force: true do |t|
     t.integer "version_id"

@@ -4,21 +4,7 @@ body {
   nav + .flash {
     margin: 0;
   }
-
-  .body {
-    // header + section {
-  }
 }
-
-div {
-  .container:last-child {
-    padding-bottom: $base-spacing * 2;
-  }
-}
-
-//header + section {
-//  padding-top: $base-spacing;
-//}
 
 header {
   $header-background: #eee;
@@ -28,10 +14,6 @@ header {
   background-color: $header-background;
   padding-bottom: 20px;
   padding-top: 20px;
-
-  .container {
-    @include outer-container;
-  }
 
   +section {
     padding-top: $base-spacing;
@@ -54,6 +36,10 @@ header {
 }
 
 .content-slice {
+  &:last-child {
+    padding-bottom: $base-spacing;
+  }
+
   nav {
     float: right;
     padding: 5px 0;

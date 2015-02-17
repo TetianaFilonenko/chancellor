@@ -38,7 +38,7 @@ class CustomersController < ApplicationController
   def new; end
 
   def update
-    return render :new unless @customer_entry.valid?
+    return render :edit unless @customer_entry.valid?
 
     context = UpdateCustomer.call(customer_hash)
 
@@ -107,7 +107,6 @@ class CustomersController < ApplicationController
   end
 
   def load_salespeople
-    @salespeople =
-      Salesperson.active
+    @salespeople = Salesperson.active
   end
 end

@@ -13,6 +13,15 @@ module EntitiesHelper
     end
   end
 
+  def vendor_block(entity)
+    if entity.vendor
+      render :partial => '/entities/vendor/detail',
+             :locals => { :vendor => entity.vendor }
+    else
+      render :partial => '/entities/vendor/empty'
+    end
+  end
+
   def entity_customer_nav(entity, return_url)
     link_options = { :class => 'button' }
     content_tag :nav do
@@ -61,6 +70,15 @@ module EntitiesHelper
       edit_salesperson_link(entity.salesperson, return_url, options)
     else
       new_salesperson_link(entity, return_url, options)
+    end
+  end
+
+  def vendor_link(entity, return_url, options)
+    if entity.vendor
+      link_to 'Edit', [:edit, entity.vendor, :return_url => return_url], options
+    else
+      link_to 'New',
+              [:new, entity, :vendor, :return_url => return_url], options
     end
   end
 

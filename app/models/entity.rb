@@ -8,6 +8,7 @@ class Entity < ActiveRecord::Base
   has_many :locations, :inverse_of => :entity
   has_one :customer
   has_one :salesperson
+  has_one :vendor
 
   has_paper_trail
 

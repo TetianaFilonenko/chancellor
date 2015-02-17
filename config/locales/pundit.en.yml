@@ -38,3 +38,9 @@ en:
       show?: 'You cannot view locations!'
       index?: 'You cannot view locations!'
       update?: 'You cannot edit locations!'
+    vendor_policy:
+      create?: 'You cannot create vendors!'
+      edit?: 'You cannot edit vendors!'
+      new?: 'You cannot create vendors!'
+      show?: 'You cannot view vendors!'
+      update?: 'You cannot edit vendors!'
