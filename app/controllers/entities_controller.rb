@@ -38,10 +38,10 @@ class EntitiesController < ApplicationController
   def update
     return render :edit unless @entity_entry.valid?
 
-    if @entity.update_attributes(entity_params)
-      redirect_with_notice(
-        entity_path(@entity),
-        t('ar.success.messages.updated', :model => t('ar.models.entity')))
+    context = UpdateEntity.call(entity_hash.merge(:entity_id => @entity.id))
+
+    if context.success?
+      redirect_with_notice(entity_path(context.entity), context.message)
     else
       render :edit
     end
@@ -58,6 +58,7 @@ class EntitiesController < ApplicationController
     @entity_entry
       .to_h
       .slice(:display_name,
+             :parent_entity_id,
              :name,
              :is_active,
              :reference)
@@ -68,6 +69,7 @@ class EntitiesController < ApplicationController
     params
       .require(:entity_entry)
       .permit(:display_name,
+              :parent_entity_id,
               :name,
               :is_active,
               :reference)

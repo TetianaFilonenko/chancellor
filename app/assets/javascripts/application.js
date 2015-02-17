@@ -13,3 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require navigation
+//= require typeahead.js/dist/typeahead.jquery
+//= require typeahead.js/dist/bloodhound

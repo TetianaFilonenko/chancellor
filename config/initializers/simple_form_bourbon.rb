@@ -13,6 +13,14 @@ SimpleForm.setup do |config|
   #     component.use :label
   #   end
   # end
+  config.wrappers :typeahead,
+                  :tag => 'div',
+                  :class => 'typeahead-wrapper' do |b|
+    b.use :label
+    b.use :input
+  end
 
   config.label_text = -> label, _required, _explicit_label { "#{label}" }
+
+  config.wrapper_mappings = { :typeahead => :typeahead }
 end

@@ -6,15 +6,15 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Entities
+module Chancellor
   # Rails application
   class Application < Rails::Application
     # Run "rake -D time" for a list of tasks for finding time zone names.
     # Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
 
-    config.i18n.load_path += Dir[Rails.root.join(
-      'my', 'locales', '*.{rb,yml}').to_s]
+    # config.i18n.load_path += Dir[Rails.root.join(
+    #   'my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :en
 
     config.assets.paths << Rails.root.join(

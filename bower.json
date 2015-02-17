@@ -1,6 +1,6 @@
 {
   "name": "chancellor",
   "dependencies": {
-    "semantic-ui": "latest"
+    "typeahead.js": "latest"
   }
 }
