@@ -5,20 +5,13 @@
                :collection => %w(female male),
                :input_html => { :class => 'dropdown' } %>
 <%= form.input :phone %>
-<%= form.input :location_id,
+<%= form.input :default_location_id,
                :collection => locations,
                :label_method => 'long_address',
                :value_method => :id,
                :input_html => { :class => 'dropdown' },
                :label => 'Location' %>
-
-<% if model.is_deleted == 1 %>
-<div class="ui visible warning message">
-The salesperson details have been removed, you can restore them by unchecking the option below.
-</div>
-
-<%= form.input :is_deleted,
-  :as => :boolean,
-  # :wrapper => :checkbox,
-  :boolean_style => :inline %>
-<% end %>
+<%= form.input :is_active,
+               :as => :boolean,
+               :label => 'Is Active',
+               :boolean_style => :inline %>

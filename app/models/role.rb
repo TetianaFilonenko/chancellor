@@ -13,6 +13,8 @@ class Role < ActiveRecord::Base
     entity_write
     location_read
     location_write
+    salesperson_read
+    salesperson_write
     salesperson_admin
     salesperson_user
     user_admin)

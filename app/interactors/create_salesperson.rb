@@ -7,7 +7,6 @@ class CreateSalesperson
   include Interactor::Creator
   include Interactor::Localized
 
-  delegate :location, :to => :context
   delegate :salesperson, :to => :context
   delegate :user, :to => :context
 
@@ -18,21 +17,14 @@ class CreateSalesperson
       t('ar.success.messages.created', :model => t('ar.models.salesperson'))
   end
 
-  def after_build
-    return if location.nil?
-
-    context.default_location =
-      DefaultLocation.new(:entity => salesperson, :location => location)
-    salesperson.default_location = context.default_location
-  end
-
-  def before_build
-    context.location = Location.find_by(:id => context.location_id)
-  end
-
   def build_params
     base_params
-      .slice(:entity, :gender, :reference, :phone)
+      .slice(:entity,
+             :default_location_id,
+             :gender,
+             :is_active,
+             :reference,
+             :phone)
       .merge(:uuid => UUID.generate(:compact))
   end
 
@@ -40,9 +32,9 @@ class CreateSalesperson
     salesperson.save!
   end
 
-  # def validate
-  #   return if salesperson.valid?
+  def validate
+    return if salesperson.valid?
 
-  #   context.fail!(:message => 'Invalid details')
-  # end
+    context.fail!(:message => 'Invalid details')
+  end
 end

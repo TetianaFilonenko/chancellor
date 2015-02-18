@@ -8,22 +8,22 @@ class SalespersonPolicy < ApplicationPolicy
   end
 
   def index?
-    authenticated? && user.has_any_role?(:salesperson_admin, :salesperson_user)
+    authenticated? && user.has_any_role?(:salesperson_read, :salesperson_write)
   end
 
   def show?
-    super && user.has_any_role?(:salesperson_admin, :salesperson_user)
+    super && user.has_any_role?(:salesperson_read, :salesperson_write)
   end
 
   def create?
-    authenticated? && user.has_role?(:salesperson_admin)
+    authenticated? && user.has_role?(:salesperson_write)
   end
 
   def update?
-    authenticated? && user.has_role?(:salesperson_admin)
+    authenticated? && user.has_role?(:salesperson_write)
   end
 
   def destroy?
-    authenticated? && user.has_role?(:salesperson_admin)
+    authenticated? && user.has_role?(:salesperson_write)
   end
 end

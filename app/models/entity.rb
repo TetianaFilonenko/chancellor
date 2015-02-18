@@ -20,16 +20,6 @@ class Entity < ActiveRecord::Base
     :uuid,
     :presence => true
 
-  class << self
-    def find_version(version_id)
-      PaperTrail::Version.find(version_id).reify
-    end
-  end
-
-  def salesperson
-    Salesperson.unscoped { super }
-  end
-
   def to_s
     name
   end

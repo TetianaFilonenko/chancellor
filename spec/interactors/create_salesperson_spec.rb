@@ -14,7 +14,7 @@ RSpec.describe CreateSalesperson, :type => :interactor do
       :gender => gender,
       :reference => reference,
       :phone => phone,
-      :location_id => location.id,
+      :default_location_id => location.id,
       :user => user)
   end
 

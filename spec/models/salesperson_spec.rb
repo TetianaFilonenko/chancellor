@@ -5,12 +5,8 @@ RSpec.describe Salesperson, :type => :model do
   subject { build(:salesperson, :default_location => default_location) }
 
   describe 'associations' do
-    it { is_expected.to have_one(:default_location) }
+    it { is_expected.to belong_to(:default_location) }
     it { is_expected.to belong_to(:entity) }
-  end
-
-  describe 'delegates' do
-    it { is_expected.to delegate_method(:location).to(:default_location) }
   end
 
   describe 'validations' do
@@ -24,14 +20,14 @@ RSpec.describe Salesperson, :type => :model do
     before do
       create(:salesperson,
              :entity => create(:entity),
-             :deleted_at => deleted_at)
+             :is_active => is_active)
       create(:salesperson,
              :entity => create(:entity),
-             :deleted_at => deleted_at)
+             :is_active => is_active)
     end
 
     context 'when there are no active salespeople' do
-      let(:deleted_at) { Date.current }
+      let(:is_active) { 0 }
 
       its(:any?) { is_expected.to be_falsey }
       its(:empty?) { is_expected.to be_truthy }
@@ -39,25 +35,11 @@ RSpec.describe Salesperson, :type => :model do
     end
 
     context 'when there are active salespeople' do
-      let(:deleted_at) { nil }
+      let(:is_active) { 1 }
 
       its(:any?) { is_expected.to be_truthy }
       its(:empty?) { is_expected.to be_falsey }
       its(:size) { is_expected.to eq(2) }
-    end
-  end
-
-  describe '#location' do
-    context 'when there is a default location' do
-      let(:default_location) { DefaultLocation.new(:location => Location.new) }
-
-      its(:location) { is_expected.to be_present }
-    end
-
-    context 'when there is no default location' do
-      let(:default_location) { nil }
-
-      its(:location) { is_expected.to be_nil }
     end
   end
 end

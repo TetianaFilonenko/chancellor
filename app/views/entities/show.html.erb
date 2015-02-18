@@ -32,21 +32,19 @@
   </nav>
 </section>
 <section class="content-slice container">
-    <div class="line-behind-text">
-      <h2>Contacts</h2>
-    </div>
-    <div id="contacts">
-    <%= render :partial => 'contacts', :locals => { :contacts => entity.contacts } %>
-    </div>
-    <nav>
-      <%= link_to 'Add',
-                  new_entity_contact_path(entity,
-                                          :return_url => request.original_url),
-                                          :class => 'button' %>
-    </nav>
-  <!-- </section> -->
+  <div class="line-behind-text">
+    <h2>Contacts</h2>
+  </div>
+  <div id="contacts">
+  <%= render :partial => 'contacts', :locals => { :contacts => entity.contacts } %>
+  </div>
+  <nav>
+    <%= link_to 'Add',
+                new_entity_contact_path(entity,
+                                        :return_url => request.original_url),
+                                        :class => 'button' %>
+  </nav>
 </section>
-<!-- </section> -->
 <section class="content-slice container">
   <section>
     <div class="line-behind-text">
@@ -78,10 +76,6 @@
           entity,
           request.original_url,
           :class => 'button') %>
-    <%= delete_salesperson_link(
-          entity,
-          request.original_url,
-          :class => 'button') %>
     <%= versions_link('salesperson',
                       entity.salesperson,
                       request.original_url,
@@ -95,4 +89,3 @@
   <%= customer_block(entity) %>
   <%= entity_customer_nav(entity, request.original_url) %>
 </section>
-
