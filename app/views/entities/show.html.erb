@@ -89,3 +89,16 @@
   <%= customer_block(entity) %>
   <%= entity_customer_nav(entity, request.original_url) %>
 </section>
+<section class="content-slice container view-form">
+  <div class="line-behind-text">
+    <h2>Vendor</h2>
+  </div>
+  <%= vendor_block(entity) %>
+  <nav>
+    <%= vendor_link(entity, request.original_url, :class => 'button') %>
+    <%= versions_link('vendor',
+                      entity.vendor,
+                      request.original_url,
+                      :class => 'button') %>
+  </nav>
+</section>

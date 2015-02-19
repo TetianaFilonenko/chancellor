@@ -1,11 +1,15 @@
-<section class="content-slice container">
-  <div class="line-behind-text">
+<header>
+  <div class="container">
     <h1><%= @model.class.name %></h1>
-  </div>
-  <nav class="actions">
+    <nav>
     <%= link_to 'Back', return_url(root_path),
                 :class => 'button' %>
-  </nav>
+    </nav>
+  </div>
+</header>
+<section class="container content-slice view-form">
+  <label>Date</label>
+  <p><%= @version.created_at %></p>
 </section>
 <%= render :partial => "/versions/item_types/#{@item_type}",
            :locals => { @item_type.to_sym => @model, :version => @version} %>

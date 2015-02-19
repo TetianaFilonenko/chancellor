@@ -1,13 +1,13 @@
-<section class="content-slice container">
-  <div class="line-behind-text">
+<header>
+  <div class="container">
     <h1><%= @model.class.name %> History</h1>
-  </div>
-  <div class="synopsis">
-    <nav class="actions">
-      <%= link_to 'Back', return_url(root_path),
-                  :class => 'button' %>
+    <nav>
+    <%= link_to 'Back', return_url(root_path),
+                :class => 'button' %>
     </nav>
   </div>
+</header>
+<section class="content-slice container">
   <table class="tables">
     <thead>
     <tr>
@@ -16,7 +16,6 @@
       <th>Item</th>
       <th>User</th>
       <th>Date</th>
-      <th></th>
     </tr>
     </thead>
     <tbody>
@@ -26,11 +25,8 @@
         <td nowrap><%= version.event %></td>
         <td nowrap><%= item %></td>
         <td nowrap><%= version.whodunnit %></td>
-        <td nowrap><%= version.created_at %></td>
         <td nowrap>
-          <nav>
-          <%= link_to 'View', version_path(version, :return_url => (request.original_url)) %>
-          </nav>
+          <%= link_to version.created_at, version_path(version, :return_url => (request.original_url)) %>
         </td>
       </tr>
     <% end.empty? %>

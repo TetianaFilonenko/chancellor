@@ -20,5 +20,6 @@ Rails.application.routes.draw do
     resources :customers, :shallow => true, :except => [:index]
     resources :locations, :shallow => true, :except => [:index]
     resources :salespeople, :shallow => true, :except => [:index]
+    resources :vendors, :shallow => true, :except => [:index]
   end
 end

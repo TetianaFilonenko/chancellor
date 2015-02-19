@@ -1,0 +1,12 @@
+<%= entity_block(:disabled => !vendor.active?) do %>
+<label>Reference</label>
+<p><%= vendor.reference %></p>
+<label>Contact</label>
+<p><%= vendor.default_contact %>&nbsp;</p>
+<label>Location</label>
+<p><%= vendor.default_location %>&nbsp;</p>
+<label>Active?</label>
+<p><%= active_string(vendor) %>&nbsp;</p>
+<label>UUID</label>
+<p><%= vendor.uuid %></p>
+<% end %>

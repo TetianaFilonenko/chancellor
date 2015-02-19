@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/airblade/paper_trail.git
-  revision: 9446f78196362b999d6b5262a04c9492be166708
+  revision: a453811226ec4ea59753ba6b827e390ced2fc140
   specs:
     paper_trail (4.0.0.beta3)
       activerecord (>= 3.0, < 6.0)
@@ -182,7 +182,7 @@ GEM
     mini_portile (0.6.2)
     minitest (5.5.1)
     multi_json (1.10.1)
-    mysql2 (0.3.17)
+    mysql2 (0.3.18)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)

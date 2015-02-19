@@ -9,6 +9,7 @@ en:
       salesperson: 'Salesperson'
       user: 'User'
       user_role: 'User Role'
+      vendor: 'Vendor'
     failure:
       messages:
         created: "%{model} was not created."

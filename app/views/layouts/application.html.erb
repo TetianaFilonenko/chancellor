@@ -50,7 +50,6 @@
     <% if flash %>
     <%= bourbon_flash %>
     <% end %>
-    <%= yield :header if content_for? :header %>
     <section class="body">
     <%= yield %>
     </section>

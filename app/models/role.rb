@@ -7,8 +7,6 @@ class Role < ActiveRecord::Base
     contact_write
     customer_read
     customer_write
-    entity_admin
-    entity_user
     entity_read
     entity_write
     location_read
@@ -17,7 +15,10 @@ class Role < ActiveRecord::Base
     salesperson_write
     salesperson_admin
     salesperson_user
-    user_admin)
+    user_admin
+    user_write
+    vendor_read
+    vendor_write)
 
   # rubocop:disable HasAndBelongsToMany
   has_and_belongs_to_many :users, :join_table => :users_roles
