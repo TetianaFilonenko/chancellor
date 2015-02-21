@@ -1,4 +1,6 @@
-<%= simple_form_for(@entity,
+<%= simple_form_for(@entity_entry,
+  :html => { :method => :patch },
+  :url => entity_path(@entity),
   :wrapper => :basic_form) do |form| %>
 <header>
   <div class="container">
@@ -11,6 +13,6 @@
 </header>
 <section class="container">
   <%= render :partial => 'form',
-             :locals => { :form => form, :model => @entity } %>
+             :locals => { :form => form, :model => @entity_entry } %>
 </section>
 <% end %>

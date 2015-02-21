@@ -17,7 +17,7 @@ class Vendor < ActiveRecord::Base
   validates :reference, :uniqueness => true
 
   def active?
-    is_active == 1 ? true : false
+    is_active == 1
   end
 
   def to_s

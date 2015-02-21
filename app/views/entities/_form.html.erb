@@ -3,3 +3,7 @@
 <%= form.input :name %>
 <%= form.input :display_name %>
 <%= form.input :reference %>
+<%= form.input :is_active,
+               :as => :boolean,
+               :label => 'Is Active',
+               :boolean_style => :inline %>

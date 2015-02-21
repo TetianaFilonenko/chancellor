@@ -15,12 +15,17 @@ class Entity < ActiveRecord::Base
   resourcify
 
   validates \
+    :is_active,
     :name,
     :cached_long_name,
     :reference,
     :uuid,
     :presence => true
   validates :reference, :uniqueness => true
+
+  def active?
+    is_active == 1
+  end
 
   def to_s
     name

@@ -8,8 +8,8 @@ feature 'user creates entity' do
     scenario 'they see a success message' do
       visit new_entity_path
 
-      fill_in 'entity_name', :with => Faker::Company.name
-      fill_in 'entity_reference', :with => Faker::Number.number(8)
+      fill_in 'entity_entry_name', :with => Faker::Company.name
+      fill_in 'entity_entry_reference', :with => Faker::Number.number(8)
 
       click_button 'Save'
 

@@ -17,16 +17,14 @@
   <p><%= entity.name %></p>
   <label>Display Name</label>
   <p><%= entity.display_name %></p>
+  <label>Active</label>
+  <p><%= active_string(entity) %></p>
   <label>UUID</label>
   <p><%= entity.uuid %></p>
   <nav>
     <%= edit_entity_link(entity,
                          request.original_url,
                          :class => 'button') %>
-    <%= link_to 'Delete', entity_path(entity),
-      :class => 'button',
-      :data => { :confirm => 'Are you sure?' },
-      :method => :delete %>
     <%= link_to 'Versions', versions_path('entity', entity.id, :return_url => request.original_url),
           :class => 'button' %>
   </nav>

@@ -36,35 +36,5 @@ RSpec.describe EntitiesController, :type => :controller do
         expect(response).to render_template('index')
       end
     end
-
-    describe 'DELETE destroy' do
-      before { delete :destroy, :id => entity.id }
-
-      it 'responds with status equal to 302' do
-        expect(response.status).to eq(302)
-      end
-
-      it 'redirects to the entities path' do
-        expect(response).to redirect_to(entities_path)
-      end
-    end
-  end
-
-  context 'when not authorized' do
-    let(:user) { create(:user, :confirmed) }
-
-    describe 'DELETE destroy' do
-      it 'responds with status equal to 302' do
-        entity = create(:entity)
-        delete :destroy, :id => entity.id
-        expect(response.status).to eq(302)
-      end
-
-      it 'redirects to the root path' do
-        entity = create(:entity)
-        delete :destroy, :id => entity.id
-        expect(response).to redirect_to('/')
-      end
-    end
   end
 end
