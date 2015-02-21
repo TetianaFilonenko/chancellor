@@ -4,42 +4,41 @@
     <h1><%= location.location_name %></h1>
     <nav>
       <%= link_to 'Edit', edit_location_path(location), :class => 'button' %>
-      <%= link_to 'Delete',
-                  location_path(location),
-                  :class => 'button',
-                  :data => { :confirm => 'Are you sure?' },
-                  :method => :delete %>
       <%= link_to 'Back', return_url(entity_path(location.entity)) %>
     </nav>
   </div>
 </header>
 <section class="container">
-  <dl>
-    <dt>Name</dt>
-    <dd><%= location.location_name %></dd>
-  </dl>
-  <dl>
-    <dt>Street Address</dt>
-    <dd><%= location.street_address %></dd>
-  </dl>
-  <dl>
-    <dt>City</dt>
-    <dd><%= location.city %></dd>
-  </dl>
-  <dl>
-    <dt>Region</dt>
-    <dd><%= location.region %></dd>
-  </dl>
-  <dl>
-    <dt>Region Code</dt>
-    <dd><%= location.region_code %></dd>
-  </dl>
-  <dl>
-    <dt>Country</dt>
-    <dd><%= location.country %></dd>
-  </dl>
-  <dl>
-    <dt>UUID</dt>
-    <dd><%= location.uuid %></dd>
-  </dl>
+  <div class="row">
+    <label>Name</label>
+    <p><%= location.location_name %></p>
+  </div>
+  <div class="row">
+    <label>Street Address</label>
+    <p><%= location.street_address %></p>
+  </div>
+  <div class="row">
+    <label>City</label>
+    <p><%= location.city %></p>
+  </div>
+  <div class="row">
+    <label>Region</label>
+    <p><%= location.region %></p>
+  </div>
+  <div class="row">
+    <label>Region Code</label>
+    <p><%= location.region_code %></p>
+  </div>
+  <div class="row">
+    <label>Country</label>
+    <p><%= location.country %></p>
+  </div>
+  <div class="row">
+    <label>Active</label>
+    <p><%= active_string(location) %></p>
+  </div>
+  <div class="row">
+    <label>UUID</label>
+    <p><%= location.uuid %></p>
+  </div>
 </section>

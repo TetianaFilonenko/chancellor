@@ -9,17 +9,16 @@ feature 'user creates location' do
     scenario 'they see a success message' do
       visit new_entity_location_path(entity)
 
-      fill_in 'location_location_name', :with => Faker::Company.name
-      fill_in 'location_street_address',
+      fill_in 'location_entry_location_name', :with => Faker::Company.name
+      fill_in 'location_entry_street_address',
               :with => Faker::Address.street_address
-      fill_in 'location_city', :with => Faker::Address.street_address
-      fill_in 'location_region', :with => Faker::Address.state
-      fill_in 'location_region_code', :with => Faker::Address.zip_code
-      fill_in 'location_country', :with => 'United States'
+      fill_in 'location_entry_city', :with => Faker::Address.street_address
+      fill_in 'location_entry_region', :with => Faker::Address.state
+      fill_in 'location_entry_region_code', :with => Faker::Address.zip_code
+      fill_in 'location_entry_country', :with => 'United States'
 
       click_on 'Save'
 
-      expect(page.current_path).to eq(entity_path(entity))
       expect(page).to have_content(
         I18n.t(
           'ar.success.messages.created',

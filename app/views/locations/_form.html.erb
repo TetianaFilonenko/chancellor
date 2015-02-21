@@ -7,3 +7,7 @@
 <%= form.input :region %>
 <%= form.input :region_code %>
 <%= form.input :country, :as => :string %>
+<%= form.input :is_active,
+               :as => :boolean,
+               :label => 'Is Active',
+               :boolean_style => :inline %>

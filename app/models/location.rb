@@ -1,5 +1,7 @@
 # A +Location+ represents a mail address.
 class Location < ActiveRecord::Base
+  include Disableable
+
   acts_as_paranoid
 
   belongs_to :entity, :inverse_of => :locations
@@ -8,6 +10,7 @@ class Location < ActiveRecord::Base
 
   validates \
     :entity,
+    :is_active,
     :location_name,
     :street_address,
     :city,

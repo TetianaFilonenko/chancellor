@@ -6,6 +6,7 @@ class LocationEntry
   include ActiveModel::Conversion
   include ActiveModel::Validations
 
+  attribute :is_active, Integer
   attribute :location_name, String
   attribute :street_address, String
   attribute :city, String
@@ -14,6 +15,7 @@ class LocationEntry
   attribute :country, String
 
   validates \
+    :is_active,
     :location_name,
     :street_address,
     :city,

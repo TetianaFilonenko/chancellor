@@ -1,4 +1,6 @@
-<%= simple_form_for(@location,
+<%= simple_form_for(@location_entry,
+  :html => { :method => :patch },
+  :url => location_path(@location),
   :wrapper => :basic_form) do |form| %>
 <header class="thing">
   <div class="container">
@@ -11,6 +13,6 @@
 </header>
 <section class="container">
   <%= render :partial => 'form',
-             :locals => { :form => form, :model => @location } %>
+             :locals => { :form => form, :model => @location_entry } %>
 </section>
 <% end %>

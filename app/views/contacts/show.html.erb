@@ -9,40 +9,44 @@
   </div>
 </header>
 <section class="container">
-  <dl>
-    <dt>Title</dt>
-    <dd><%= contact.title %></dd>
-  </dl>
-  <dl>
-    <dt>First Name</dt>
-    <dd><%= contact.first_name %></dd>
-  </dl>
-  <dl>
-    <dt>Last Name</dt>
-    <dd><%= contact.last_name %></dd>
-  </dl>
-  <dl>
-    <dt>Display Name</dt>
-    <dd><%= contact.display_name %></dd>
-  </dl>
-  <dl>
-    <dt>Email Address</dt>
-    <dd><%= contact.email_address %></dd>
-  </dl>
-  <dl>
-    <dt>Fax Number</dt>
-    <dd><%= contact.fax_number %></dd>
-  </dl>
-  <dl>
-    <dt>Mobile Number</dt>
-    <dd><%= contact.mobile_number %></dd>
-  </dl>
-  <dl>
-    <dt>Phone Number</dt>
-    <dd><%= contact.phone_number %></dd>
-  </dl>
-  <dl>
-    <dt>UUID</dt>
-    <dd><%= contact.uuid %></dd>
-  </dl>
+  <div class="row">
+    <label>Title</label>
+    <p><%= contact.title %></p>
+  </div>
+  <div class="row">
+    <label>First Name</label>
+    <p><%= contact.first_name %></p>
+  </div>
+  <div class="row">
+    <label>Last Name</label>
+    <p><%= contact.last_name %></p>
+  </div>
+  <div class="row">
+    <label>Display Name</label>
+    <p><%= contact.display_name %></p>
+  </div>
+  <div class="row">
+    <label>Email Address</label>
+    <p><%= contact.email_address %></p>
+  </div>
+  <div class="row">
+    <label>Fax Number</label>
+    <p><%= contact.fax_number %></p>
+  </div>
+  <div class="row">
+    <label>Mobile Number</label>
+    <p><%= contact.mobile_number %></p>
+  </div>
+  <div class="row">
+    <label>Phone Number</label>
+    <p><%= contact.phone_number %></p>
+  </div>
+  <div class="row">
+    <label>Active</label>
+    <p><%= active_string(contact) %></p>
+  </div>
+  <div class="row">
+    <label>UUID</label>
+    <p><%= contact.uuid %></p>
+  </div>
 </section>
