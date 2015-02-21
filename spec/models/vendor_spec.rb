@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Vendor, :type => :model do
+  subject { build(:vendor, :entity => create(:entity)) }
+
   describe 'associations' do
     it { is_expected.to belong_to(:default_contact) }
     it { is_expected.to belong_to(:default_location) }
@@ -12,6 +14,7 @@ RSpec.describe Vendor, :type => :model do
     it { is_expected.to validate_presence_of(:is_active) }
     it { is_expected.to validate_presence_of(:reference) }
     it { is_expected.to validate_presence_of(:uuid) }
+    it { is_expected.to validate_uniqueness_of(:reference) }
   end
 
   describe '#active?' do

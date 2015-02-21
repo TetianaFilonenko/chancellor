@@ -14,6 +14,7 @@ class Vendor < ActiveRecord::Base
     :reference,
     :uuid,
     :presence => true
+  validates :reference, :uniqueness => true
 
   def active?
     is_active == 1 ? true : false
