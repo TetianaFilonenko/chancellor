@@ -8,29 +8,22 @@
     <thead>
     <tr>
       <th>Name</th>
+      <th>Email</th>
       <th>Status</th>
-      <th></th>
+      <th>Last Signed In</th>
     </tr>
     </thead>
     <tbody>
     <% if @users.each do |user| %>
       <tr>
+          <td nowrap><%= link_to user.display_name, admin_user_path(user) %></td>
           <td nowrap><%= user.email %></td>
           <td nowrap><%= active_string(user) %></td>
-          <td nowrap>
-            <nav>
-            <%= link_to [:edit, :admin, user, :return_url => return_url(request.original_url)] do %>
-                        Edit
-            <% end %>
-            <%= link_to [:admin, user, :return_url => return_url(request.original_url)] do %>
-                        View
-            <% end %>
-            </nav>
-          </td>
+          <td nowrap><%= user.last_sign_in_at %></td>
       </tr>
     <% end.empty? %>
       <tr>
-        <td colspan="3">No users found</td>
+        <td colspan="2">No users found</td>
       </tr>
     <% end %>
     </tbody>

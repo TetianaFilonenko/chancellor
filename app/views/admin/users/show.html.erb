@@ -1,26 +1,37 @@
 <% user = @user %>
-<section class="content-slice container">
-  <div class="line-behind-text">
+<header>
+  <div class="container">
     <h1><%= user.display_name %></h1>
+    <nav>
+      <%= link_to 'Add Role',
+                  new_admin_user_role_path(user,
+                                          :return_url => request.original_url),
+                                          :class => 'button' %>
+      <%= link_to 'Edit', edit_admin_user_path(user), :class => 'button' %>
+    </nav>
   </div>
-  <nav class="actions">
-    <%= link_to 'Add Role',
-                new_admin_user_role_path(user,
-                                        :return_url => request.original_url),
-                                        :class => 'button' %>
-  </nav>
-</section>
+</header>
 <section class="content-slice container view-form">
-  <label>First Name</label>
-  <p><%= user.first_name %></p>
-  <label>Last Name</label>
-  <p><%= user.last_name %></p>
-  <label>Display Name</label>
-  <p><%= user.display_name %></p>
-  <label>Email</label>
-  <p><%= user.email %></p>
-  <label>Active</label>
-  <p><%= active_string(user) %></p>
+  <div class="row">
+    <label>First Name</label>
+    <p><%= user.first_name %></p>
+  </div>
+  <div class="row">
+    <label>Last Name</label>
+    <p><%= user.last_name %></p>
+  </div>
+  <div class="row">
+    <label>Display Name</label>
+    <p><%= user.display_name %></p>
+  </div>
+    <div class="row">
+    <label>Email</label>
+    <p><%= user.email %></p>
+  </div>
+    <div class="row">
+    <label>Active</label>
+    <p><%= active_string(user) %></p>
+  </div>
 </section>
 <section class="content-slice container">
   <div class="line-behind-text">

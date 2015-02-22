@@ -30,14 +30,14 @@ RSpec.describe VendorsController, :type => :controller do
       it { is_expected.to set_flash[:notice] }
     end
 
-    context 'where vendor details are not valid' do
+    context 'when vendor details are not valid' do
       let(:vendor_entry) { double(:to_h => {}, :valid? => false) }
 
       it { is_expected.to respond_with(200) }
       it { is_expected.to render_template(:new) }
     end
 
-    context 'where create vendor fails' do
+    context 'when create vendor fails' do
       let(:context) do
         double(:entity => entity, :message => 'failure', :success? => false)
       end
@@ -69,14 +69,14 @@ RSpec.describe VendorsController, :type => :controller do
       it { is_expected.to set_flash[:notice] }
     end
 
-    context 'where vendor details are not valid' do
+    context 'when vendor details are not valid' do
       let(:vendor_entry) { double(:to_h => {}, :valid? => false) }
 
       it { is_expected.to respond_with(200) }
       it { is_expected.to render_template(:edit) }
     end
 
-    context 'where create vendor fails' do
+    context 'when create vendor fails' do
       let(:context) do
         double(:entity => entity, :message => 'failure', :success? => false)
       end

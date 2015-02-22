@@ -1,15 +1,18 @@
-<section class="container">
-  <div class="line-behind-text">
+<%= simple_form_for(@user_entry,
+  :html => { :method => :patch },
+  :url => admin_user_path(@user),
+  :wrapper => :basic_form) do |form| %>
+<header>
+  <div class="container">
     <h1>Edit User</h1>
+    <nav>
+      <input type="submit" value="Save" />
+      <%= link_to 'Cancel', admin_user_path(@user) %>
+    </nav>
   </div>
-  <%= simple_form_for([:admin, @user],
-    :html => { :class => 'ui form' },
-    :wrapper => :basic_form) do |f| %>
-    <%= render partial: 'form', locals: { form: f, model: @user } %>
-
-    <p>
-      <input type="submit" class="ui submit button" value="Save" />
-      <%= link_to 'Cancel', [:admin, :users], :class => 'ui basic button' %>
-    </p>
-  <% end %>
+</header>
+<section class="container">
+  <%= render :partial => 'form',
+             :locals => { :form => form, :model => @user_entry } %>
 </section>
+<% end %>
