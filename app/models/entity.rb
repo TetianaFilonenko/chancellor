@@ -20,6 +20,7 @@ class Entity < ActiveRecord::Base
     :reference,
     :uuid,
     :presence => true
+  validates :reference, :uniqueness => true
 
   def to_s
     name

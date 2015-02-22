@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Customer, :type => :model do
+  subject { build(:customer, :entity => create(:entity)) }
+
   describe 'associations' do
     it { is_expected.to belong_to(:default_contact) }
     it { is_expected.to belong_to(:default_location) }
@@ -14,6 +16,7 @@ RSpec.describe Customer, :type => :model do
     it { is_expected.to validate_presence_of(:is_active) }
     it { is_expected.to validate_presence_of(:reference) }
     it { is_expected.to validate_presence_of(:uuid) }
+    it { is_expected.to validate_uniqueness_of(:reference) }
   end
 
   describe '#active?' do

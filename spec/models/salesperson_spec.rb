@@ -2,7 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Salesperson, :type => :model do
   let(:default_location) { nil }
-  subject { build(:salesperson, :default_location => default_location) }
+  subject do
+    build(:salesperson,
+          :default_location => default_location,
+          :entity => create(:entity))
+  end
 
   describe 'associations' do
     it { is_expected.to belong_to(:default_location) }
@@ -13,6 +17,7 @@ RSpec.describe Salesperson, :type => :model do
     it { is_expected.to validate_presence_of(:entity) }
     it { is_expected.to validate_presence_of(:reference) }
     it { is_expected.to validate_presence_of(:uuid) }
+    it { is_expected.to validate_uniqueness_of(:reference) }
   end
 
   describe '.active' do
