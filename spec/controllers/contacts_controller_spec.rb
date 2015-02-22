@@ -29,13 +29,6 @@ RSpec.describe ContactsController, :type => :controller do
       end
     end
 
-    describe 'DELETE destroy' do
-      before { delete :destroy, :id => contact.id }
-
-      it { is_expected.to respond_with 302 }
-      it { is_expected.to redirect_to entity_path(entity) }
-    end
-
     describe 'GET edit' do
       before { get :edit, :id => contact.id }
 

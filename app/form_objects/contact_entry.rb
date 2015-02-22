@@ -9,6 +9,7 @@ class ContactEntry
   attribute :first_name, String
   attribute :last_name, String
   attribute :display_name, String
+  attribute :is_active, Integer
   attribute :title, String
   attribute :email_address, String
   attribute :fax_number, String
@@ -17,5 +18,6 @@ class ContactEntry
 
   validates \
     :first_name,
-    :last_name, :presence => true
+    :last_name,
+    :is_active, :presence => true
 end

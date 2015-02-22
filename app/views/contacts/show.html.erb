@@ -4,11 +4,6 @@
     <h1><%= contact.display_name %></h1>
     <nav>
       <%= link_to 'Edit', edit_contact_path(contact), :class => 'button' %>
-      <%= link_to 'Delete',
-                  contact_path(contact),
-                  :class => 'button',
-                  :data => { :confirm => 'Are you sure?' },
-                  :method => :delete %>
       <%= link_to 'Back', return_url(entity_path(contact.entity)) %>
     </nav>
   </div>

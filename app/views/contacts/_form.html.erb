@@ -9,3 +9,7 @@
 <%= form.input :fax_number %>
 <%= form.input :mobile_number %>
 <%= form.input :phone_number %>
+<%= form.input :is_active,
+               :as => :boolean,
+               :label => 'Is Active',
+               :boolean_style => :inline %>

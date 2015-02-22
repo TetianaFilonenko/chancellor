@@ -22,18 +22,6 @@ class ContactsController < ApplicationController
     end
   end
 
-  def destroy
-    if @contact.destroy
-      redirect_with_notice(
-        entity_path(@contact.entity),
-        t('ar.success.messages.deleted', :model => t('ar.models.contact')))
-    else
-      redirect_with_alert(
-        entity_path(@contact.entity),
-        t('ar.failure.messages.deleted', :model => t('ar.models.contact')))
-    end
-  end
-
   def edit; end
 
   def new; end
@@ -69,11 +57,10 @@ class ContactsController < ApplicationController
 
   def param_names
     [
-      :first_name,
-      :last_name,
-      :display_name,
+      :first_name, :last_name, :display_name,
       :email_address,
       :fax_number,
+      :is_active,
       :mobile_number,
       :phone_number,
       :title

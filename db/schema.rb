@@ -11,21 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150217232755) do
+ActiveRecord::Schema.define(version: 20150221232106) do
+
   create_table "contacts", force: true do |t|
-    t.integer  "entity_id",                null: false
-    t.string   "first_name",               null: false
-    t.string   "last_name",                null: false
-    t.string   "display_name",             null: false
+    t.integer  "entity_id",                            null: false
+    t.string   "first_name",                           null: false
+    t.string   "last_name",                            null: false
+    t.string   "display_name",                         null: false
     t.string   "title"
     t.string   "email_address"
     t.string   "fax_number"
     t.string   "mobile_number"
     t.string   "phone_number"
-    t.string   "uuid",          limit: 32, null: false
+    t.string   "uuid",          limit: 32,             null: false
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "is_active",                default: 1, null: false
   end
 
   create_table "customers", force: true do |t|
@@ -43,16 +45,18 @@ ActiveRecord::Schema.define(version: 20150217232755) do
   end
 
   create_table "entities", force: true do |t|
-    t.string   "cached_long_name", limit: 1024, null: false
-    t.string   "display_name",                  null: false
-    t.string   "name",                          null: false
+    t.string   "cached_long_name", limit: 1024,             null: false
+    t.string   "display_name",                              null: false
+    t.string   "name",                                      null: false
     t.string   "contact_name"
     t.string   "comments"
-    t.string   "reference",                     null: false
-    t.string   "uuid",             limit: 32,   null: false
+    t.string   "reference",                                 null: false
+    t.string   "uuid",             limit: 32,               null: false
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "parent_entity_id"
+    t.integer  "is_active",                     default: 1, null: false
   end
 
   create_table "locations", force: true do |t|
