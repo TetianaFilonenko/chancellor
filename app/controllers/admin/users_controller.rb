@@ -4,7 +4,8 @@ module Admin
   class UsersController < ApplicationController
     respond_to :html
 
-    before_action :load_user, :only => [:destroy, :edit, :show, :update]
+    before_action :find_user, :only => [:destroy, :edit, :show, :update]
+    before_action :build_user_entry, :only => [:edit, :update]
     before_action -> { authorize :user }, :except => :show
     before_action -> { authorize @user }, :only => :show
 
@@ -14,15 +15,15 @@ module Admin
       @users = User.all
     end
 
-    def show
-    end
+    def show; end
 
     def update
-      if @user.update_attributes(user_params)
+      return render :edit unless @user_entry.valid?
+
+      if @user.update_attributes(user_hash)
         redirect_with_notice(
-          admin_users_path(@entity),
-          t('activerecord.successful.messages.updated',
-            :model => @user.class.model_name.human))
+          admin_user_path(@user),
+          t('ar.success.messages.updated', :model => t('ar.models.user')))
       else
         render :edit
       end
@@ -30,13 +31,28 @@ module Admin
 
     protected
 
-    def load_user
+    def build_user_entry
+      hash =
+        @user
+        .attributes
+        .symbolize_keys
+        .slice(:display_name, :first_name, :last_name, :is_active)
+      @user_entry = UserEntry.new(hash.merge(user_params))
+    end
+
+    def find_user
       @user = User.find(params[:id])
+    end
+
+    def user_hash
+      @user_entry
+        .to_h
+        .slice(:display_name, :first_name, :last_name, :is_active)
     end
 
     def user_params
       params
-        .require(:user)
+        .require(:user_entry)
         .permit(:display_name, :first_name, :last_name, :is_active)
     rescue ActionController::ParameterMissing; {}
     end

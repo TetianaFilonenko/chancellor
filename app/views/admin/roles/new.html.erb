@@ -1,20 +1,21 @@
-<section class="container">
-  <div class="line-behind-text">
+<%= simple_form_for(@grant,
+  :url => admin_user_roles_path(@user),
+  :wrapper => :basic_form) do |form| %>
+<header>
+  <div class="container">
     <h1>Add Role</h1>
+    <nav>
+      <input type="submit" value="Save" />
+      <%= link_to 'Cancel', admin_user_path(@user) %>
+    </nav>
   </div>
-  <%= simple_form_for(@grant,
-    :html => { :class => 'ui form' },
-    :url => admin_user_roles_path(@user),
-    :wrapper => :basic_form) do |form| %>
-    <%= render :partial => '/model_errors', :locals => { :model => @grant } if @grant.errors.any? %>
+</header>
+<section class="container">
+  <%= render :partial => '/model_errors',
+             :locals => { :model => @grant } if @grant.errors.any? %>
 
-    <%= form.input :name,
-      :collection => roles_collection(@grant.user.available_roles),
-      :label => 'Role' %>
-
-    <p>
-      <input type="submit" class="ui submit button" value="Save" />
-      <%= link_to 'Cancel', admin_user_path(@user), :class => 'ui basic button' %>
-    </p>
-  <% end %>
+  <%= form.input :name,
+    :collection => roles_collection(@grant.user.available_roles),
+    :label => 'Role' %>
 </section>
+<% end %>
