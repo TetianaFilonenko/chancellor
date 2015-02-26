@@ -11,11 +11,12 @@ feature 'User edits location' do
       expect(page).to have_content('Edit Location')
 
       # Change everything...
-      fill_in 'location_location_name', :with => 'A new name'
-      fill_in 'location_street_address', :with => Faker::Address.street_address
-      fill_in 'location_city', :with => Faker::Address.city
-      fill_in 'location_region', :with => Faker::Address.state
-      fill_in 'location_region_code', :with => Faker::Address.zip
+      fill_in 'location_entry_location_name', :with => 'A new name'
+      fill_in 'location_entry_street_address',
+              :with => Faker::Address.street_address
+      fill_in 'location_entry_city', :with => Faker::Address.city
+      fill_in 'location_entry_region', :with => Faker::Address.state
+      fill_in 'location_entry_region_code', :with => Faker::Address.zip
 
       click_on 'Save'
 
@@ -31,7 +32,7 @@ feature 'User edits location' do
       visit edit_location_path(location)
 
       # Clear a mandatory field
-      fill_in 'location_location_name', :with => nil
+      fill_in 'location_entry_location_name', :with => nil
 
       click_on 'Save'
 

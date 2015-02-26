@@ -1,17 +1,16 @@
 # Controller for managing locations.
 class LocationsController < ApplicationController
-  before_action :load_entity, :only => [:create, :new]
-  before_action :load_location, :only => [:destroy, :edit, :show, :update]
-  before_action :new_location_entry, :only => [:create, :new]
+  before_action :find_location, :only => [:edit, :show, :update]
+  before_action :load_entity, :except => [:index, :show]
+  before_action :build_location_entry, :except => [:index, :show]
   before_action -> { authorize :location },
-                :only => [:create, :edit, :new, :update]
-  before_action -> { authorize @location }, :only => [:destroy, :show]
+                :only => [:create, :new, :update]
+  before_action -> { authorize @location }, :only => [:edit, :show]
 
   def create
     return render :new unless @location_entry.valid?
 
-    context = CreateLocation.call(
-      @location_entry.to_h.merge(:entity => @entity, :user => current_user))
+    context = CreateLocation.call(location_hash)
 
     if context.success?
       redirect_with_notice(
@@ -22,18 +21,6 @@ class LocationsController < ApplicationController
     end
   end
 
-  def destroy
-    if @location.destroy
-      redirect_with_notice(
-        entity_path(@location.entity),
-        t('ar.success.messages.deleted', :model => t('ar.models.location')))
-    else
-      redirect_with_alert(
-        entity_path(@location.entity),
-        t('ar.failure.messages.deleted', :model => t('ar.models.location')))
-    end
-  end
-
   def edit; end
 
   def new; end
@@ -41,6 +28,8 @@ class LocationsController < ApplicationController
   def show; end
 
   def update
+    return render :edit unless @location_entry.valid?
+
     if @location.update_attributes(location_params)
       redirect_with_notice(
         entity_path(@location.entity),
@@ -52,28 +41,48 @@ class LocationsController < ApplicationController
 
   protected
 
+  def build_location_entry
+    hash =
+      (@location || Location.new)
+      .attributes
+      .symbolize_keys
+      .slice(*param_keys)
+    @location_entry = LocationEntry.new(hash.merge(location_params))
+  end
+
+  def location_hash
+    @location_entry
+      .to_h
+      .slice(*param_keys)
+      .merge(:entity => @entity, :user => current_user)
+  end
+
   def load_entity
+    return @entity = @location.entity if @location
+
     @entity = Entity.find(params[:entity_id])
   end
 
-  def load_location
+  def find_location
     @location = Location.find(params[:id])
   end
 
   def location_params
     params
-      .require(:location)
-      .permit(
-        :location_name,
-        :street_address,
-        :city,
-        :region,
-        :region_code,
-        :country)
+      .require(:location_entry)
+      .permit(param_keys)
   rescue ActionController::ParameterMissing; {}
   end
 
-  def new_location_entry
-    @location_entry = LocationEntry.new(location_params)
+  def param_keys
+    [
+      :is_active,
+      :location_name,
+      :street_address,
+      :city,
+      :region,
+      :region_code,
+      :country
+    ]
   end
 end

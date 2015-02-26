@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150221232106) do
+ActiveRecord::Schema.define(version: 20150225172448) do
+
   create_table "contacts", force: true do |t|
     t.integer  "entity_id",                            null: false
     t.string   "first_name",                           null: false
@@ -59,19 +60,20 @@ ActiveRecord::Schema.define(version: 20150221232106) do
   end
 
   create_table "locations", force: true do |t|
-    t.integer  "entity_id",                                          null: false
-    t.string   "location_name",                                      null: false
-    t.string   "street_address",                                     null: false
-    t.string   "city",                                               null: false
-    t.string   "region",                                             null: false
-    t.string   "region_code",                                        null: false
-    t.string   "country",                                            null: false
-    t.string   "uuid",           limit: 32,                          null: false
+    t.integer  "entity_id",                                                      null: false
+    t.string   "location_name",                                                  null: false
+    t.string   "street_address",                                                 null: false
+    t.string   "city",                                                           null: false
+    t.string   "region",                                                         null: false
+    t.string   "region_code",                                                    null: false
+    t.string   "country",                                                        null: false
+    t.string   "uuid",           limit: 32,                                      null: false
     t.decimal  "latitude",                  precision: 10, scale: 8
     t.decimal  "longitude",                 precision: 11, scale: 8
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "is_active",                                          default: 1, null: false
   end
 
   create_table "roles", force: true do |t|
