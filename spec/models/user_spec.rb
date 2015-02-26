@@ -27,4 +27,6 @@ RSpec.describe User, :type => :model do
       it { is_expected.to eq(true) }
     end
   end
+
+  # TODO: Test available_roles
 end

@@ -1,15 +1,14 @@
 # Controller for managing Entity base details.
 class EntitiesController < ApplicationController
   before_action :find_entity, :only => [:destroy, :edit, :show, :update]
-  # before_action :new_entity, :only => [:create, :new]
-  before_action :new_entity_entry, :only => [:create, :new]
+  before_action :build_entity_entry, :except => [:destroy, :index, :show]
   before_action -> { authorize :entity }, :except => :show
   before_action -> { authorize @entity }, :only => :show
 
   def create
     return render :new unless @entity_entry.valid?
 
-    context = CreateEntity.call(@entity_entry.to_h.merge(:user => current_user))
+    context = CreateEntity.call(entity_hash)
 
     if context.success?
       redirect_with_notice(
@@ -17,18 +16,6 @@ class EntitiesController < ApplicationController
         t('ar.success.messages.created', :model => t('ar.models.entity')))
     else
       render :new
-    end
-  end
-
-  def destroy
-    if @entity.destroy
-      redirect_with_notice(
-        entities_path,
-        t('ar.success.messages.deleted', :model => t('ar.models.entity')))
-    else
-      redirect_with_alert(
-        entity_path(@entity),
-        t('ar.failure.messages.deleted', :model => t('ar.models.entity')))
     end
   end
 
@@ -49,6 +36,8 @@ class EntitiesController < ApplicationController
   end
 
   def update
+    return render :edit unless @entity_entry.valid?
+
     if @entity.update_attributes(entity_params)
       redirect_with_notice(
         entity_path(@entity),
@@ -60,38 +49,32 @@ class EntitiesController < ApplicationController
 
   protected
 
+  def build_entity_entry
+    @entity_entry = EntityEntry.build_from_entity(@entity || Entity.new)
+    @entity_entry.merge_hash(entity_params)
+  end
+
+  def entity_hash
+    @entity_entry
+      .to_h
+      .slice(:display_name,
+             :name,
+             :is_active,
+             :reference)
+      .merge(:user => current_user)
+  end
+
   def entity_params
     params
-      .require(:entity)
-      .permit(:display_name, :name, :reference)
-  rescue ActionController::ParameterMissing; {}
-  end
-
-  def new_entity
-    @new_entity = NewEntity.new(new_entity_params)
-  end
-
-  def new_entity_entry
-    @entity_entry = EntityEntry.new(entity_params)
-  end
-
-  def new_entity_params
-    params
-      .require(:new_entity)
-      .permit(
-        :name, :reference,
-        :street_address, :city, :region, :region_code, :country)
-  rescue ActionController::ParameterMissing; {}
-  end
-
-  def edit_entity_params
-    params
-      .require(:entity)
-      .permit(:name, :display_name, :reference)
+      .require(:entity_entry)
+      .permit(:display_name,
+              :name,
+              :is_active,
+              :reference)
   rescue ActionController::ParameterMissing; {}
   end
 
   def find_entity
-    @entity = Entity.find(params[:id]).decorate
+    @entity = Entity.find(params[:id])
   end
 end

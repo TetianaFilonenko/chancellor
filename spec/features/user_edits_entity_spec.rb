@@ -10,8 +10,8 @@ feature 'User edits entity' do
       visit edit_entity_path(entity)
 
       # Change everything...
-      fill_in 'entity_name', :with => Faker::Company.name
-      fill_in 'entity_reference', :with => Faker::Number.number(8)
+      fill_in 'entity_entry_name', :with => Faker::Company.name
+      fill_in 'entity_entry_reference', :with => Faker::Number.number(8)
 
       click_button 'Save'
 
@@ -24,7 +24,7 @@ feature 'User edits entity' do
       visit edit_entity_path(entity)
 
       # Clear a mandatory field
-      fill_in 'entity_name', :with => nil
+      fill_in 'entity_entry_name', :with => ''
 
       click_button 'Save'
 
