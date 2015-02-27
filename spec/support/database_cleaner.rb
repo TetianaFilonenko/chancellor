@@ -1,6 +1,6 @@
 RSpec.configure do |config|
   config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
+    Promiscuous.without_promiscuous { DatabaseCleaner.clean_with(:truncation) }
   end
 
   config.before(:each) do
@@ -12,10 +12,10 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
-    DatabaseCleaner.start
+    Promiscuous.without_promiscuous { DatabaseCleaner.start }
   end
 
   config.after(:each) do
-    DatabaseCleaner.clean
+    Promiscuous.without_promiscuous { DatabaseCleaner.clean }
   end
 end

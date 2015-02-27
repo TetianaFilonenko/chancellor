@@ -1,0 +1,6 @@
+require_relative 'publishers/contact'
+require_relative 'publishers/customer'
+require_relative 'publishers/entity'
+require_relative 'publishers/location'
+require_relative 'publishers/salesperson'
+require_relative 'publishers/vendor'

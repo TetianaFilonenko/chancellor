@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150221232106) do
+ActiveRecord::Schema.define(version: 20150302011605) do
+
+  create_table "_promiscuous", force: true do |t|
+    t.text     "batch"
+    t.datetime "at"
+    t.datetime "TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP"
+  end
+
   create_table "contacts", force: true do |t|
     t.integer  "entity_id",                            null: false
     t.string   "first_name",                           null: false
@@ -27,6 +34,7 @@ ActiveRecord::Schema.define(version: 20150221232106) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "is_active",                default: 1, null: false
+    t.integer  "_v"
   end
 
   create_table "customers", force: true do |t|
@@ -41,6 +49,7 @@ ActiveRecord::Schema.define(version: 20150221232106) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "_v"
   end
 
   create_table "entities", force: true do |t|
@@ -54,8 +63,8 @@ ActiveRecord::Schema.define(version: 20150221232106) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "parent_entity_id"
     t.integer  "is_active",                     default: 1, null: false
+    t.integer  "_v"
   end
 
   create_table "locations", force: true do |t|
@@ -72,6 +81,7 @@ ActiveRecord::Schema.define(version: 20150221232106) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "_v"
   end
 
   create_table "roles", force: true do |t|
@@ -97,6 +107,7 @@ ActiveRecord::Schema.define(version: 20150221232106) do
     t.datetime "updated_at"
     t.integer  "default_location_id"
     t.integer  "is_active",                      default: 1, null: false
+    t.integer  "_v"
   end
 
   create_table "users", force: true do |t|
@@ -144,6 +155,7 @@ ActiveRecord::Schema.define(version: 20150221232106) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "_v"
   end
 
   create_table "version_associations", force: true do |t|

@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: git://github.com/bkeepers/dotenv.git
-  revision: 434713e930199c0107d66b956b23304df21edafb
+  revision: e8261f9750221d459119771936bff049f05d0a58
   specs:
     dotenv (1.0.2)
     dotenv-rails (1.0.2)
@@ -26,9 +26,9 @@ GIT
 
 GIT
   remote: git://github.com/causes/scss-lint.git
-  revision: 5343c7034467e88f73416c3be066e8cc6156fceb
+  revision: 8ea0292f234610079e0a00a0f036089e19ed5a6d
   specs:
-    scss-lint (0.33.0)
+    scss-lint (0.34.0)
       rainbow (~> 2.0)
       sass (~> 3.4.1)
 
@@ -37,6 +37,23 @@ GIT
   revision: 750ccad3003dfd4e6dbb1a5d1be472effc4dc1a1
   specs:
     interactor (3.1.0)
+
+GIT
+  remote: git://github.com/josephbridgwaterrowe/promiscuous.git
+  revision: bfa025f8ff4b3c60b959d48680b8b49faa271ef4
+  branch: tweaks
+  specs:
+    promiscuous (1.0.0.beta6)
+      activemodel (>= 3)
+      activesupport (>= 3)
+      algorithms (~> 0.6.1)
+      amq-protocol (>= 1.8.0)
+      bunny (>= 0.10.7)
+      fnv (= 0.2.0)
+      multi_json (~> 1.8.0)
+      redis (~> 3.0)
+      robust-redis-lock (~> 0.2.2)
+      ruby-progressbar (~> 1.2.0)
 
 GIT
   remote: git://github.com/thoughtbot/neat.git
@@ -78,12 +95,12 @@ GEM
     airbrake (4.1.0)
       builder
       multi_json
+    algorithms (0.6.1)
+    amq-protocol (1.9.2)
     analytics-ruby (2.0.12)
     arel (5.0.1.20140414130214)
     ast (2.0.0)
-    astrolabe (1.3.0)
-      parser (>= 2.2.0.pre.3, < 3.0)
-    autoprefixer-rails (5.1.5)
+    autoprefixer-rails (5.1.7)
       execjs
       json
     axiom-types (0.1.1)
@@ -95,10 +112,12 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
-    bourbon (4.2.0)
+    bourbon (4.2.1)
       sass (~> 3.4)
       thor
     builder (3.2.2)
+    bunny (1.7.0)
+      amq-protocol (>= 1.9.2)
     capistrano (3.3.5)
       capistrano-stats (~> 1.1.0)
       i18n
@@ -117,7 +136,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    codeclimate-test-reporter (0.4.6)
+    codeclimate-test-reporter (0.4.7)
       simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
     coercible (1.0.0)
@@ -128,14 +147,14 @@ GEM
     coffee-script (2.3.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.0)
+    coffee-script-source (1.9.1)
     colorize (0.7.5)
-    coveralls (0.7.9)
-      multi_json (~> 1.10)
-      rest-client (~> 1.7)
-      simplecov (~> 0.9.1)
-      term-ansicolor (~> 1.3)
-      thor (~> 0.19.1)
+    coveralls (0.7.1)
+      multi_json (~> 1.3)
+      rest-client
+      simplecov (>= 0.7)
+      term-ansicolor
+      thor
     database_cleaner (1.4.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -163,6 +182,7 @@ GEM
       railties (>= 3.0.0)
     faker (1.4.3)
       i18n (~> 0.5)
+    fnv (0.2.0)
     hike (1.2.3)
     i18n (0.7.0)
     ice_nine (0.11.1)
@@ -181,12 +201,12 @@ GEM
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.5.1)
-    multi_json (1.10.1)
+    multi_json (1.8.4)
     mysql2 (0.3.18)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
-    netrc (0.10.2)
+    netrc (0.10.3)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
@@ -197,7 +217,7 @@ GEM
     pg (0.18.1)
     polyamorous (1.1.0)
       activerecord (>= 3.0)
-    powerpack (0.1.0)
+    powerpack (0.0.9)
     puma (2.11.1)
       rack (>= 1.1, < 2.0)
     pundit (0.3.0)
@@ -234,40 +254,41 @@ GEM
       activesupport (>= 3.0)
       i18n
       polyamorous (~> 1.1)
+    redis (3.2.1)
     request_store (1.1.0)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
-    rest-client (1.7.2)
+    rest-client (1.7.3)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    robust-redis-lock (0.2.2)
+      redis (>= 3.0.0)
     rolify (4.0.0)
-    rspec-core (3.2.0)
+    rspec-core (3.2.1)
       rspec-support (~> 3.2.0)
     rspec-expectations (3.2.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.2.0)
-    rspec-its (1.1.0)
+    rspec-its (1.2.0)
       rspec-core (>= 3.0.0)
       rspec-expectations (>= 3.0.0)
-    rspec-mocks (3.2.0)
+    rspec-mocks (3.2.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.2.0)
-    rspec-rails (3.2.0)
-      actionpack (>= 3.0, <= 4.2)
-      activesupport (>= 3.0, <= 4.2)
-      railties (>= 3.0, <= 4.2)
+    rspec-rails (3.2.1)
+      actionpack (>= 3.0, < 4.3)
+      activesupport (>= 3.0, < 4.3)
+      railties (>= 3.0, < 4.3)
       rspec-core (~> 3.2.0)
       rspec-expectations (~> 3.2.0)
       rspec-mocks (~> 3.2.0)
       rspec-support (~> 3.2.0)
-    rspec-support (3.2.1)
-    rubocop (0.29.1)
-      astrolabe (~> 1.3)
-      parser (>= 2.2.0.1, < 3.0)
-      powerpack (~> 0.1)
-      rainbow (>= 1.99.1, < 3.0)
-      ruby-progressbar (~> 1.4)
-    ruby-progressbar (1.7.1)
+    rspec-support (3.2.2)
+    rubocop (0.16.0)
+      parser (~> 2.1)
+      powerpack (~> 0.0.6)
+      rainbow (>= 1.1.4)
+    ruby-progressbar (1.2.0)
     sass (3.4.12)
     sass-rails (5.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -280,11 +301,11 @@ GEM
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
-    simplecov (0.9.1)
+    simplecov (0.9.2)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
-      simplecov-html (~> 0.8.0)
-    simplecov-html (0.8.0)
+      simplecov-html (~> 0.9.0)
+    simplecov-html (0.9.0)
     skylight (0.6.0)
       activesupport (>= 3.0.0)
     sprockets (2.12.3)
@@ -355,7 +376,9 @@ DEPENDENCIES
   neat!
   paper_trail!
   paranoia
+  parser (= 2.2.0.3)
   pg
+  promiscuous!
   puma
   pundit
   rails (= 4.1.8)
