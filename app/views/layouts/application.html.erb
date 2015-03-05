@@ -75,4 +75,5 @@
     </footer>
   </body>
   <%= javascript_include_tag "application" %>
+  <%= yield(:scripts) if content_for?(:scripts) %>
 </html>

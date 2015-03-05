@@ -4,6 +4,7 @@
 class Entity < ActiveRecord::Base
   acts_as_paranoid
 
+  belongs_to :parent_entity, :class_name => Entity
   has_many :contacts
   has_many :locations, :inverse_of => :entity
   has_one :customer
@@ -14,6 +15,7 @@ class Entity < ActiveRecord::Base
 
   resourcify
 
+  validate :parent_is_not_self, :parent_is_not_child
   validates \
     :is_active,
     :name,
@@ -29,5 +31,19 @@ class Entity < ActiveRecord::Base
 
   def to_s
     name
+  end
+
+  def parent_is_not_self
+    return if parent_entity.nil? || parent_entity != self
+
+    errors.add(:parent_entity, "can't be itself")
+  end
+
+  def parent_is_not_child
+    return if parent_entity.nil? \
+      || parent_entity == self \
+      || parent_entity.parent_entity.nil?
+
+    errors.add(:parent_entity, "can't be a child")
   end
 end

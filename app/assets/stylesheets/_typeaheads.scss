@@ -1,0 +1,61 @@
+.typeahead-inputs {
+  $base-accent-color: #477dca !default;
+
+  position: relative;
+
+  .tt-input {
+    margin-bottom: 0;
+  }
+
+  .twitter-typeahead {
+    width: 100%;
+  }
+
+// scss-lint:disable QualifyingElement, SelectorDepth
+  button {
+    @include button(flat, $base-accent-color);
+    @include position(absolute, 0 0 0 null);
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    outline: none;
+    padding: 5px 10px;
+
+    img {
+      height: 12px;
+      opacity: 0.7;
+    }
+  }
+// scss-lint:enable QualifyingElement, SelectorDepth
+}
+
+$tt-dropdown-background: $base-background-color;
+$tt-dropdown-border: $base-border;
+
+.tt-dropdown-menu {
+  background-color: $tt-dropdown-background;
+  border: $tt-dropdown-border;
+  border-radius: $base-border-radius;
+  margin-top: 12px;
+  padding: 8px 0;
+  width: 100%;
+}
+
+.tt-hint {
+  color: $medium-gray;
+}
+
+//.tt-suggestions {
+//}
+
+.tt-suggestion {
+  padding: 3px 20px;
+
+  &.tt-cursor {
+    background-color: $action-color;
+    color: $tt-dropdown-background;
+  }
+
+  p {
+    margin: 0;
+  }
+}

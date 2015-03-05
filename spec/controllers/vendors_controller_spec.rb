@@ -76,7 +76,7 @@ RSpec.describe VendorsController, :type => :controller do
       it { is_expected.to render_template(:edit) }
     end
 
-    context 'when create vendor fails' do
+    context 'when update vendor fails' do
       let(:context) do
         double(:entity => entity, :message => 'failure', :success? => false)
       end

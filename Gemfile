@@ -14,8 +14,10 @@ gem 'bourbon'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise'
 gem 'draper'
+gem 'font-awesome-sass'
 gem 'interactor', :github => 'collectiveidea/interactor'
 gem 'interactor-rails'
+gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'neat', :github => 'thoughtbot/neat'
 gem 'paper_trail', :github => 'airblade/paper_trail'
@@ -25,16 +27,12 @@ gem 'rails', '4.1.8'
 gem 'ransack'
 gem 'rolify'
 gem 'sass-rails'
-gem 'scss-lint', :github => 'causes/scss-lint'
 gem 'simple_form'
 gem 'skylight'
 gem 'squeel', :github => 'activerecord-hackery/squeel'
 gem 'uglifier', '>= 1.3.0'
 gem 'uuid'
 gem 'virtus'
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-# gem 'jbuilder', '~> 2.0'
 
 group :production do
   gem 'pg'
@@ -47,6 +45,7 @@ group :development do
   gem 'capistrano-rails'
   gem 'mysql2'
   gem 'rubocop'
+  gem 'scss-lint', :github => 'causes/scss-lint'
   gem 'unicorn'
 end
 

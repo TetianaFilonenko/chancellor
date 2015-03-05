@@ -13,6 +13,12 @@ module EntitiesHelper
     end
   end
 
+  def parent_entity_string(entity)
+    return 'None' if entity.parent_entity.nil?
+
+    entity.parent_entity.cached_long_name
+  end
+
   def vendor_block(entity)
     if entity.vendor
       render :partial => '/entities/vendor/detail',

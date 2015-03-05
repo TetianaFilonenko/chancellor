@@ -76,7 +76,7 @@ RSpec.describe SalespeopleController, :type => :controller do
       it { is_expected.to render_template(:edit) }
     end
 
-    context 'where create salesperson fails' do
+    context 'where update salesperson fails' do
       let(:context) do
         double(:entity => entity, :message => 'failure', :success? => false)
       end
