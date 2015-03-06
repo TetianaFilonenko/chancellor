@@ -1,0 +1,24 @@
+default: &default
+  adapter: mysql2
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: chancellor
+  host: localhost
+  username:
+
+test:
+  <<: *default
+  database: test_chancellor
+  host: localhost
+  username:
+
+production:
+  <<: *default
+  adapter: postgresql
+  host: <%= ENV['DB_HOST'] %>
+  port: 5432
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>

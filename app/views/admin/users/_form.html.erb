@@ -1,9 +1,0 @@
-<%= render :partial => '/model_errors', :locals => { :model => model } if model.errors.any? %>
-
-<%= form.input :first_name,
-  :input_html => { } %>
-<%= form.input :last_name %>
-<%= form.input :display_name %>
-<%= form.input :is_active,
-  :as => :boolean,
-  :boolean_style => :inline %>
