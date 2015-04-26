@@ -1,6 +1,0 @@
-{
-  "name": "chancellor",
-  "dependencies": {
-    "typeahead.js": "latest"
-  }
-}
