@@ -1,14 +1,13 @@
 language: ruby
+addons:
+  postgresql: '9.3'
 rvm:
-- 2.2.0
+  - 2.2.1
 script:
-- npm install bower
-- bower install --verbose
-- bundle exec rake db:schema:load
-- bundle exec rspec --color --format documentation
+  - bundle exec rake db:schema:load
+  - bundle exec rspec --color --format documentation
 before_script:
-- cp config/database.travis.yml config/database.yml
-- mysql -e 'create database chancellor_test;'
+  - cp spec/dummy/config/database.travis.yml spec/dummy/config/database.yml
+  - psql -c 'create database chancellor_test;' -U postgres
 notifications:
-  slack:
-    secure: EtnoVfqVZrvMVxFaBuwrM6RhuVZvG5DA2pUab7jhFnQWah00pse2BzyhmWEgFtL/fy+2UWFT8NWF1IhpvaMwaQlQy3EgTHB/N4bsiIwZAN2UcqYZFjhm+c1bpQJZwH+jdhGSAdbeyaFuZjEGa0EX5tAO922kW7ZvSpw3qMVMT7M=
+  slack: wm-it:QEPmqezBb68PGS6a8OWwImYi

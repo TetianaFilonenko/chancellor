@@ -8,12 +8,13 @@ capybara-*.html
 /public/system
 /coverage/
 /spec/tmp
+/spec/dummy/log
 **.orig
 rerun.txt
 pickle-email-*.html
 
 config/application.yml
-config/database.yml
+spec/dummy/config/database.yml
 
 ## Environment normalisation:
 /.bundle
